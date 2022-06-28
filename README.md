@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /users/:curUser
+  * URL: /users/:curUserId
   * Body: none
 
 * Successful Response
@@ -254,7 +254,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /spots/:CurUser
+  * URL: /spots/:CurUserId
   * Body: none
 
 * Successful Response
@@ -292,8 +292,8 @@ Returns the details of a spot specified by its id.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: get
+  * URL: /spots/:spotId
   * Body: none
 
 * Successful Response
