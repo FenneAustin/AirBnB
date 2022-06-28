@@ -4,7 +4,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![DB SCHEMA](/AirBnb.JPG?raw=true "AirBnB Database Schema")
 
 ## API Documentation
 
