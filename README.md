@@ -51,8 +51,8 @@ Returns the information about the current user that is logged in.
 
 * Require Authentication: true
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: get
+  * URL: /users/:curUser
   * Body: none
 
 * Successful Response
@@ -77,8 +77,8 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: post
+  * URL: /login
   * Headers:
     * Content-Type: application/json
   * Body:
