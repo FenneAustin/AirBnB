@@ -4,7 +4,7 @@
 
 ## Database Schema Design
 
-![DB SCHEMA](/AirBnB-Schema.JPG?raw=true "AirBnB Database Schema")
+![DB SCHEMA](/AirBnB.JPG?raw=true "AirBnB Database Schema")
 
 ## API Documentation
 
