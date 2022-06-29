@@ -254,7 +254,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /spots/:CurUserId
+  * URL: /spots/:curUserId
   * Body: none
 
 * Successful Response
@@ -549,7 +549,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /reviews/:userId
+  * URL: /reviews/:curUserId
   * Body: none
 
 * Successful Response
@@ -839,7 +839,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /bookings/:currentUserId
+  * URL: /bookings/:curUserId
   * Body: none
 
 * Successful Response
@@ -1253,7 +1253,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: delete
-  * URL: /users/:userId/images/:imageId
+  * URL: /users/:curUserId/images/:imageId
   * Body: none
 
 * Successful Response
@@ -1289,7 +1289,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: get
-  * URL: /spots/
+  * URL: /spots
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
