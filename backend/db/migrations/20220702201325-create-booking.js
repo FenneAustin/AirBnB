@@ -37,3 +37,6 @@ module.exports = {
     await queryInterface.dropTable('Bookings');
   }
 };
+
+
+// this is a many to many table
