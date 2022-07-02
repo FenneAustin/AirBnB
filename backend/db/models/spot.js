@@ -23,9 +23,14 @@ module.exports = (sequelize, DataTypes) => {
       )
 
 
-      Spot.belongsToMany(
+      Spot.belongsTo(
         models.User,
-        {through: models.Booking}
+        {foreignKey: 'ownerId', onDelete: 'CASCADE'}
+      )
+
+      Spot.hasMany(
+        models.Booking,
+        {foreignKey: 'spotId', onDelete: 'CASCADE'}
       )
 
     }

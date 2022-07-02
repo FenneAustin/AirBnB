@@ -9,22 +9,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Image.belongsTo(models.Review, { foreignKey: "imageableId" });
+  Image.belongsTo(models.Spot, {
+    foreignKey: "imageableId",
+    constraints: false,
+  });
+  Image.belongsTo(models.Review, {
+    foreignKey: "imageableId",
+    constraints: false,
+  });
 
-      Image.belongsTo(models.Spot, { foreignKey: "imageableId" });
     }
   }
-  Image.init(
-    {
-      id: DataTypes.INTEGER,
-      imageableId: DataTypes.INTEGER,
-      imageableType: DataTypes.INTEGER,
-      url: DataTypes.STRING,
+Image.init(
+  {
+    imageableId: DataTypes.INTEGER,
+    imageableType: {
+      type: DataTypes.ENUM,
+      values: ["spot", "review"],
     },
-    {
-      sequelize,
-      modelName: "Image",
-    }
-  );
+    url: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    modelName: "Image",
+  }
+);
+
   return Image;
 };
