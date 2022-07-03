@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async(queryInterface, Sequelize) =>{
     await queryInterface.createTable("Images", {
       id: {
         allowNull: false,
@@ -8,15 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      id: {
-        type: Sequelize.INTEGER,
-      },
       imageableId: {
         type: Sequelize.INTEGER,
       },
       imageableType: {
         type: Sequelize.ENUM,
-        values: ["spot", "review"]
+        values: ["spot", "review"],
       },
       url: {
         type: Sequelize.STRING,
@@ -24,14 +21,16 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+   down: async(queryInterface, Sequelize) => {
     await queryInterface.dropTable('Images');
   }
 };

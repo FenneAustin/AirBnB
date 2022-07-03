@@ -1,57 +1,55 @@
-'use strict';
+"use strict";
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Spots', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("Spots", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       ownerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30),
       },
       state: {
-        type: Sequelize.STRING
-      },
-      state: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(40),
       },
       country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(40),
       },
       lat: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
       },
       lng: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(40),
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250),
       },
       price: {
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      },
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Spots');
-  }
+
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable("Spots");
+  },
 };
