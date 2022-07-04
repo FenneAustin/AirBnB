@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /users/:curUserId
+  * URL: /users/Me
   * Body: none
 
 * Successful Response
@@ -254,7 +254,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /spots/:curUserId
+  * URL: /spots/Me
   * Body: none
 
 * Successful Response
@@ -389,7 +389,7 @@ Creates and returns a new spot.
       "description": "Place where web developers are created",
       "price": 123,
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36" 
+      "updatedAt": "2021-11-19 20:39:36"
     }
     ```
 
@@ -464,7 +464,7 @@ Updates and returns an existing spot.
       "description": "Place where web developers are created",
       "price": 123,
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 10:06:40" 
+      "updatedAt": "2021-11-20 10:06:40"
     }
     ```
 
@@ -525,7 +525,7 @@ Deletes an existing spot.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -549,7 +549,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /reviews/:curUserId
+  * URL: /reviews/Me
   * Body: none
 
 * Successful Response
@@ -680,7 +680,7 @@ Create and return a new review for a spot specified by id.
       "review": "This was an awesome spot!",
       "stars": 5,
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36" 
+      "updatedAt": "2021-11-19 20:39:36"
     }
     ```
 
@@ -815,7 +815,7 @@ Delete an existing review.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -839,7 +839,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /bookings/:curUserId
+  * URL: /bookings/Me
   * Body: none
 
 * Successful Response
@@ -953,7 +953,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: post
-  * URL: /spot/:spotId/booking 
+  * URL: /spot/:spotId/booking
   * Body: none
 
 * Successful Response
@@ -1253,7 +1253,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: delete
-  * URL: /users/:curUserId/images/:imageId
+  * URL: /users/Me/images/:imageId
   * Body: none
 
 * Successful Response
