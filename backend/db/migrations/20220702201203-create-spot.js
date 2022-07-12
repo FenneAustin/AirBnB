@@ -11,6 +11,9 @@ module.exports = {
       ownerId: {
         type: Sequelize.INTEGER,
       },
+      address: {
+        type: Sequelize.STRING(30),
+      },
       city: {
         type: Sequelize.STRING(30),
       },

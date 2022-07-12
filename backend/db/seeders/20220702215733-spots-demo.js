@@ -7,6 +7,7 @@ module.exports = {
       [
         {
           ownerId: 1,
+          address: "crossmoor",
           city: "rosemount",
           state: "iowa",
           country: "United States",
@@ -18,6 +19,7 @@ module.exports = {
         },
         {
           ownerId: 1,
+          address: "Banyan lane",
           city: "Minnetonka",
           state: "Minnesota",
           country: "United States",
@@ -30,6 +32,7 @@ module.exports = {
         {
           ownerId: 1,
           city: "Apple Valley",
+          address: "dupont way",
           state: "Minnesota",
           country: "United States",
           lat: 321.24,
