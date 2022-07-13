@@ -67,4 +67,10 @@ app.use((err, _req, _res, next) => {
   next(err);
 });
 
+// app.use("/api/spots", (err, req, res, next) => {
+//   return res.json(err);
+// });
+
+
+
 module.exports = app;
