@@ -30,7 +30,7 @@ module.exports = {
           price: 400.22,
         },
         {
-          ownerId: 1,
+          ownerId: 2,
           city: "Apple Valley",
           address: "dupont way",
           state: "Minnesota",

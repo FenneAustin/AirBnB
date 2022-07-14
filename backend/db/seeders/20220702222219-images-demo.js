@@ -8,6 +8,11 @@ module.exports = {
        imageableType: "spot",
        url: "https://www.google.com/",
      },
+     {
+      imageableId: 2,
+      imageableType: "spot",
+      url: "https://www.appacademy.com/",
+     }
    ]);
   },
 
