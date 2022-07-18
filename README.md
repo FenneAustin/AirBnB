@@ -1191,7 +1191,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: put
-  * URL: /spots/:spotId/reviews/:reviewId/image
+  * URL: reviews/:reviewId/image
   * Headers:
     * Content-Type: application/json
   * Body:

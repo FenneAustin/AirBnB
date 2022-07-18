@@ -135,4 +135,32 @@ router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => 
 
 })
 
+router.post("/:reviewId/image", requireAuth, async (req, res) => {
+  const { url } = req.body;
+  const { id } = req.params;
+
+  const review = await Review.findByPk(id);
+
+  if(!review){
+    return res.status(404).json({message: "Review couldn't be found", statusCode: 404 })
+  }
+
+  if( review.userId !== req.user.id){
+    return res.status(403).json({message: "Proper authentication is required", statusCode: 403});
+  }
+
+  const images = await Image.findAll({where: {
+    imageableId: idl
+  }})
+
+  if (images.length >= 10){
+    return res.status(400).json({message: "Maximum numbner of images for this resource was reached", statusCode: 400});
+  }
+
+  const newImage = await Image.create({ imageableId: id, imageableType: "Review", url: url})
+
+  return res.status(200).json(newImage);
+
+})
+
 module.exports = router;
