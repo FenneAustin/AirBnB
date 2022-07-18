@@ -9,9 +9,29 @@ module.exports = {
        url: "https://www.google.com/",
      },
      {
+       imageableId: 2,
+       imageableType: "spot",
+       url: "https://www.appacademy.com/",
+     },
+     {
+       imageableId: 1,
+       imageableType: "review",
+       url: "https://www.appacademy.com/",
+     },
+     {
+       imageableId: 1,
+       imageableType: "review",
+       url: "https://www.google.com/",
+     },
+     {
+       imageableId: 1,
+       imageableType: "review",
+       url: "https://www.instagram.com/",
+     },
+     {
       imageableId: 2,
-      imageableType: "spot",
-      url: "https://www.appacademy.com/",
+      imageableType: "review",
+      url: "FACEBOOK.com"
      }
    ]);
   },

@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 const validateLogin = [
-  check("credential")
+  check("email")
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage("Please provide a valid email or username."),
@@ -21,23 +21,20 @@ const validateLogin = [
 
 // log in
 router.post("/", validateLogin, async (req, res, next) => {
-  const { credential, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.login({ credential, password });
+  const user = await User.login({ email, password });
 
   if (!user) {
-    const err = new Error("Login failed");
+    const err = new Error("Invalid credentials");
     err.status = 401;
     err.title = "Login failed";
-    err.errors = ["The provided credentials were invalid."];
     return next(err);
   }
 
   await setTokenCookie(res, user);
 
-  return res.json({
-    user,
-  });
+  return res.json(user.loginSafeObject());
 });
 
 

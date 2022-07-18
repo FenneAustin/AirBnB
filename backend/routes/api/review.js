@@ -10,23 +10,35 @@ const {
 } = require("../../utils/validation");
 
 
+const validateReviewInsert = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .isString()
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .isString()
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors,
+];
+
 // ? ask questions about this one
 router.get("/me", requireAuth, async (req, res) => {
-  const reviews = await Review.findAll({ where: { userId: req.user.id} })
+  const reviewsData = await Review.findAll({ where: { userId: req.user.id} })
 
-  if(!reviews){
+  if(!reviewsData){
     return res.status(404).json({message: "no reviews were found"})
   }
 
-  const ReviewArray = []
+  const Reviews = []
 
   const user = await User.findOne({
       where: {
          id: req.user.id,
        },
      });
-
-  reviews.forEach(async (review)  => {
+  for(const review of reviewsData){
 
     const spot = await Spot.findOne({
       where: {
@@ -34,6 +46,17 @@ router.get("/me", requireAuth, async (req, res) => {
       }
     })
 
+    const image = await Image.findAll({
+      where: {
+        imageableId: review.dataValues.id,
+        imageableType: "review"
+      }
+    })
+
+    let ImageArr = [];
+    image.forEach((image) => {
+          ImageArr.push(image.url);
+    });
 
     const obj = {
       id: review.dataValues.id,
@@ -59,28 +82,57 @@ router.get("/me", requireAuth, async (req, res) => {
         lng: spot.lng,
         name: spot.name,
         price: spot.price
-      }
+      },
+      images: ImageArr
 
     }
-    ReviewArray.push(obj);
-  })
+    Reviews.push(obj);
+  }
 
 
 
-  return res.status(200).json({ReviewArray});
+  return res.status(200).json({Reviews});
 
 })
 
-router.delete("/:reviewId", (req, res) => {
-  try {
-  } catch {
-    // if cannot be found throw error with
-    // res.statusCode = 404
-    // res.json({
-    //  "message": "Review couldn't be found",
-    //    "statusCode" : "404"
-    // })
+router.delete("/:reviewId", requireAuth, async (req, res) => {
+  const { id } = req.params;
+  const review = await Review.findByPk(id);
+
+  if (!review) {
+    return res.status(404).json({message: "Review couldn't be found", statusCode: 404});
   }
+
+  if (review.userId !== req.user.id){
+    return res.status(403).json({message: "must have proper authentication", statusCode: 403})
+  }
+
+  await review.destroy();
+
+  return res.status(200).json({message: "successfully deleted", statusCode: 200})
+
 });
+
+router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => {
+  const { id } = req.params;
+  const { review, stars } = req.body;
+
+  const prevReview = await Review.findByPk(id);
+
+  if (!prevReview){
+    return res.status(404).json({message: "Review couldn't be found", statusCode: 404})
+  }
+
+  if (prevReview.userId !== req.user.id){
+    return res.status(403).json({message: "Proper authentication is required"})
+  }
+
+  prevReview.set({review: review, stars: stars})
+  await prevReview.save()
+
+
+  return res.status(200).json(prevReview);
+
+})
 
 module.exports = router;

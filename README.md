@@ -735,7 +735,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: put
-  * URL: /spot/:spotId/reviews/:reviewId
+  * URL: /reviews/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1143,7 +1143,7 @@ Create and return a new image for a spot specified by id.
 * Require Authentication: true
 * Require proper authorization: Spot must belong to the current user
 * Request
-  * Method: put
+  * Method: post
   * URL: /spots/:spotId/image
   * Headers:
     * Content-Type: application/json

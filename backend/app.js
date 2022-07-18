@@ -70,6 +70,19 @@ app.use((err, _req, _res, next) => {
 // app.use("/api/spots", (err, req, res, next) => {
 //   return res.json(err);
 // });
+app.use((err, _req, res, _next) => {
+  res.status(err.status || 500);
+
+  res.json({
+    message: err.message,
+    statusCode: err.status,
+    errors: err.errors
+  });
+});
+
+
+
+
 
 
 

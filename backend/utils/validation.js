@@ -6,10 +6,17 @@ const handleValidationErrors = (req, _res, next) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    const errors = validationErrors.array().map((error) => `${error.msg}`);
+    // const errors = validationErrors.array().map((error) => `${error.msg}`);
+    const errorObj = {};
 
+    const errors = validationErrors.array().forEach((error) => {
+      let key = error.param;
+      errorObj[key] = error.msg;
+    });
+
+    console.log(errors)
     const err = Error("Bad request.");
-    err.errors = errors;
+    err.errors = errorObj;
     err.status = 400;
     err.title = "Bad request.";
     next(err);
@@ -34,11 +41,13 @@ const handleInsertSpots = (req, _res, next) => {
     err.statusCode = 400;
     err.errors = errorObj;
     _res.status(400)
-    return _res.json({message:err.message, ...err});
+    return _res.json({message: err.message, ...err});
     // next({ message: err.message, ...err });
   }
   next();
 };
+
+
 
 module.exports = {
   handleValidationErrors, handleInsertSpots

@@ -7,16 +7,21 @@ module.exports = (sequelize, DataTypes) => {
       const { id, username, email } = this; // context will be the User instance
       return { id, username, email };
     }
+    loginSafeObject() {
+      const { id, firstName, lastName, email, username } = this; // context will be the User instance
+      const token = '';
+      return { id, firstName, lastName, email, username, token };
+    }
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
-    static async login({ credential, password }) {
+    static async login({ email, password }) {
       const { Op } = require("sequelize");
       const user = await User.scope("loginUser").findOne({
         where: {
           [Op.or]: {
-            username: credential,
-            email: credential,
+            username: email,
+            email: email,
           },
         },
       });
@@ -35,23 +40,17 @@ module.exports = (sequelize, DataTypes) => {
     }
     static associate(models) {
       // define association here
-      User.hasMany(
-        models.Booking,
-        { foreignKey: 'userId', onDelete: 'CASCADE'}
-      );
+      User.hasMany(models.Booking, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      });
 
-      User.hasMany(
-        models.Spot,
-        { foreignKey: 'ownerId', onDelete: 'CASCADE'}
-      )
+      User.hasMany(models.Spot, { foreignKey: "ownerId", onDelete: "CASCADE" });
 
-      User.hasMany(
-        models.Review,
-        { foreignKey: 'userId', onDelete: 'CASCADE'}
-      )
-
-
-
+      User.hasMany(models.Review, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      });
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
