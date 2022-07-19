@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const { requireAuth, restoreUser } = require("../../utils/auth");
-const { Spot, Image, Review, User } = require("../../db/models");
+const { Spot, Image, Review, User, Booking } = require("../../db/models");
 const { check } = require("express-validator");
 const {
   handleValidationErrors,
@@ -57,6 +57,12 @@ const validateSpotInsert = [
 const validateReviewInsert = [
   check("review").isString().withMessage("Review is required"),
   check("stars").exists().withMessage("Stars is required"),
+  handleInsertSpots,
+];
+
+const validateBookingSpots = [
+  check("startDate").isDate().exists().withMessage("StartDate is required"),
+  check("endDate").isDate().exists().withMessage("EndDate is required"),
   handleInsertSpots,
 ];
 
@@ -368,5 +374,139 @@ router.post("/:id/reviews", requireAuth, validateReviewInsert, async (req, res) 
 
   return res.status(403).json({ message: "review already exists", statusCode: 403});
 });
+
+router.post("/:id/booking", requireAuth, async (req,res) => {
+  const { id } = req.params;
+  const { startDate, endDate } = req.body;
+
+
+  const spot = await Spot.findByPk(id);
+  if(!spot){
+    return res.status(404).json({message: "Spot couldn't be found", statusCode: 404});
+  }
+
+  const conflictedBookings = await Booking.findAll({
+    where :{
+      spotId: id,
+      startDate: {
+        [op.lt]: endDate
+      },
+      endDate: {
+        [op.gt]: startDate
+      }
+    }
+  })
+
+  if(conflictedBookings.length > 0){
+    return res.status(403).json({
+      message: "Sorry, this spot is already booked for the specified dates",
+      statusCode: 403,
+      error: {
+        startDate: "Start date conflicts with an existing booking",
+        endDate: "End date conflicts with an existing booking",
+      },
+    });
+  }
+
+  if (spot.userId == req.user.id){
+    return res.status(400).json({
+      message: "Cannot book for a spot you own"
+    })
+  }
+
+  const booking = await Booking.create({
+    id: req.user.id,
+    spotId: id,
+    startDate: startDate,
+    endDate: endDate
+  })
+
+
+  return res.status(200).json(booking)
+
+
+
+})
+
+router.delete("/:id/booking/:bookingId", requireAuth, async(req,res) =>{
+  const {id, bookingId} = req.params
+
+  const spot = await Spot.findByPk(id);
+  const booking = await Booking.findByPk(bookingId);
+
+  if(!booking){
+    return res.status(404).json({message: "Booking couldn't be found", statusCode: 404})
+  }
+  // const today = new Date();
+  // const dd = String(today.getDate()).padStart(2, "0");
+  // const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  // const yyyy = today.getFullYear();
+
+  // today = mm + "/" + dd + "/" + yyyy;
+// TODO: impleetment this start date method so if somebody tries to make a deletion after start it returns an error
+  if(booking.startDate){
+
+  }
+
+  if(spot.ownerId == req.user.id || booking.userId == req.user.id){
+    await booking.destroy()
+  }
+
+  return res.status(200).json({message: "Successfully deleterd", statusCode: 200});
+
+})
+
+
+//TODO: need to come back to this and impletment the res
+router.put("/:id/booking/:bookingId", requireAuth, async(req,res) => {
+  const {id, bookingId} = req.params
+  const {startDate, endDate} = req.body
+
+  const booking = await Booking.findByPk(bookingId);
+  const spot = await Spot.findByPk(id);
+
+  if(!booking){
+    return res.status(404).json({message: "Booking couldn't be found", statusCode: 404})
+  }
+  if(!spot){
+    return res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
+  }
+
+
+
+
+
+})
+
+
+router.get("/:id/bookings", requireAuth, async(req,res) => {
+  const {id} = req.params
+
+  const spot = await Spot.findByPk(id);
+
+  if(!spot){
+    return res.status(404).json({message: "spot couldn't be found", statusCode: 404})
+  }
+
+  if (req.user.id == spot.ownerId){
+    const bookings = await Booking.findAll({
+      where: {
+        spotId: id,
+      },
+      include: {
+        Model: User,
+      },
+    });
+    return res.status(200).json({bookings})
+  }else {
+        const bookings = await Booking.findAll({
+          where: {
+            spotId: id,
+          },
+        });
+      return res.status(200).json({bookings})
+  }
+
+})
 
 module.exports = router;

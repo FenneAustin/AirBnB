@@ -7,6 +7,7 @@ const sessionRouter = require("./session");
 const usersRouter = require("./user");
 const spotsRouter = require('./spot');
 const reviewsRouter = require('./review');
+const bookingsRouter = require('./booking')
 
 router.use(restoreUser); //<---- ME FIRST
 
@@ -17,6 +18,8 @@ router.use("/users", usersRouter);
 router.use('/spots', spotsRouter);
 
 router.use('/reviews', reviewsRouter);
+
+router.use('/bookings', bookingsRouter);
 
 router.post("/test", (req, res) => {
   res.json({ requestBody: req.body });
