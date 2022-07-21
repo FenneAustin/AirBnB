@@ -7,8 +7,6 @@ const { check } = require("express-validator");
 const { handleValidationErrors, handleInsertSpots} = require("../../utils/validation");
 const { Op } = require("sequelize");
 
-// TODO: add more checks to make sure input is validated
-
 const validateSpotInsert = [
   check("address")
     .exists({ checkFalsy: true })
@@ -290,7 +288,6 @@ router.delete("/:id", requireAuth, async (req, res) => {
     .json({ message: "Successfully deleted", statusCode: "200" });
 });
 
-// TODO: does this have to be able to handle single inserts? currently it willl only work if everything is included
 router.put("/:id", validateSpotInsert, requireAuth, async (req, res) => {
   const { id } = req.params;
 
@@ -539,8 +536,6 @@ router.delete("/:id/booking/:bookingId", requireAuth, async(req,res) =>{
 
 })
 
-
-
 router.put("/:id/booking/:bookingId", requireAuth, async(req,res) => {
   const {id, bookingId} = req.params
   const {startDate, endDate} = req.body
@@ -607,7 +602,6 @@ router.put("/:id/booking/:bookingId", requireAuth, async(req,res) => {
     return res.status(200).json(booking);
 
 })
-
 
 router.get("/:id/booking", requireAuth, async(req,res) => {
   const {id} = req.params

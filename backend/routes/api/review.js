@@ -6,7 +6,6 @@ const { Spot, Image, Review, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors, handleInsertSpots} = require("../../utils/validation");
 
-
 const validateReviewInsert = [
   check("review")
     .exists({ checkFalsy: true })
@@ -19,7 +18,6 @@ const validateReviewInsert = [
     .withMessage("Stars must be an integer from 1 to 5"),
   handleValidationErrors,
 ];
-
 
 router.get("/me", requireAuth, async (req, res) => {
   const reviewsData = await Review.findAll({ where: { userId: req.user.id} })
@@ -34,18 +32,11 @@ router.get("/me", requireAuth, async (req, res) => {
   console.log(user)
 
   for(const review of reviewsData){
-
-
     const spot = await Spot.findOne({ where: { id: review.dataValues.spotId }})
-
-    if(!spot){
-      continue
-    }
+    if(!spot){ continue }
 
     const images = await Image.findAll({ where: { imageableId: review.dataValues.id, imageableType: "review"}})
-
     let ImageArr = [];
-
     if (images > 0) {
       images.forEach((image) => {
           ImageArr.push(image.url);
