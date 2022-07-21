@@ -23,7 +23,7 @@ const validateReviewInsert = [
   handleValidationErrors,
 ];
 
-// ? ask questions about this one
+
 router.get("/me", requireAuth, async (req, res) => {
   const reviewsData = await Review.findAll({ where: { userId: req.user.id} })
 
@@ -40,6 +40,10 @@ router.get("/me", requireAuth, async (req, res) => {
 
 
     const spot = await Spot.findOne({ where: { id: review.dataValues.spotId }})
+
+    if(!spot){
+      continue
+    }
 
     const images = await Image.findAll({ where: { imageableId: review.dataValues.id, imageableType: "review"}})
 
