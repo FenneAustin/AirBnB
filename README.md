@@ -953,7 +953,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: post
-  * URL: /spot/:spotId/booking
+  * URL: /spots/:spotId/booking
   * Body:
 
   ```json

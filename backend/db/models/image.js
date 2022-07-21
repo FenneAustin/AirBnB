@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Image.belongsTo(models.Spot, {
         foreignKey: "imageableId",
-        as: "previewImage",
+        as: "Images", // this was previewImage
         constraints: false,
       });
       Image.belongsTo(models.Review, {
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       imageableId: DataTypes.INTEGER,
       imageableType: {
         type: DataTypes.ENUM,
-        values: ["spot", "review"],
+        values: ["spot", "review", "spotPreview"],
       },
       url: DataTypes.STRING,
     },

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Spot.hasMany(models.Image, {
         foreignKey: "imageableId",
-        as: "previewImage",
+        as: "Images",  // was previewImage
         onDelete: "CASCADE",
       });
 
@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       description: DataTypes.STRING,
       price: DataTypes.FLOAT,
+      previewImage: DataTypes.STRING,
     },
     {
       sequelize,
