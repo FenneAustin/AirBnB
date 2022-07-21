@@ -365,7 +365,8 @@ Creates and returns a new spot.
       "lng": -122.4730327,
       "name": "App Academy",
       "description": "Place where web developers are created",
-      "price": 123
+      "price": 123,
+      "previewImage": "https://www.google.com/someimage/someimage.jpg",
     }
     ```
 
@@ -388,6 +389,7 @@ Creates and returns a new spot.
       "name": "App Academy",
       "description": "Place where web developers are created",
       "price": 123,
+      "previewImage": "https://www.google.com/someimage/someimage.jpg",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36"
     }
@@ -440,7 +442,8 @@ Updates and returns an existing spot.
       "lng": -122.4730327,
       "name": "App Academy",
       "description": "Place where web developers are created",
-      "price": 123
+      "price": 123,
+      "previewImage": "http://google.com/someplace.jpg",
     }
     ```
 
@@ -463,6 +466,7 @@ Updates and returns an existing spot.
       "name": "App Academy",
       "description": "Place where web developers are created",
       "price": 123,
+      "previewImage": "http://google.com/someplace.jpg",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-20 10:06:40"
     }

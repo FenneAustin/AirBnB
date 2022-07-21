@@ -27,6 +27,17 @@ const validateSignup = [
     .withMessage("Password must be 6 characters or more."),
   handleValidationErrors,
 ];
+
+router.get("/Me", requireAuth, async (req,res) => {
+  return res.json({
+    id: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  })
+})
+
+
 // TODO: ask baylen if I can keep this endpoint as including a username and update readme. My readme doesnt have the username but its easier if I just include it
 
 // Sign up

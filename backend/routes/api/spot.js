@@ -44,6 +44,10 @@ const validateSpotInsert = [
   check("name")
     .exists({ checkFalsy: true })
     .isString()
+    .custom((value)=>{
+      if(value.length >50)return false
+      else return true
+    })
     .withMessage("Name must be less than 50 characters"),
   check("description")
     .exists({ checkFalsy: true })
@@ -160,7 +164,7 @@ router.get("/", validateSpotsQuery, async (req, res) => {
 });
 
 router.post("/", requireAuth, validateSpotInsert, async (req, res) => {
-  const { address, city, state, country, lat, lng, name, description, price } =
+  const { address, city, state, country, lat, lng, name, description, price, previewImage } =
     req.body;
 
   let returnObj;
@@ -177,12 +181,13 @@ router.post("/", requireAuth, validateSpotInsert, async (req, res) => {
       name: name,
       description: description,
       price: price,
+      previewImage: previewImage,
     });
     returnObj = newSpot;
   } catch {
     return res.status(400).json({ error: "Error creating spot" });
   }
-  return res.json(returnObj);
+  return res.status(201).json(returnObj);
 });
 
 router.get("/me", requireAuth, async (req, res) => {

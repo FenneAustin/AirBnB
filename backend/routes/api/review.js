@@ -27,36 +27,30 @@ const validateReviewInsert = [
 router.get("/me", requireAuth, async (req, res) => {
   const reviewsData = await Review.findAll({ where: { userId: req.user.id} })
 
-  if(!reviewsData){
+  if(reviewsData.length <= 0){
     return res.status(404).json({message: "no reviews were found"})
   }
 
   const Reviews = []
 
-  const user = await User.findOne({
-      where: {
-         id: req.user.id,
-       },
-     });
+  const user = await User.findByPk(req.user.id);
+  console.log(user)
+
   for(const review of reviewsData){
 
-    const spot = await Spot.findOne({
-      where: {
-        id: review.dataValues.spotId
-      }
-    })
+    
+    const spot = await Spot.findOne({ where: { id: review.dataValues.spotId }})
 
-    const image = await Image.findAll({
-      where: {
-        imageableId: review.dataValues.id,
-        imageableType: "review"
-      }
-    })
+    const images = await Image.findAll({ where: { imageableId: review.dataValues.id, imageableType: "review"}})
 
     let ImageArr = [];
-    image.forEach((image) => {
+
+    if (images > 0) {
+      images.forEach((image) => {
           ImageArr.push(image.url);
-    });
+      });
+  }
+
 
     const obj = {
       id: review.dataValues.id,
@@ -67,12 +61,12 @@ router.get("/me", requireAuth, async (req, res) => {
       createdAt: review.dataValues.createdAt,
       updatedAt: review.dataValues.updatedAt,
       User: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.LastName
+        id: user.dataValues.id,
+        firstName: user.dataValues.firstName,
+        lastName: user.dataValues.LastName
       },
       Spot: {
-        id: spot.id,
+        id: spot.dataValues.id,
         ownerId: spot.ownerId,
         address: spot.address,
         city: spot.city,
@@ -81,7 +75,8 @@ router.get("/me", requireAuth, async (req, res) => {
         lat: spot.lat,
         lng: spot.lng,
         name: spot.name,
-        price: spot.price
+        price: spot.price,
+        previewImage: spot.previewImage
       },
       images: ImageArr
 
