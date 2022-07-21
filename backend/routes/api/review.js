@@ -38,7 +38,7 @@ router.get("/me", requireAuth, async (req, res) => {
 
   for(const review of reviewsData){
 
-    
+
     const spot = await Spot.findOne({ where: { id: review.dataValues.spotId }})
 
     const images = await Image.findAll({ where: { imageableId: review.dataValues.id, imageableType: "review"}})
@@ -99,7 +99,7 @@ router.delete("/:reviewId", requireAuth, async (req, res) => {
   }
 
   if (review.userId !== req.user.id){
-    return res.status(403).json({message: "must have proper authentication", statusCode: 403})
+    return res.status(403).json({message: "Forbidden", statusCode: 403});
   }
 
   await review.destroy();
@@ -119,7 +119,7 @@ router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => 
   }
 
   if (prevReview.userId !== req.user.id){
-    return res.status(403).json({message: "Proper authentication is required"})
+    return res.status(403).json({message: "Forbidden", statusCode: 403})
   }
 
   prevReview.set({review: review, stars: stars})

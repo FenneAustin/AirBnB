@@ -4,12 +4,8 @@ const router = express.Router();
 const { requireAuth, restoreUser } = require("../../utils/auth");
 const { Spot, Image, Review, User, Booking } = require("../../db/models");
 const { check } = require("express-validator");
-const {
-  handleValidationErrors,
-  handleInsertSpots,
-} = require("../../utils/validation");
+const { handleValidationErrors, handleInsertSpots} = require("../../utils/validation");
 const { Op } = require("sequelize");
-const e = require("express");
 
 // TODO: add more checks to make sure input is validated
 
@@ -287,7 +283,7 @@ router.delete("/:id", requireAuth, async (req, res) => {
   } else {
     return res
       .status(403)
-      .json({ message: "User is not the owner of this spot", statusCode: 403 });
+      .json({ message: "Forbidden", statusCode: 403 });
   }
   return res
     .status(200)
@@ -308,7 +304,7 @@ router.put("/:id", validateSpotInsert, requireAuth, async (req, res) => {
   }
 
   if (req.user.id !== spot.ownerId) {
-    return res.status(403).json({ message: "not authorized", statusCode: 403 });
+    return res.status(403).json({ message: "Forbidden", statusCode: 403 });
   }
 
   if (address) {
@@ -496,7 +492,7 @@ router.post("/:id/booking", requireAuth, async (req,res) => {
 
   if (spot.ownerId == req.user.id){
     return res.status(400).json({
-      message: "Cannot book for a spot you own"
+      message: "Forbidden", statusCode: 403
     })
   }
 
@@ -534,16 +530,17 @@ router.delete("/:id/booking/:bookingId", requireAuth, async(req,res) =>{
     return res.status(400).json({message: "Bookings that have been started can't be deleted", statusCode: 400});
   }
 
-  if(spot.ownerId == req.user.id || booking.userId == req.user.id){
-    await booking.destroy()
+  if((spot.ownerId !== req.user.id) && (booking.userId !== req.user.id)){
+    return res.status(403).json({message:"Forbidden", statusCode: 403});
   }
 
+  await booking.destroy();
   return res.status(200).json({message: "Successfully deleterd", statusCode: 200});
 
 })
 
 
-//TODO: need to come back to this and impletment the res
+
 router.put("/:id/booking/:bookingId", requireAuth, async(req,res) => {
   const {id, bookingId} = req.params
   const {startDate, endDate} = req.body
@@ -573,7 +570,7 @@ router.put("/:id/booking/:bookingId", requireAuth, async(req,res) => {
   }
 
   if (booking.userId !== req.user.id){
-    return res.status(403).json({message: "Only the creator if this booking can edit the booking", statusCode: 403})
+    return res.status(403).json({message: "Forbidden", statusCode: 403});
   }
 
 
