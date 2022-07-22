@@ -184,14 +184,15 @@ router.post("/", requireAuth, validateSpotInsert, async (req, res) => {
   return res.status(201).json(returnObj);
 });
 
-router.get("/me", requireAuth, async (req, res) => {
+router.get("/Me", requireAuth, async (req, res) => {
   const ownedSpots = await Spot.findAll({
     where: {
       ownerId: req.user.id,
     },
+    attributes: {exclude: ['description']}
   });
 
-  if (!ownedSpots) {
+  if (ownedSpots < 1) {
     return res
       .status(404)
       .json({ message: "couldnt find any spots owned by you" });

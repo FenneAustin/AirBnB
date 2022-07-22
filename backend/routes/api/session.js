@@ -22,6 +22,7 @@ const validateLogin = [
 router.post("/", validateLogin, async (req, res, next) => {
   const { email, password } = req.body;
 
+
   const user = await User.login({ email, password });
 
   if (!user) {
@@ -31,9 +32,13 @@ router.post("/", validateLogin, async (req, res, next) => {
     return next(err);
   }
 
-  await setTokenCookie(res, user);
+  const token = await setTokenCookie(res, user);
 
-  return res.json(user.loginSafeObject());
+  const payload = {
+    ...user.loginSafeObject(),
+    token: token
+  }
+  return res.json(payload);
 });
 
 

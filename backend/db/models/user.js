@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     loginSafeObject() {
       const { id, firstName, lastName, email, username } = this; // context will be the User instance
-      const token = '';
-      return { id, firstName, lastName, email, username, token };
+      // const token = ""
+      return { id, firstName, lastName, email, username };
     }
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
