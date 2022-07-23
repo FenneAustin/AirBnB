@@ -16,11 +16,6 @@ const validateSignup = [
     .exists(),
   check("lastName")
     .exists(),
-  check("username")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage("Please provide a username with at least 4 characters."),
-  check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -46,7 +41,7 @@ router.get("/Me", requireAuth, async (req,res) => {
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
-  const { email, username, password, firstName, lastName } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   const checkUser = await User.findOne({where : {
     email: email
@@ -63,7 +58,7 @@ router.post("/", validateSignup, async (req, res) => {
   }
 
 
-  const user = await User.signup({ email, username, password, firstName, lastName });
+  const user = await User.signup({ email, password, firstName, lastName });
 
   const token = await setTokenCookie(res, user);
 
