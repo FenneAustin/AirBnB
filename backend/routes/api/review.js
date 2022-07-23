@@ -122,7 +122,7 @@ router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => 
 
 })
 
-router.put("/:reviewId/image", requireAuth, async (req, res) => {
+router.post("/:reviewId/image", requireAuth, async (req, res) => {
   const { url } = req.body;
   const { reviewId } = req.params;
 

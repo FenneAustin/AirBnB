@@ -1201,7 +1201,7 @@ Create and return a new image for a review specified by id.
 * Require Authentication: true
 * Require proper authorization: Review must belong to the current user
 * Request
-  * Method: put
+  * Method: post
   * URL: reviews/:reviewId/image
   * Headers:
     * Content-Type: application/json
