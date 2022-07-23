@@ -29,11 +29,15 @@ const validateSignup = [
 ];
 
 router.get("/Me", requireAuth, async (req,res) => {
+
+  const token = await setTokenCookie(res, req.user)
+
   return res.json({
     id: req.user.id,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     email: req.user.email,
+    token: token
   })
 })
 
@@ -61,11 +65,14 @@ router.post("/", validateSignup, async (req, res) => {
 
   const user = await User.signup({ email, username, password, firstName, lastName });
 
-  await setTokenCookie(res, user);
+  const token = await setTokenCookie(res, user);
 
-  return res.json(
-    user.loginSafeObject()
-  );
+  const payload = {
+    ...user.loginSafeObject(),
+    token: token,
+  };
+
+  return res.json(payload);
 });
 
 router.delete("/Me/images/:id", requireAuth, async (req, res) => {

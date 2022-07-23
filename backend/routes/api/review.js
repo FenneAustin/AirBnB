@@ -19,7 +19,7 @@ const validateReviewInsert = [
   handleValidationErrors,
 ];
 
-router.get("/me", requireAuth, async (req, res) => {
+router.get("/Me", requireAuth, async (req, res) => {
   const reviewsData = await Review.findAll({ where: { userId: req.user.id} })
 
   if(reviewsData.length <= 0){
@@ -55,7 +55,7 @@ router.get("/me", requireAuth, async (req, res) => {
       User: {
         id: user.dataValues.id,
         firstName: user.dataValues.firstName,
-        lastName: user.dataValues.LastName
+        lastName: user.dataValues.lastName
       },
       Spot: {
         id: spot.dataValues.id,
@@ -83,8 +83,8 @@ router.get("/me", requireAuth, async (req, res) => {
 })
 
 router.delete("/:reviewId", requireAuth, async (req, res) => {
-  const { id } = req.params;
-  const review = await Review.findByPk(id);
+  const { reviewId } = req.params;
+  const review = await Review.findByPk(reviewId);
 
   if (!review) {
     return res.status(404).json({message: "Review couldn't be found", statusCode: 404});
@@ -101,10 +101,10 @@ router.delete("/:reviewId", requireAuth, async (req, res) => {
 });
 
 router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => {
-  const { id } = req.params;
+  const { reviewId } = req.params;
   const { review, stars } = req.body;
 
-  const prevReview = await Review.findByPk(id);
+  const prevReview = await Review.findByPk(reviewId);
 
   if (!prevReview){
     return res.status(404).json({message: "Review couldn't be found", statusCode: 404})
@@ -124,9 +124,9 @@ router.put("/:reviewId", requireAuth, validateReviewInsert, async (req, res) => 
 
 router.put("/:reviewId/image", requireAuth, async (req, res) => {
   const { url } = req.body;
-  const { id } = req.params;
+  const { reviewId } = req.params;
 
-  const review = await Review.findByPk(id);
+  const review = await Review.findByPk(reviewId);
 
   if(!review){
     return res.status(404).json({message: "Review couldn't be found", statusCode: 404 })
@@ -137,16 +137,22 @@ router.put("/:reviewId/image", requireAuth, async (req, res) => {
   }
 
   const images = await Image.findAll({where: {
-    imageableId: id
+    imageableId: reviewId
   }})
 
   if (images.length >= 10){
     return res.status(400).json({message: "Maximum numbner of images for this resource was reached", statusCode: 400});
   }
 
-  const newImage = await Image.create({ imageableId: id, imageableType: "Review", url: url})
+  const newImage = await Image.create({ imageableId: reviewId, imageableType: "review", url: url})
 
-  return res.status(200).json(newImage);
+  return res.status(200).json({
+    id: newImage.id,
+    imageableId: newImage.imageableId,
+    imageableType: newImage.imageableType,
+    url: newImage.url,
+
+  });
 
 })
 
