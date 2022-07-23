@@ -16,6 +16,7 @@ router.get('/me', requireAuth, async(req, res) => {
     include: [
       {
         model: Spot,
+        attributes: { exclude: ["description"] },
       },
     ],
   });
