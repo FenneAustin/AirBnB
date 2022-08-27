@@ -16,7 +16,8 @@ module.exports = {
           name: "cabin",
           description: "cabin in the middle of the woods with pool and lake",
           price: 123.22,
-          previewImage: "https://google.com/images/cabin.jpg"
+          previewImage:
+            "https://a0.muscache.com/im/pictures/fd3538ae-22a9-4a2e-9d70-1f9e88374304.jpg?im_w=720",
         },
         {
           ownerId: 1,
@@ -29,7 +30,8 @@ module.exports = {
           name: "home away from home",
           description: "Lake home with various amnetities",
           price: 400.22,
-          previewImage: "https://google.com/images/home.jpg"
+          previewImage:
+            "https://a0.muscache.com/im/pictures/ca5a6ad5-f9a7-4436-ae4a-9294a16e5937.jpg?im_w=720",
         },
         {
           ownerId: 2,
@@ -42,7 +44,8 @@ module.exports = {
           name: "Pool time",
           description: "pool house very close to local bars",
           price: 123.22,
-          previewImage: "https://google.com/images/pool.jpg"
+          previewImage:
+            "https://a0.muscache.com/im/pictures/miso/Hosting-20321856/original/5abb759a-8747-44ec-8f3e-f3aef96c289b.jpeg?im_w=720",
         },
         {
           ownerId: 3,
@@ -55,7 +58,8 @@ module.exports = {
           name: "mountian house of the ages",
           description: "mountian house near boulder colorado with views",
           price: 90.21,
-          previewImage: "https://google.com/images/boulder."
+          previewImage:
+            "https://a0.muscache.com/im/pictures/f4569905-753b-424e-8409-8dd9e75790c4.jpg?im_w=720",
         },
         {
           ownerId: 4,
@@ -67,8 +71,9 @@ module.exports = {
           lng: 422.55,
           name: "The house",
           description: "House a few miles away from the strip",
-          price: 122.50,
-          previewImage: "https://google.com/images/vegas.jpg"
+          price: 122.5,
+          previewImage:
+            "https://a0.muscache.com/im/pictures/miso/Hosting-51624441/original/8c7b098d-5d9b-4689-a10a-027e28b5e188.jpeg?im_w=720",
         },
       ],
       {}

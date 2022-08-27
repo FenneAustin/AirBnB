@@ -1,0 +1,15 @@
+.FilterBar {
+  display: flex;
+  justify-content: center;
+}
+
+.FilterBar ul {
+  display: flex;
+
+
+}
+
+.FilterBar li {
+  list-style: none;
+  margin: 10px;
+}

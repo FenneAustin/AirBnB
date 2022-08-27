@@ -1,0 +1,12 @@
+.nav-bar {
+
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.nav-bar ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
