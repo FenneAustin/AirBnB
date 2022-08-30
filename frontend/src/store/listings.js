@@ -2,10 +2,17 @@ import { csrfFetch } from "./csrf";
 
 
 const LOAD = 'listing/loadListings';
+const ADD_ONE = 'spot/addOne'
 
 const load = (spots) => ({
     type: LOAD,
     payload: spots,
+
+})
+
+const addOneSpot = (spot) => ({
+  type: ADD_ONE,
+  spot
 })
 
 
@@ -19,6 +26,41 @@ export const loadListings = () => async (dispatch) => {
   return response;
 };
 
+export const createSpot = (spot) => async (dispatch) => {
+  const {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewimage,} = spot;
+
+  const response = await csrfFetch("/api/spots/", {
+    method: "POST",
+    body: JSON.stringify({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewimage,
+    }),
+  });
+  const data = await response.json();
+  console.log(data)
+  dispatch(addOneSpot(data));
+  return response;
+};
+
+
 
 
 const initialState = []
@@ -30,6 +72,14 @@ const listingsReducer = (state = initialState, action) => {
         case LOAD:
             newState = [...action.payload]
             return newState;
+        case ADD_ONE:
+          return {
+            ...state,
+            [action.spot.id]: {
+              ...action.spot
+            },
+          };
+
         default:
             return state;
 

@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import ListingsView from "./components/ListingsView";
 import FilterBar from './components/ListingsView/FilterBar'
 import CreateListing from './components/CreateListing/index'
+import SpotPage from './components/SpotPage/index'
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path='/become-a-host'>
             <CreateListing />
+          </Route>
+          <Route path='/spots/:spotId'>
+            <SpotPage />
           </Route>
         </Switch>
       )}

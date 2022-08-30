@@ -8,38 +8,38 @@ const FilterBar = () => {
         <ul>
           <li className="lake">
             <button>
-              <i class="fa-solid fa-water"></i>
-              <text>Lake</text>
+              <i className="fa-solid fa-water"></i>
+              <h4>Lake</h4>
             </button>
           </li>
           <li className="Skiing">
             <button>
-              <i class="fa-solid fa-person-skiing"></i>
-              <text>Skiing</text>
+              <i className="fa-solid fa-person-skiing"></i>
+              <h4>Skiing</h4>
             </button>
           </li>
           <li className="Boats">
             <button>
-              <i class="fa-solid fa-sailboat"></i>
-              <text>Boat</text>
+              <i className="fa-solid fa-sailboat"></i>
+              <h4>Boat</h4>
             </button>
           </li>
           <li className="Castle">
             <button>
-              <i class="fa-brands fa-fort-awesome"></i>
-              <text>Castle</text>
+              <i className="fa-brands fa-fort-awesome"></i>
+              <h4>Castle</h4>
             </button>
           </li>
           <li className="Pool">
             <button>
-              <i class="fa-solid fa-person-swimming"></i>
-              <text>Pool</text>
+              <i className="fa-solid fa-person-swimming"></i>
+              <h4>Pool</h4>
             </button>
           </li>
           <li className="National Parks">
             <button>
-              <i class="fa-solid fa-mountain-sun"></i>
-              <text>National Park</text>
+              <i className="fa-solid fa-mountain-sun"></i>
+              <h4>National Park</h4>
             </button>
           </li>
         </ul>
