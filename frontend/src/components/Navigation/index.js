@@ -23,19 +23,18 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="nav-bar">
       <ul>
-        <li className='home'>
+        <li className="home">
           <NavLink exact to="/">
-            Home
+            <img src={"../favicon.ico"} alt="" />
           </NavLink>
         </li>
-        <li className='become-host'>
-            <NavLink exact to='/become-a-host'>
-              Become a Host
-            </NavLink>
+
+        <li className="become-host">
+          <NavLink exact to="/become-a-host" style={{ textDecoration: "none" }}>
+            <h4>Become a Host</h4>
+          </NavLink>
         </li>
-        <li className='login-logout'>
-          {isLoaded && sessionLinks}
-        </li>
+        <li className="login-logout">{isLoaded && sessionLinks}</li>
       </ul>
     </nav>
   );

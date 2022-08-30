@@ -93,13 +93,13 @@ const listingsReducer = (state = initialState, action) => {
             newState = [...action.payload]
             return newState;
         case ADD_ONE:
-          return {
-            ...state,
-            [action.spot.id]: {
-              ...action.spot
-            },
-          };
-
+          newState = {...state}
+          newState[action.spot.id] = action.spot
+          return newState;
+        case DELETE_ONE:
+          newState = {...state}
+          delete newState[action.spotId]
+          return newState
         default:
             return state;
 

@@ -1,7 +1,4 @@
 .nav-bar {
-
-  margin: 5px;
-  padding: 5px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -9,4 +6,13 @@
   display: flex;
   justify-content: space-between;
   list-style: none;
+}
+
+.nav-bar .login-logout {
+  padding: 10px;
+}
+
+.become-host h4{
+  color: #484848;
+  text-decoration: none;
 }

@@ -1,6 +1,6 @@
 {
-  "short_name": "React Template",
-  "name": "Create React App Template",
+  "short_name": "Couch Surf",
+  "name": "Couch Surf",
   "start_url": ".",
   "icons": [{
     "src": "favicon.ico",

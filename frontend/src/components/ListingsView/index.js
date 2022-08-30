@@ -22,7 +22,7 @@ const ListingsView = () => {
 
         {listings.map((listing, i) => {
           return (
-            <NavLink key={i} to={`/spots/${listing.id}`}>
+            <NavLink key={i} to={`/spots/${listing.id}`} style={{ textDecoration: "none" }}>
               <div className="spot">
                 <img
                   src={`${listing.previewImage}`}
@@ -33,6 +33,9 @@ const ListingsView = () => {
                   <h4>
                     {listing.state} {listing.country}
                   </h4>
+                  <h5>
+                    {listing.price}
+                  </h5>
                   <h5></h5>
                 </div>
               </div>
