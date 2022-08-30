@@ -11,6 +11,10 @@ const SpotPage = () => {
     const spot = useSelector(state => state.listings[spotId])
     const userId = useSelector(state => state.session.user.id);
 
+    useEffect(()=> {
+
+    }, [])
+
     const handleOnClick = (e) => {
         e.preventDefault();
         dispatch(deleteSpot(spot.id))
@@ -23,7 +27,10 @@ const SpotPage = () => {
             {console.log(spot.previewImage)}
             <img src={`${spot.previewImage}`} />
             { (userId === spot.ownerId) && (
-                <button onClick={(e) => handleOnClick(e)}>Delete</button>
+                <div>
+                    <button onClick={(e) => handleOnClick(e)}>Delete</button>
+                    <button>edit</button>
+                </div>
             )}
         </div>
     )

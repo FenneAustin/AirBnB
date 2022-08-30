@@ -132,7 +132,6 @@ const CreateListing = () => {
           </div>
         )}
         <form className="create-spot-form" onSubmit={handleSubmit}>
-          <label for='address'>Address:</label>
           <input
             type="text"
             placeholder="Address"
