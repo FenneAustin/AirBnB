@@ -1,6 +1,13 @@
 .listings-container {
-  display: flex;
+  /*display: flex; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 3px;
   justify-content: center;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .listings-container li {
@@ -8,13 +15,13 @@
 }
 
 .listings-container ol {
-    display:flex;
+  display: flex;
 }
 
 .spot {
   width: 300px;
   height: 385px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .spot-img {
@@ -25,6 +32,6 @@
   border-radius: 10px;
 }
 
-.information{
+.information {
   justify-content: center;
 }

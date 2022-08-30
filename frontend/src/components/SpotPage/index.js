@@ -1,17 +1,30 @@
 import {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom';
+import {deleteSpot} from '../../store/listings'
+import {useParams, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
 
 const SpotPage = () => {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const {spotId} = useParams();
     const spot = useSelector(state => state.listings[spotId])
+    const userId = useSelector(state => state.session.user.id);
+
+    const handleOnClick = (e) => {
+        e.preventDefault();
+        dispatch(deleteSpot(spot.id))
+        //TODO: how can I error handle this ^
+        history.push('/');
+    }
 
     return(
         <div>
-            <img src={spot.previewImage} />
+            {console.log(spot.previewImage)}
+            <img src={`${spot.previewImage}`} />
+            { (userId === spot.ownerId) && (
+                <button onClick={(e) => handleOnClick(e)}>Delete</button>
+            )}
         </div>
     )
 }

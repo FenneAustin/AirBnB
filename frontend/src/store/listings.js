@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = 'listing/loadListings';
 const ADD_ONE = 'spot/addOne'
+const DELETE_ONE = 'spot/deleteOne'
 
 const load = (spots) => ({
     type: LOAD,
@@ -14,6 +15,12 @@ const addOneSpot = (spot) => ({
   type: ADD_ONE,
   spot
 })
+
+const deleteOne = (spotId) => ({
+  type: DELETE_ONE,
+  payload: spotId
+})
+
 
 
 
@@ -57,6 +64,19 @@ export const createSpot = (spot) => async (dispatch) => {
   const data = await response.json();
   console.log(data)
   dispatch(addOneSpot(data));
+  return response;
+};
+
+export const deleteSpot = (spotId) => async (dispatch) => {
+
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "DELETE",
+  });
+  if(response.ok){
+  // const data = await response.json();
+    dispatch(deleteOne(spotId));
+  }
+
   return response;
 };
 

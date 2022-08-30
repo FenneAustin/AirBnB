@@ -19,29 +19,27 @@ const ListingsView = () => {
 
   return (
     <div className="listings-container">
-      <ol>
+
         {listings.map((listing, i) => {
           return (
-            <li key={i}>
-              <NavLink to={`/spots/${listing.id}`}>
-                <div className="spot">
-                  <img
-                    src={`${listing.previewImage}`}
-                    style={{}}
-                    className="spot-img"
-                  />
-                  <div className="information">
-                    <h4>
-                      {listing.state} {listing.country}
-                    </h4>
-                    <h5></h5>
-                  </div>
+            <NavLink key={i} to={`/spots/${listing.id}`}>
+              <div className="spot">
+                <img
+                  src={`${listing.previewImage}`}
+                  style={{}}
+                  className="spot-img"
+                />
+                <div className="information">
+                  <h4>
+                    {listing.state} {listing.country}
+                  </h4>
+                  <h5></h5>
                 </div>
-              </NavLink>
-            </li>
+              </div>
+            </NavLink>
           );
         })}
-      </ol>
+
     </div>
   );
 };

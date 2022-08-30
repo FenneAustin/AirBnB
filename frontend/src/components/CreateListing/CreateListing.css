@@ -1,0 +1,11 @@
+.container {
+  width: 200px;
+  margin: auto;
+  justify-content: center;
+}
+
+.create-spot-form input  {
+    width: 100%;
+
+}
+

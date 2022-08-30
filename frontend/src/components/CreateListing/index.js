@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import {createSpot} from '../../store/listings'
-
+import './CreateListing.css'
 
 const CreateListing = () => {
 
@@ -132,6 +132,7 @@ const CreateListing = () => {
           </div>
         )}
         <form className="create-spot-form" onSubmit={handleSubmit}>
+          <label for='address'>Address:</label>
           <input
             type="text"
             placeholder="Address"
