@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {deleteSpot} from '../../store/listings'
+import {deleteSpot, loadListings} from '../../store/listings'
 import {useParams, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {loadReviews} from '../../store/reviews'
@@ -16,13 +16,14 @@ const SpotPage = () => {
 
     useEffect(()=> {
         dispatch(loadReviews(spotId))
+        dispatch(loadListings())
     }, [dispatch, spotId])
 
 
 
     let reviews = useSelector(state => state.reviews);
 
-    if(reviews) {
+    if(reviews && (reviews[0] !== undefined)) {
         reviews = reviews[0]
     }
 
@@ -33,42 +34,47 @@ const SpotPage = () => {
         history.push('/');
     }
 
-    return(
-        <div>
+    return (
+      <>
+        {spot && (
+          <div>
             <img src={`${spot.previewImage}`} alt="" />
             <h3>{spot.description}</h3>
 
-                { (reviews[0] !== null) &&
-                (<div>
-
-                    {reviews.map((review)=> {
-                       return (
-                         <div key={review.id}>
-                           <h6 className="name">
-                             {review.user ? review.user.firstName : null}{" "}
-                             {review.user ? review.user.lastName : null}
-                           </h6>
-                           <h6 className="stars">{review.stars ? review.stars : null} stars</h6>
-                           <h7 className="review-date">{review.updatedAt ? review.updateAt : null}</h7>
-                           <h2 className="review">{review.review ? review.review : null}</h2>
-                         </div>
-                       );
-                    }
-                    )}
-                </div>)}
-
-
-
-
-            { (userId === spot.ownerId) && (
-                <div>
-                    <button onClick={(e) => handleOnClick(e)}>Delete</button>
-                    <button>edit</button>
-                </div>
+            {reviews[0] !== null && (
+              <div>
+                {reviews.map((review) => {
+                  return (
+                    <div key={review.id}>
+                      <h6 className="name">
+                        {review.user ? review.user.firstName : null}{" "}
+                        {review.user ? review.user.lastName : null}
+                      </h6>
+                      <h6 className="stars">
+                        {review.stars ? review.stars : null} stars
+                      </h6>
+                      <h6 className="review-date">
+                        {review.updatedAt ? review.updateAt : null}
+                      </h6>
+                      <h2 className="review">
+                        {review.review ? review.review : null}
+                      </h2>
+                    </div>
+                  );
+                })}
+              </div>
             )}
-        </div>
-    )
-}
+
+            {userId === spot.ownerId && (
+              <div>
+                <button onClick={(e) => handleOnClick(e)}>Delete</button>
+                <button>edit</button>
+              </div>
+            )}
+          </div>
+        )}
+      </>
+    );}
 
 
 export default SpotPage;
