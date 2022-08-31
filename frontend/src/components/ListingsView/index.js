@@ -26,6 +26,7 @@ const ListingsView = () => {
               <div className="spot">
                 <img
                   src={`${listing.previewImage}`}
+                  alt=''
                   style={{}}
                   className="spot-img"
                 />
@@ -36,7 +37,6 @@ const ListingsView = () => {
                   <h5>
                     {listing.price}
                   </h5>
-                  <h5></h5>
                 </div>
               </div>
             </NavLink>

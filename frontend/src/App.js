@@ -8,13 +8,16 @@ import ListingsView from "./components/ListingsView";
 import FilterBar from './components/ListingsView/FilterBar'
 import CreateListing from './components/CreateListing/index'
 import SpotPage from './components/SpotPage/index'
+import loadListings from './store/listings';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+       dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+
 
   return (
     <>
