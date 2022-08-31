@@ -1,8 +1,10 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {deleteSpot, loadListings} from '../../store/listings'
 import {useParams, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {loadReviews} from '../../store/reviews'
+import Reviews from './Reviews';
+import './SpotPage.css'
 
 
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
@@ -13,6 +15,7 @@ const SpotPage = () => {
     const {spotId} = useParams();
     const spot = useSelector(state => state.listings.find((spot) => String(spot.id) === spotId))
     const userId = useSelector(state => state.session.user.id);
+    const [editPage, setEditPage] = useState(false)
 
     useEffect(()=> {
         dispatch(loadReviews(spotId))
@@ -34,41 +37,32 @@ const SpotPage = () => {
         history.push('/');
     }
 
+    const handleEditButton = (e) =>{
+      e.preventDefault();
+      setEditPage(true);
+    }
+
+
     return (
       <>
         {spot && (
           <div>
-            <img src={`${spot.previewImage}`} alt="" />
+            {userId === spot.ownerId && (
+              <div>
+                <button onClick={(e) => handleEditButton(e)}>edit</button>
+                <button onClick={(e) => handleOnClick(e)}>Delete</button>
+              </div>
+            )}
+            <img
+              src={`${spot.previewImage}`}
+              alt=""
+              className="preview-image"
+            />
             <h3>{spot.description}</h3>
 
             {reviews[0] !== null && (
               <div>
-                {reviews.map((review) => {
-                  return (
-                    <div key={review.id}>
-                      <h6 className="name">
-                        {review.user ? review.user.firstName : null}{" "}
-                        {review.user ? review.user.lastName : null}
-                      </h6>
-                      <h6 className="stars">
-                        {review.stars ? review.stars : null} stars
-                      </h6>
-                      <h6 className="review-date">
-                        {review.updatedAt ? review.updateAt : null}
-                      </h6>
-                      <h2 className="review">
-                        {review.review ? review.review : null}
-                      </h2>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {userId === spot.ownerId && (
-              <div>
-                <button onClick={(e) => handleOnClick(e)}>Delete</button>
-                <button>edit</button>
+                <Reviews reviews={reviews} />
               </div>
             )}
           </div>
