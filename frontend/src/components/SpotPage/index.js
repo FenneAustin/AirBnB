@@ -4,6 +4,7 @@ import {useParams, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {loadReviews} from '../../store/reviews'
 
+
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
 
 const SpotPage = () => {
@@ -15,11 +16,15 @@ const SpotPage = () => {
 
     useEffect(()=> {
         dispatch(loadReviews(spotId))
-    }, [dispatch, spot.id])
+    }, [dispatch, spotId])
+
+
 
     let reviews = useSelector(state => state.reviews);
-    reviews = reviews[0]
 
+    if(reviews) {
+        reviews = reviews[0]
+    }
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -37,17 +42,17 @@ const SpotPage = () => {
                 (<div>
 
                     {reviews.map((review)=> {
-                       return(
-
-                       <div key={review.id}>
-                            <h1>
-                                {review.stars ? review.stars : null }
-                            </h1>
-                            {console.log(review)}
-                             <h2>
-                                {review.review ? review.review: null }
-                            </h2>
-                     </div>)
+                       return (
+                         <div key={review.id}>
+                           <h6 className="name">
+                             {review.user ? review.user.firstName : null}{" "}
+                             {review.user ? review.user.lastName : null}
+                           </h6>
+                           <h6 className="stars">{review.stars ? review.stars : null} stars</h6>
+                           <h7 className="review-date">{review.updatedAt ? review.updateAt : null}</h7>
+                           <h2 className="review">{review.review ? review.review : null}</h2>
+                         </div>
+                       );
                     }
                     )}
                 </div>)}
