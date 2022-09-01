@@ -1,23 +1,44 @@
 import './Review.css'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import AddReviewModal from './AddReviewModal'
-
+import {useSelector} from 'react-redux'
 
 const Reviews = (props) => {
   const userId = props.userId
   const reviews = props.reviews
+
+  const sessionUser = useSelector((state) => state.session.user);
   const [editing, setEditing] = useState(false)
+  const [hasReview, setHasReview] = useState(false);
 
   const handleEdit = (e) =>{
     e.preventDefault();
     setEditing(true)
   }
 
+  const handleReviewUpdate = () => {
+    setHasReview(true)
+  }
+
+
+
+  useEffect(() => {
+      if (reviews) {
+        reviews.forEach((review) => {
+          if (review.userId === userId) {
+            handleReviewUpdate();
+          }
+        });
+      }
+  },[])
+
+
   return (
     <>
       {reviews &&
 
       (reviews.map((review) => {
+
         return (
           <div key={review.id}>
             <h6 className="name">
@@ -38,7 +59,7 @@ const Reviews = (props) => {
       )
 
       }
-        <AddReviewModal />
+       { sessionUser && !hasReview ? <AddReviewModal reviews={reviews} userId={userId}/> : null }
     </>
   )
 

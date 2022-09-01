@@ -5,12 +5,13 @@ import AddReview from "./AddReview";
 function AddReviewModal() {
   const [showModal, setShowModal] = useState(false);
 
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>Add Review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddReview />
+          <AddReview onClose={() =>setShowModal(false)}/>
         </Modal>
       )}
     </>
