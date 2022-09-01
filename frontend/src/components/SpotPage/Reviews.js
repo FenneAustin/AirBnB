@@ -1,5 +1,6 @@
 import './Review.css'
 import {useState} from 'react'
+import AddReviewModal from './AddReviewModal'
 
 
 const Reviews = (props) => {
@@ -15,7 +16,7 @@ const Reviews = (props) => {
   return (
     <>
       {reviews &&
-      
+
       (reviews.map((review) => {
         return (
           <div key={review.id}>
@@ -31,13 +32,13 @@ const Reviews = (props) => {
             </h6>
             {review.userId === userId ? <button>edit</button> : null}
             <h2 className="review">{review.review ? review.review : null}</h2>
-
           </div>
         );
       })
       )
 
       }
+        <AddReviewModal />
     </>
   )
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createReview } from "../../store/Reviews";
-import "./CreateListing.css";
+import { createReview } from "../../store/reviews";
+
 
 const AddReview = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,8 @@ const AddReview = () => {
   const [starThree, setStarThree] = useState(false);
   const [starFour, setStarFour] = useState(false);
   const [starFive, setStarFive] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
@@ -52,6 +54,8 @@ const AddReview = () => {
 
   const handleStarClick = (e) => {
 
+
+
   }
 
   const handleCancelClick = (e) => {
@@ -71,17 +75,77 @@ const AddReview = () => {
         </div>
       )}
       <form className="create-review-form" onSubmit={handleSubmit}>
-        <label>
-            <input type="radio" name="star" checked></input>
-            <img src={starOne ? "": ""} alt="" />
-        </label>
-        <input
-          type="text"
-          placeholder="City"
-          required
-          value={city}
-          onChange={updateCity}
-        />
+        <div className="star-one">
+          <label>
+            <input
+              type="radio"
+              name="star1"
+              onClick={(e) => {
+                handleStarClick(e);
+              }}
+            />
+            {starOne ? (
+              <i class="fa-solid fa-star"></i>
+            ) : (
+              <i class="fa-solid fa-star"></i>
+            )}
+          </label>
+        </div>
+        <div className="star-two">
+          <label>
+            <input
+              type="radio"
+              name="star2"
+              onClick={(e) => {
+                handleStarClick(e);
+              }}
+            />
+            {starTwo ? (
+              <i class="fa-solid fa-star"></i>
+            ) : (
+              <i class="fa-solid fa-star"></i>
+            )}
+          </label>
+        </div>
+        <div className="star-three">
+          <label>
+            <input type="radio" name="star3" onClick={(e) => { handleStarClick(e); }} />
+            {starThree ? (
+              <i class="fa-solid fa-star"></i>
+            ) : (
+              <i class="fa-solid fa-star"></i>
+            )}
+          </label>
+        </div>
+        <div className="star-four">
+          <label>
+            <input type="radio" name="star4" onClick={(e) => { handleStarClick(e)}} />
+            {starFour ? (
+              <i class="fa-solid fa-star"></i>
+            ) : (
+              <i class="fa-solid fa-star"></i>
+            )}
+          </label>
+        </div>
+        <div className="star-five">
+          <label>
+            <input type="radio" name="star5" onClick={(e) => {handleStarClick(e)}} />
+            {starFive ? (
+              <i class="fa-solid fa-star"></i>
+            ) : (
+              <i class="fa-solid fa-star"></i>
+            )}
+          </label>
+        </div>
+        <div className="review-container">
+          <label htmlFor="Review">Review</label>
+          <textarea
+            id="Review"
+            name="Review"
+            onChange={(e) => setReview(e.target.value)}
+            value={review}
+          />
+        </div>
         <button type="submit">Submit</button>
         <button type="button" onClick={handleCancelClick}>
           Cancel
@@ -91,4 +155,4 @@ const AddReview = () => {
   );
 };
 
-export default CreateReview;
+export default AddReview;
