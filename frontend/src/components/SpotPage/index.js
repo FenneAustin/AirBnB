@@ -62,7 +62,7 @@ const SpotPage = () => {
 
             {reviews[0] !== null && (
               <div>
-                <Reviews reviews={reviews} />
+                <Reviews reviews={reviews} userId={userId} />
               </div>
             )}
           </div>

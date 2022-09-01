@@ -1,18 +1,27 @@
 import './Review.css'
+import {useState} from 'react'
+
 
 const Reviews = (props) => {
-
+  const userId = props.userId
   const reviews = props.reviews
+  const [editing, setEditing] = useState(false)
+
+  const handleEdit = (e) =>{
+    e.preventDefault();
+    setEditing(true)
+  }
 
   return (
     <>
-      {console.log(reviews)}
-      {reviews && (reviews.map((review) => {
+      {reviews &&
+      
+      (reviews.map((review) => {
         return (
           <div key={review.id}>
             <h6 className="name">
-              {review.user ? review.user.firstName : null}{" "}
-              {review.user ? review.user.lastName : null}
+              {review.User.firstName ? review.User.firstName : null}{" "}
+              {review.User.lastName ? review.User.lastName : null}
             </h6>
             <h6 className="stars">
               {review.stars ? review.stars : null} stars
@@ -20,10 +29,15 @@ const Reviews = (props) => {
             <h6 className="review-date">
               {review.updatedAt ? review.updateAt : null}
             </h6>
+            {review.userId === userId ? <button>edit</button> : null}
             <h2 className="review">{review.review ? review.review : null}</h2>
+
           </div>
         );
-      }))}
+      })
+      )
+
+      }
     </>
   )
 
