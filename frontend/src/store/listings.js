@@ -61,9 +61,10 @@ export const createSpot = (spot) => async (dispatch) => {
       previewimage,
     }),
   });
+  if(response.ok){
   const data = await response.json();
-  console.log(data)
   dispatch(addOneSpot(data));
+  }
   return response;
 };
 

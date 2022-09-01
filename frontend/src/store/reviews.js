@@ -26,8 +26,9 @@ export const loadReviews = (spotId) => async (dispatch) => {
       const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "GET",
       });
-      const data = await response.json();
+
       if(response.ok){
+        const data = await response.json();
         if(data){
           dispatch(load(data));
         }
@@ -73,7 +74,7 @@ const initialState = []
 
 const reviewReducer = (state = initialState, action) => {
 
-  let newState;
+  let newState = [];
 
   switch(action.type){
     case LOAD:

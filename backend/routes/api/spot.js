@@ -371,7 +371,7 @@ router.get("/:id/reviews", async (req, res) => {
     });
     obj.push({
       id: review.id,
-      userId: review.id,
+      userId: review.userId,
       spotId: review.spotId,
       review: review.review,
       stars: review.stars,

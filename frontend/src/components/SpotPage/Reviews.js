@@ -2,19 +2,18 @@ import './Review.css'
 import {useEffect, useState} from 'react'
 import AddReviewModal from './AddReviewModal'
 import {useSelector} from 'react-redux'
+import Review from './Review';
+
 
 const Reviews = (props) => {
   const userId = props.userId
   const reviews = props.reviews
 
   const sessionUser = useSelector((state) => state.session.user);
-  const [editing, setEditing] = useState(false)
+  // const reviews = useSelector((state) => state.review)
+
   const [hasReview, setHasReview] = useState(false);
 
-  const handleEdit = (e) =>{
-    e.preventDefault();
-    setEditing(true)
-  }
 
   const handleReviewUpdate = () => {
     setHasReview(true)
@@ -23,14 +22,17 @@ const Reviews = (props) => {
 
 
   useEffect(() => {
+      setHasReview(false)
       if (reviews) {
         reviews.forEach((review) => {
+          console.log('wtf')
           if (review.userId === userId) {
             handleReviewUpdate();
           }
         });
       }
-  },[])
+  },[reviews])
+
 
 
   return (
@@ -38,28 +40,14 @@ const Reviews = (props) => {
       {reviews &&
 
       (reviews.map((review) => {
-
         return (
-          <div key={review.id}>
-            <h6 className="name">
-              {review.User.firstName ? review.User.firstName : null}{" "}
-              {review.User.lastName ? review.User.lastName : null}
-            </h6>
-            <h6 className="stars">
-              {review.stars ? review.stars : null} stars
-            </h6>
-            <h6 className="review-date">
-              {review.updatedAt ? review.updateAt : null}
-            </h6>
-            {review.userId === userId ? <button>edit</button> : null}
-            <h2 className="review">{review.review ? review.review : null}</h2>
-          </div>
+          <Review review={review} userId={userId} />
         );
       })
       )
-
       }
-       { sessionUser && !hasReview ? <AddReviewModal reviews={reviews} userId={userId}/> : null }
+
+       { !hasReview && sessionUser  ? <AddReviewModal reviews={reviews} userId={userId}/> : null }
     </>
   )
 
