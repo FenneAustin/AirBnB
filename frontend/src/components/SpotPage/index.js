@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {loadReviews} from '../../store/reviews'
 import Reviews from './Reviews';
 import './SpotPage.css'
+import AddReviewModal from "./AddReviewModal";
 
 
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
@@ -16,18 +17,37 @@ const SpotPage = () => {
     const spot = useSelector(state => state.listings.find((spot) => String(spot.id) === spotId))
     const userId = useSelector(state => state.session.user.id);
     const [editPage, setEditPage] = useState(false)
+    const [hasReview, setHasReview] = useState(false);
+    const sessionUser = useSelector((state) => state.session.user);
+    let reviews = useSelector((state) => state.reviews);
+
+    const handleReviewUpdate = () => {
+        setHasReview(true);
+      };
 
     useEffect(()=> {
         dispatch(loadReviews(spotId))
         dispatch(loadListings())
     }, [dispatch, spotId])
 
+      useEffect(() => {
+        setHasReview(false);
+        if (reviews[0] !== undefined) {
+          reviews.forEach((review) => {
+            if (review.userId === userId) {
+              handleReviewUpdate();
+            }
+
+          });
+        }
+      }, [userId, reviews]);
 
 
-    let reviews = useSelector(state => state.reviews);
+
+
 
     if(reviews && (reviews[0] !== undefined)) {
-        reviews = reviews[0]
+    //   reviews = reviews[0]
     }
 
     const handleOnClick = (e) => {
@@ -60,11 +80,15 @@ const SpotPage = () => {
             />
             <h3>{spot.description}</h3>
 
-            {reviews[0] !== null && (
+            {reviews[0] !== undefined ? (
               <div>
                 <Reviews reviews={reviews} userId={userId} />
               </div>
-            )}
+            ) : null}
+
+            {!hasReview && sessionUser ? (
+              <AddReviewModal reviews={reviews} userId={userId} />
+            ) : null}
           </div>
         )}
       </>

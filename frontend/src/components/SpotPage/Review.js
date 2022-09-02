@@ -1,23 +1,41 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './Review.css'
+import {updateReview, deleteReview} from '../../store/reviews';
+import {useDispatch,useSelector } from 'react-redux'
+import {useParams} from 'react-router-dom'
 
 const Review = ({review, userId}) => {
+
+    const dispatch = useDispatch()
+    const { spotId } = useParams();
+    const [editing, setEditing] = useState(false);
+    const [singleReview, setSingleReview] = useState(review.review);
+    const [stars, setStars] = useState(1);
+
+
       const handleEdit = (e) => {
         e.preventDefault();
         setEditing(true);
       };
 
+      const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(deleteReview(review.id));
+        setEditing(false)
+      };
 
       const handleSave = (e) => {
         e.preventDefault();
-        
+        const newReview = {
+          'review': singleReview,
+          'stars': stars
+        }
+
+        dispatch(updateReview(review.id, newReview));
         setEditing(false);
-      }
-    const [editing, setEditing] = useState(false);
-    const [singleReview, setSingleReview] = useState(review.review);
+      };
 
-
-    const updateReview = (e) => setSingleReview(e.target.value);
+    const updateReviews = (e) => setSingleReview(e.target.value);
 
     return (
       <div key={review.id} className="review-container">
@@ -49,6 +67,16 @@ const Review = ({review, userId}) => {
             save
           </button>
         ) : null}
+        {review.userId === userId && editing === true ? (
+          <button
+            className="delete-button"
+            onClick={(e) => {
+              handleDelete(e);
+            }}
+          >
+            delete
+          </button>
+        ) : null}
         {editing ? (
           <form>
             <div className="review-container">
@@ -57,7 +85,7 @@ const Review = ({review, userId}) => {
                 id="Review"
                 name="Review"
                 value={singleReview}
-                onChange={(e) => updateReview(e)}
+                onChange={(e) => updateReviews(e)}
               />
             </div>
           </form>

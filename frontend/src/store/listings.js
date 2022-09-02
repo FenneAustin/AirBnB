@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD = 'listing/loadListings';
 const ADD_ONE = 'spot/addOne'
 const DELETE_ONE = 'spot/deleteOne'
+const EDIT = 'spot/edit'
 
 const load = (spots) => ({
     type: LOAD,
@@ -88,22 +89,29 @@ const initialState = []
 
 const listingsReducer = (state = initialState, action) => {
     let newState;
-
-    switch(action.type) {
-        case LOAD:
-            newState = [...action.payload]
-            return newState;
-        case ADD_ONE:
-          newState = {...state}
-          newState[action.spot.id] = action.spot
-          return newState;
-        case DELETE_ONE:
-          newState = {...state}
-          delete newState[action.spotId]
-          return newState
-        default:
-            return state;
-
+    let found
+    switch (action.type) {
+      case LOAD:
+        newState = [...action.payload];
+        return newState;
+      case ADD_ONE:
+        newState = [...state];
+        newState.push(action.spot);
+        return newState;
+      case DELETE_ONE:
+        newState = [...state];
+        found = newState.findIndex(
+          (element) => element.id === action.spotId
+        );
+        newState.splice(found, 1);
+        return newState;
+      case EDIT:
+        newState = [...state];
+        found = newState.findIndex((element) => element.id === action.spotId);
+        newState[found] = action.spot;
+        return newState;
+      default:
+        return state;
     }
 }
 
