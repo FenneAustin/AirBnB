@@ -20,10 +20,19 @@ const SpotPage = () => {
     const [hasReview, setHasReview] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
     let reviews = useSelector((state) => state.reviews);
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     const handleReviewUpdate = () => {
         setHasReview(true);
       };
+
+    useEffect(() => {
+      if(sessionUser.id === 'undefined'){
+        history.push()
+      }
+    },[sessionUser])
+
+
 
     useEffect(()=> {
         dispatch(loadReviews(spotId))
@@ -79,6 +88,11 @@ const SpotPage = () => {
               className="preview-image"
             />
             <h3>{spot.description}</h3>
+            <h3>{spot.address}</h3>
+            <h3>{spot.city}</h3>
+            <h3>{spot.state}</h3>
+            <h3>{spot.lat}</h3>
+            <h3>{spot.lng}</h3>
 
             {reviews[0] !== undefined ? (
               <div>

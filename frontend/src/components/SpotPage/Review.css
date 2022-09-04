@@ -38,3 +38,21 @@
     margin-right: 20px;
     grid-area: 1 / 8 / 2 / 9;
 }
+
+
+.star-one input[type="radio"]{
+    visibility: hidden;
+}
+
+.star-two input[type="radio"]{
+    visibility: hidden;
+}
+.star-three input[type="radio"]{
+    visibility: hidden;
+}
+.star-four input[type="radio"]{
+    visibility: hidden;
+}
+.star-five input[type="radio"]{
+    visibility: hidden;
+}

@@ -1,5 +1,5 @@
 import {loadListings} from "../../store/listings";
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import "./ListingsView.css"
 import {NavLink} from 'react-router-dom'
@@ -12,6 +12,11 @@ const ListingsView = () => {
     useEffect(()=> {
         dispatch(loadListings())
     },[dispatch])
+
+
+
+
+
 
 
     const listings = useSelector(state => state.listings)

@@ -11,16 +11,10 @@ const load = (reviews) => ({
     payload: reviews,
 })
 
-
-const addOneReview = (review) => ({
-    type: ADD_ONE,
-    review
-})
-
-const editAReview = (review) => ({
-  type: EDIT,
-  review
-})
+// const editAReview = (review) => ({
+//   type: EDIT,
+//   review
+// })
 
 const deleteOne = (reviewId) => ({
   type: DELETE_ONE,
@@ -70,7 +64,7 @@ export const createReview = (newReview, spotId) => async (dispatch) => {
 };
 
 
-export const updateReview = (reviewId, newReview) => async (dispatch) => {
+export const updateReview = (reviewId, newReview, spotId) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "PUT",
@@ -79,8 +73,16 @@ export const updateReview = (reviewId, newReview) => async (dispatch) => {
       "stars": newReview.stars
     }),
   });
-  const data = await response.json();
-  dispatch(editAReview(data));
+  // const data = await response.json();
+  // dispatch(editAReview(data));
+  // I had to do this to force a rerender ask if there is another option
+  if (response.ok) {
+    const newResponse = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+      method: "GET",
+    });
+    const data = await newResponse.json();
+    dispatch(load(data));
+  }
   return response;
 };
 
@@ -123,10 +125,11 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     case EDIT:
       newState=[...state]
-     found = newState.findIndex(
+      found = newState.findIndex(
          (element) => element.id === action.reviewId
        );
       newState[found] = action.review
+      return newState;
     default:
       return state;
   }
