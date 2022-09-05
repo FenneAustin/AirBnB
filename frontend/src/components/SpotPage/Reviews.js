@@ -16,9 +16,7 @@ const Reviews = (props) => {
         );
       })
       ) : null
-
       }
-
     </>
   )
 

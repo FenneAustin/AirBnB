@@ -1,17 +1,40 @@
 .review-container {
   display: grid;
-  grid-template-columns: .5fr repeat(7, 1fr);
-  grid-template-rows: repeat(2, 50px) 1fr;
+  grid-template-columns: repeat 300px (4, 200px);
+  grid-template-rows: 100px 400px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   width: 90%;
   height: 200px;
-  background-color: lightgray;
+  background-color: lightcoral;
   border-radius: 20px;
   margin: 10px;
 }
 
+.header {
+    margin-left: 20px;
+    grid-area: 1 / 1 / 2 / 3 ;
+}
+
 .name {
+    display: flex;
+    position: relative;
+    
+}
+.stars{
+    display: flex;
+    position: relative;
+    left: 50px;
+
+}
+.review-date{
+    display: flex;
+    margin-bottom: 10px;
+    position: relative;
+
+}
+
+/* .name {
     margin-left: 20px;
     grid-area: 1 / 1 / 2 / 2;
 }
@@ -24,11 +47,11 @@
 .review-date {
     margin-left: 50px;
     grid-area: 2 / 1 / 3 / 2;
-}
+} */
 
  .review {
    margin-left: 20px;
-    grid-area: 3 / 1 / 4 / 9;
+    grid-area: 2 / 1 / 3 / 6;
    font-family: Montserrat;
    font-size: 17px;
 }
@@ -36,7 +59,7 @@
 .edit-button {
     margin-top: 20px;
     margin-right: 20px;
-    grid-area: 1 / 8 / 2 / 9;
+    grid-area: 1 / 5 / 2 / 6;
 }
 
 

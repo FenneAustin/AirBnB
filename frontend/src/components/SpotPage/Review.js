@@ -41,14 +41,14 @@ const Review = ({ review, userId }) => {
 
   return (
     <div key={review.id} className="review-container">
-      <h6 className="name">
+      <h6 className="name header" >
         {review.User.firstName ? review.User.firstName : null}{" "}
         {review.User.lastName ? review.User.lastName : null}
       </h6>
 
       {editing === true ? (
         <>
-          <div className="star-one">
+          <div className="star-one header">
             <label>
               <input
                 type="radio"
@@ -65,7 +65,7 @@ const Review = ({ review, userId }) => {
               )}
             </label>
           </div>
-          <div className="star-two">
+          <div className="star-two header">
             <label>
               <input
                 type="radio"
@@ -82,7 +82,7 @@ const Review = ({ review, userId }) => {
               )}
             </label>
           </div>
-          <div className="star-three">
+          <div className="star-three header">
             <label>
               <input
                 type="radio"
@@ -99,7 +99,7 @@ const Review = ({ review, userId }) => {
               )}
             </label>
           </div>
-          <div className="star-four">
+          <div className="star-four header">
             <label>
               <input
                 type="radio"
@@ -116,7 +116,7 @@ const Review = ({ review, userId }) => {
               )}
             </label>
           </div>
-          <div className="star-five">
+          <div className="star-five header">
             <label>
               <input
                 type="radio"
@@ -135,10 +135,10 @@ const Review = ({ review, userId }) => {
           </div>
         </>
       ) : (
-        <h6 className="stars">{review.stars ? review.stars : null} stars</h6>
+        <h6 className="stars header">{review.stars ? review.stars : null} stars</h6>
       )}
 
-      <h6 className="review-date">
+      <h6 className="review-date header">
         {review.updatedAt ? review.updatedAt : null}
       </h6>
       {review.userId === userId && editing === false ? (

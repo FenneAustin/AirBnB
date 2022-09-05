@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 import ListingsView from "./components/ListingsView";
 import FilterBar from './components/ListingsView/FilterBar'
 import CreateListing from './components/CreateListing/index'
-import SpotPage from './components/SpotPage/index'
+import SpotPages from './components/SpotPage/index'
 import loadListings from './store/listings';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
             <CreateListing />
           </Route>
           <Route path='/spots/:spotId'>
-            <SpotPage />
+            <SpotPages />
           </Route>
         </Switch>
       )}
