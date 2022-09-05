@@ -139,7 +139,7 @@ const Review = ({ review, userId }) => {
       )}
 
       <h6 className="review-date header">
-        {review.updatedAt ? review.updatedAt : null}
+        {review.updatedAt ? review.updatedAt.slice(0,10) : null}
       </h6>
       {review.userId === userId && editing === false ? (
         <button
@@ -172,16 +172,14 @@ const Review = ({ review, userId }) => {
         </button>
       ) : null}
       {editing ? (
-        <form>
-          <div className="review-container">
-            <label htmlFor="Review">Review</label>
+        <form className="review">
             <input
+              type="textarea"
               id="Review"
               name="Review"
               value={singleReview}
               onChange={(e) => updateReviews(e)}
             />
-          </div>
         </form>
       ) : (
         <h2 className="review">{review.review ? review.review : null}</h2>

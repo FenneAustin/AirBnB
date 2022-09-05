@@ -1,10 +1,10 @@
 .review-container {
   display: grid;
-  grid-template-columns: repeat 300px (4, 200px);
-  grid-template-rows: 100px 400px;
+  grid-template-columns: 300px repeat(4, 200px) 70px;
+  grid-template-rows: 60px 400px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  width: 90%;
+  width: 900px;
   height: 200px;
   background-color: lightcoral;
   border-radius: 20px;
@@ -19,19 +19,25 @@
 .name {
     display: flex;
     position: relative;
-    
+    font-size: 15px;
+    bottom: 15px;
+
 }
 .stars{
     display: flex;
     position: relative;
-    left: 50px;
+    left: 100px;
+    font-size: 15px;
+    bottom: 15px;
 
 }
 .review-date{
     display: flex;
-    margin-bottom: 10px;
     position: relative;
-
+    top: 25px;
+    font-size: 12px;
+    color: white;
+    bottom: 10px;
 }
 
 /* .name {
@@ -51,16 +57,56 @@
 
  .review {
    margin-left: 20px;
-    grid-area: 2 / 1 / 3 / 6;
+   grid-area: 2 / 1 / 2 / 5;
    font-family: Montserrat;
    font-size: 17px;
+   position: relative;
+   width: 800px;
+   height: 100px;
+   top: 20px;
 }
+
+.review input {
+    width: 100%;
+    height: 100%;
+}
+
+
 
 .edit-button {
     margin-top: 20px;
     margin-right: 20px;
-    grid-area: 1 / 5 / 2 / 6;
+    grid-area: 1 / 4 / 2 / 5;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
 }
+
+.delete-button {
+    grid-area: 1/4/2/5;
+    position: relative;
+    color: white;
+    background-color: #f44949;
+    font-size: 12px;
+    border: none;
+    display: inline-block;
+
+}
+
+.save-button{
+    grid-area: 1/4/2/5;
+    position: relative;
+    color: white;
+    background-color: #4CAF50;
+    font-size: 12px;
+    border: none;
+    display: inline-block;
+    right: 200px;
+}
+
+
 
 
 .star-one input[type="radio"]{
