@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
-import {useHistory} from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
 
 function LoginForm({closeModal}) {
   const dispatch = useDispatch();
@@ -18,14 +18,17 @@ function LoginForm({closeModal}) {
     setErrors([]);
     setInvalidCredentials(null);
 
-    dispatch(sessionActions.login({ email, password })).then(() => history.push('/')).catch(
-      async (res) => {
+    dispatch(sessionActions.login({ email, password }))
+      .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors)
-        if (data && data.message === 'invalid credentials') {setInvalidCredentials(true)}
-        else if (data.message !== 'invalid credentials') setInvalidCredentials(false)
-      }
-    );
+        console.log(data)
+        if (data && data.errors) setErrors(data.errors);
+        if (data && data.message === "Invalid credentials") {
+          setInvalidCredentials(true);
+        } else if (data.message !== "Invalid credentials")
+          setInvalidCredentials(false);
+      })
+      .then(() => history.push("/"));
 
     if(errors.length < 1 && invalidCredentials === false ) closeModal();
 
@@ -38,12 +41,11 @@ function LoginForm({closeModal}) {
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
-        {invalidCredentials ? <li>Invalid crednetials</li> : null}
+        { invalidCredentials ? <li className="invalid-credentials">Invalid crednetials</li> : null}
       </ul>
-
-        <lable className="login-title">
+        <span className="login-title">
           Login
-        </lable>
+        </span>
         <input
           type="text"
           value={email}
@@ -52,9 +54,6 @@ function LoginForm({closeModal}) {
           required
           className="username-input"
         />
-
-
-
         <input
           type="password"
           placeholder="password"
@@ -63,8 +62,8 @@ function LoginForm({closeModal}) {
           required
           className="password-input-field"
         />
-
       <button type="submit" className='login-btn'>Log In</button>
+      <span >Not yet member? <span>Signup now</span></span>
     </form>
   );
 }

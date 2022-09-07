@@ -108,6 +108,7 @@ const SpotPage = () => {
 
   useEffect(() => {
     setHasReview(false);
+    setTotalReviews(0)
     if (reviews[0] !== undefined) {
       reviews.forEach((review) => {
         setTotalReviews((prev) => prev+1)

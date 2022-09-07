@@ -1,0 +1,26 @@
+.sign-up {
+    width: 250px;
+    background: #8bacdc;
+    padding: 20px;
+    margin: 12% auto;
+    border-radius: 20px;
+    font-family: Montserrat;
+}
+
+.email-input, .password-input, .confirm-password-input{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+.sign-up-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    background: #cedcf2;
+
+}
