@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
+import {useHistory} from 'react-router-dom'
 
 function LoginForm({closeModal}) {
   const dispatch = useDispatch();
@@ -10,14 +11,14 @@ function LoginForm({closeModal}) {
   const [errors, setErrors] = useState([]);
   const [invalidCredentials, setInvalidCredentials] = useState(null)
 
-
+  const history  = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     setInvalidCredentials(null);
 
-    dispatch(sessionActions.login({ email, password })).catch(
+    dispatch(sessionActions.login({ email, password })).then(() => history.push('/')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors)

@@ -16,3 +16,58 @@
     font-size: 12px;
     border: none;
 }
+
+
+.price {
+    display: block;
+    margin: auto;
+}
+
+.preview-image {
+    border-radius: 5px;
+}
+
+.edit-page-btn {
+    margin-left: 41px;
+    margin-top: 25px;
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.name-title {
+    font-family: Montserrat;
+    font-weight: 900;
+    font-size: 35px;
+    margin-left: 40px;
+}
+
+.address-line {
+    font-family: Montserrat;
+    font-weight: normal;
+    text-decoration: underline;
+    margin: 10px;
+}
+
+.total-reviews {
+    margin: 10px;
+    font-family: Montserrat;
+    font-weight: normal;
+    text-decoration: underline
+}
+
+.seperation {
+    color: gray;
+    font-weight: 900;
+}
+
+.page-container {
+    width: 60%;
+    justify-content: center;
+    margin: auto;
+}

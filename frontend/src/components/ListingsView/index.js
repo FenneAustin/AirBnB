@@ -1,5 +1,5 @@
 import {loadListings} from "../../store/listings";
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import "./ListingsView.css"
 import {NavLink} from 'react-router-dom'
@@ -12,12 +12,6 @@ const ListingsView = () => {
     useEffect(()=> {
         dispatch(loadListings())
     },[dispatch])
-
-
-
-
-
-
 
     const listings = useSelector(state => state.listings)
 
@@ -36,11 +30,11 @@ const ListingsView = () => {
                   className="spot-img"
                 />
                 <div className="information">
-                  <h4>
-                    {listing.state} {listing.country}
+                  <h4 className="location-info">
+                    {listing.state}, {listing.country}
                   </h4>
-                  <h5>
-                    {listing.price}
+                  <h5 className="listing-price">
+                    ${listing.price} night
                   </h5>
                 </div>
               </div>

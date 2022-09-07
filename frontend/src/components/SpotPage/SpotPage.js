@@ -36,6 +36,7 @@ const SpotPage = () => {
    const [previewimage, setPreviewImage] = useState("");
    const [validationErrors, setValidationErrors] = useState([]);
    const [hasSubmitted, setHasSubmitted] = useState(false);
+   const [totalReviews, setTotalReviews] = useState(0);
 
        const updateAddress = (e) => setAddress(e.target.value);
        const updateCity = (e) => setCity(e.target.value);
@@ -80,6 +81,10 @@ const SpotPage = () => {
         setValidationErrors(errors);
       }, [address, city, state, country, lat, lng, name, description, price]);
 
+        const handleReviewUpdate = () => {
+          setHasReview(true);
+        };
+
 
   useEffect(() => {
     if(spot) {
@@ -96,11 +101,6 @@ const SpotPage = () => {
     }
   }, [editPage])
 
-  const handleReviewUpdate = () => {
-    setHasReview(true);
-  };
-
-
   useEffect(() => {
     dispatch(loadReviews(spotId));
     dispatch(loadListings());
@@ -110,6 +110,7 @@ const SpotPage = () => {
     setHasReview(false);
     if (reviews[0] !== undefined) {
       reviews.forEach((review) => {
+        setTotalReviews((prev) => prev+1)
         if (review.userId === sessionUser.id) {
           handleReviewUpdate();
         }
@@ -209,14 +210,7 @@ const SpotPage = () => {
   return (
     <>
       {spot && (
-        <div>
-          {sessionUser.id === spot.ownerId && editPage === false && (
-            <div>
-              <button onClick={(e) => handleEditButton(e)}>edit</button>
-            </div>
-          )}
-          <img src={`${spot.previewImage}`} alt="" className="preview-image" />
-
+        <div className="page-container">
           {hasSubmitted && validationErrors.length > 0 && (
             <div>
               The following errors were found:
@@ -227,6 +221,74 @@ const SpotPage = () => {
               </ul>
             </div>
           )}
+          {sessionUser.id === spot.ownerId && editPage === false && (
+            <div>
+              <button
+                className="edit-page-btn"
+                onClick={(e) => handleEditButton(e)}
+              >
+                edit
+              </button>
+            </div>
+          )}
+
+          {editPage ? (
+            <input
+              className="name-title"
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={updateName}
+            />
+          ) : (
+            <h1 className="name-title"> {spot.name}</h1>
+          )}
+
+          {editPage ? (
+            <>
+              <span>reviews :{totalReviews}</span>
+              <input
+                className="address"
+                type="text"
+                placeholder="Address"
+                required
+                value={address}
+                onChange={updateAddress}
+              />
+              <input
+                className="city"
+                type="text"
+                placeholder="City"
+                required
+                value={city}
+                onChange={updateCity}
+              />
+              <input
+                className="state"
+                type="text"
+                placeholder="State"
+                value={state}
+                onChange={updateState}
+              />
+              <input
+                className="country"
+                type="text"
+                placeholder="Country"
+                value={country}
+                onChange={updateCountry}
+              />
+            </>
+          ) : (
+            <>
+              <span className="total-reviews">{totalReviews} reviews</span>
+              <span className="seperation"> . </span>
+              <span className="address-line">
+                {spot.address}, {spot.city}, {spot.state} , {spot.country}
+              </span>
+            </>
+          )}
+
+          <img src={`${spot.previewImage}`} alt="" className="preview-image" />
 
           {editPage ? (
             <input
@@ -265,44 +327,6 @@ const SpotPage = () => {
           )}
 
           {editPage ? (
-            <>
-              <input
-                className="address"
-                type="text"
-                placeholder="Address"
-                required
-                value={address}
-                onChange={updateAddress}
-              />
-              <input
-                className="city"
-                type="text"
-                placeholder="City"
-                required
-                value={city}
-                onChange={updateCity}
-              />
-              <input
-                className="state"
-                type="text"
-                placeholder="State"
-                value={state}
-                onChange={updateState}
-              />
-              <input
-                className="country"
-                type="text"
-                placeholder="Country"
-                value={country}
-                onChange={updateCountry}
-              />
-            </>
-          ) : (
-            <h3 className="address-line">
-              {spot.address}, {spot.city}, {spot.state} , {spot.country}
-            </h3>
-          )}
-          {editPage ? (
             <input
               className="description"
               type="text"
@@ -311,7 +335,7 @@ const SpotPage = () => {
               onChange={updateDescription}
             />
           ) : (
-            <h3>{spot.description}</h3>
+            <h3 className="description">{spot.description}</h3>
           )}
 
           {editPage ? (

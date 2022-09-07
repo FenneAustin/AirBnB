@@ -39,3 +39,12 @@
 .information {
   color: #484848;
 }
+
+
+.location-info {
+  color: black;
+}
+
+.listing-price {
+  padding-bottom: 5px;
+}
