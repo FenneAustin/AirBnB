@@ -12,32 +12,30 @@
 }
 
 .header {
-    margin-left: 20px;
-    grid-area: 1 / 1 / 2 / 3 ;
+  margin-left: 20px;
+  grid-area: 1 / 1 / 2 / 3;
 }
 
 .name {
-    display: flex;
-    position: relative;
-    font-size: 15px;
-    bottom: 15px;
-
+  display: flex;
+  position: relative;
+  font-size: 15px;
+  bottom: 15px;
 }
-.stars{
-    display: flex;
-    position: relative;
-    left: 100px;
-    font-size: 15px;
-    bottom: 15px;
-
+.stars {
+  display: flex;
+  position: relative;
+  left: 100px;
+  font-size: 15px;
+  bottom: 15px;
 }
-.review-date{
-    display: flex;
-    position: relative;
-    top: 25px;
-    font-size: 12px;
-    color: white;
-    bottom: 10px;
+.review-date {
+  display: flex;
+  position: relative;
+  top: 25px;
+  font-size: 12px;
+  color: white;
+  bottom: 10px;
 }
 
 /* .name {
@@ -55,73 +53,108 @@
     grid-area: 2 / 1 / 3 / 2;
 } */
 
- .review {
-   margin-left: 20px;
-   grid-area: 2 / 1 / 2 / 5;
-   font-family: Montserrat;
-   font-size: 17px;
-   position: relative;
-   width: 800px;
-   height: 100px;
-   top: 20px;
+.review {
+  margin-left: 20px;
+  grid-area: 2 / 1 / 2 / 5;
+  font-family: Montserrat;
+  font-size: 17px;
+  position: relative;
+  width: 800px;
+  height: 100px;
+  top: 20px;
 }
 
 .review input {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-
-
 .edit-button {
-    margin-top: 20px;
-    margin-right: 20px;
-    grid-area: 1 / 4 / 2 / 5;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    display: inline-block;
-    font-size: 12px;
+  margin-top: 20px;
+  margin-right: 20px;
+  grid-area: 1 / 4 / 2 / 5;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
 }
 
 .delete-button {
-    grid-area: 1/4/2/5;
-    position: relative;
-    color: white;
-    background-color: #f44949;
-    font-size: 12px;
-    border: none;
-    display: inline-block;
-
+  grid-area: 1/4/2/5;
+  position: relative;
+  color: white;
+  background-color: #f44949;
+  font-size: 12px;
+  border: none;
+  display: inline-block;
 }
 
-.save-button{
-    grid-area: 1/4/2/5;
-    position: relative;
-    color: white;
-    background-color: #4CAF50;
-    font-size: 12px;
-    border: none;
-    display: inline-block;
-    right: 200px;
+.save-button {
+  grid-area: 1/4/2/5;
+  position: relative;
+  color: white;
+  background-color: #4caf50;
+  font-size: 12px;
+  border: none;
+  display: inline-block;
+  right: 200px;
 }
 
-
-
-
-.star-one input[type="radio"]{
-    visibility: hidden;
+.star-one input[type="radio"] {
+  visibility: hidden;
+  display: flex;
 }
 
-.star-two input[type="radio"]{
-    visibility: hidden;
+.star-two input[type="radio"] {
+  visibility: hidden;
+  display: flex;
+  bottom: 100px;
 }
-.star-three input[type="radio"]{
-    visibility: hidden;
+.star-three input[type="radio"] {
+  visibility: hidden;
+  display: flex;
 }
-.star-four input[type="radio"]{
-    visibility: hidden;
+.star-four input[type="radio"] {
+  visibility: hidden;
+  display: flex;
 }
-.star-five input[type="radio"]{
-    visibility: hidden;
+.star-five input[type="radio"] {
+  visibility: hidden;
+  display: flex;
+}
+
+.star-one {
+  display: flex;
+  position: relative;
+  top: 3px;
+  left: 100px;
+}
+
+.star-two {
+  display: flex;
+  position: relative;
+  top: 3px;
+  left: 120px;
+}
+
+.star-three {
+  display: flex;
+  position: relative;
+  top: 3px;
+  left: 140px;
+}
+
+.star-four {
+  display: flex;
+  position: relative;
+  top: 3px;
+  left: 160px;
+}
+
+.star-five {
+  display: flex;
+  position: relative;
+  top: 3px;
+  left: 180px;
 }

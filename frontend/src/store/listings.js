@@ -22,6 +22,10 @@ const deleteOne = (spotId) => ({
   payload: spotId
 })
 
+const editOne = (spot) => ({
+  type: EDIT,
+  payload: spot
+})
 
 
 
@@ -79,6 +83,45 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     dispatch(deleteOne(spotId));
   }
 
+  return response;
+};
+
+export const updateSpot = (updatedSpot, spotId) => async (dispatch) => {
+  const {
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewimage,
+  } = updatedSpot;
+
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewimage,
+    }),
+  });
+  if (response.ok) {
+  const response = await csrfFetch("/api/spots", {
+    method: "GET",
+  });
+  const data = await response.json();
+  dispatch(load(data.spots));
+  }
   return response;
 };
 

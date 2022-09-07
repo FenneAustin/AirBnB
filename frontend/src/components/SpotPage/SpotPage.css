@@ -7,3 +7,12 @@
     padding: auto;
     justify-content: center;
 }
+
+.delete-btn {
+    display: block;
+    margin: auto;
+    color: white;
+    background-color: #f44949;
+    font-size: 12px;
+    border: none;
+}
