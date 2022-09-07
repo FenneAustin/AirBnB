@@ -3,7 +3,7 @@
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 400px;
+    width: 600px;
     padding: auto;
     justify-content: center;
 }
@@ -28,16 +28,20 @@
 }
 
 .edit-page-btn {
-    margin-left: 41px;
+    margin-left: 20px;
     margin-top: 25px;
-    background-color: #4caf50;
+    background:linear-gradient(120deg, #fd5c63, #c30b03);
     border: none;
     color: white;
     font-size: 12px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 20px 30px;
+    background-size: 125% 125%;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 600;
+    cursor: pointer;
+
 }
 
 .name-title {
@@ -70,4 +74,28 @@
     width: 60%;
     justify-content: center;
     margin: auto;
+}
+
+
+.heading-for-owner {
+    font-family: Montserrat;
+    font-weight: 900;
+    font-size: 25px;
+    margin-left: 40px;
+}
+
+.owner-heading {
+     border-bottom: 1px solid lightgrey;
+}
+
+.house-info {
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+
+.profile {
+    position: relative;
+    left: 500px;
+    bottom: 40px;
 }

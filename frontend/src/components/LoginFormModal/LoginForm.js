@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import './LoginForm.css'
 import {useHistory } from 'react-router-dom'
 
+
 function LoginForm({closeModal}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -34,6 +35,12 @@ function LoginForm({closeModal}) {
 
   };
 
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    closeModal();
+    history.push('/signup')
+  }
+
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
@@ -63,7 +70,7 @@ function LoginForm({closeModal}) {
           className="password-input-field"
         />
       <button type="submit" className='login-btn'>Log In</button>
-      <span >Not yet member? <span>Signup now</span></span>
+      <div className="not-a-member">Not a member? <span onClick={(e)=> {handleSignUp(e)}}>Signup now</span></div>
     </form>
   );
 }

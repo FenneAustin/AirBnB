@@ -259,6 +259,7 @@ router.get("/:id", async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
     },
+    previewImage: spot.previewImage
   };
 
   spot.Images.forEach((obj) => {

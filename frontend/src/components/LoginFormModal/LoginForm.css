@@ -53,3 +53,9 @@
     color: white;
     cursor: pointer;
 }
+
+.not-a-member {
+    display: block;
+    margin-left: 110px;
+    margin-top: 10px;
+}
