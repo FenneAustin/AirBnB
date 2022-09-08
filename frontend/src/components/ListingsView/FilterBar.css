@@ -1,6 +1,7 @@
 .FilterBar {
   display: flex;
   justify-content: center;
+
 }
 
 .FilterBar ul {
@@ -12,4 +13,25 @@
 .FilterBar li {
   list-style: none;
   margin: 10px;
+}
+
+
+.lake-btn, .skiing-btn, .boat-btn, .pool-btn, .castle-btn, .pool-btn, .nationalpark-btn, .filter-btn {
+  background-color: transparent;
+     background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 15px;
+    font-family: Montserrat;
+    font-weight: none;
+}
+.lake-btn:hover, .skiing-btn:hover, .boat-btn:hover, .pool-btn:hover, .castle-btn:hover, .pool-btn:hover, .nationalpark-btn:hover, .filter-btn:hover {
+  border-bottom: 1px solid lightgrey;
+}
+
+.Castle i, .lake i, .Skiing i, .Boats i, .Pool i, .National i, .filter i  {
+  color: gray;
+  display: block;
 }

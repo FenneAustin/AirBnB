@@ -1,37 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './LoginForm.css'
-import {useHistory } from 'react-router-dom'
+import {useHistory, Redirect } from 'react-router-dom'
 
 
 function LoginForm({closeModal}) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [invalidCredentials, setInvalidCredentials] = useState(null)
 
   const history  = useHistory();
 
+  if (sessionUser) return <Redirect to="/" />;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    setInvalidCredentials(null);
 
     dispatch(sessionActions.login({ email, password }))
       .catch(async (res) => {
         const data = await res.json();
-        console.log(data)
         if (data && data.errors) setErrors(data.errors);
-        if (data && data.message === "Invalid credentials") {
-          setInvalidCredentials(true);
-        } else if (data.message !== "Invalid credentials")
-          setInvalidCredentials(false);
-      })
-      .then(() => history.push("/"));
-
-    if(errors.length < 1 && invalidCredentials === false ) closeModal();
+        if (data.statusCode === 401) {
+          setErrors([data.message])
+          setEmail("")
+          setPassword("")
+        }
+      });
 
   };
 
@@ -48,7 +45,6 @@ function LoginForm({closeModal}) {
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
-        { invalidCredentials ? <li className="invalid-credentials">Invalid crednetials</li> : null}
       </ul>
         <span className="login-title">
           Login

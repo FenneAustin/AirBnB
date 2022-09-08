@@ -1,6 +1,6 @@
 .login-form {
     width: 400px;
-    height: 276px;
+    height: 286px;
     justify-content: center;
     background: lightcoral;
 }
@@ -58,4 +58,18 @@
     display: block;
     margin-left: 110px;
     margin-top: 10px;
+}
+
+
+.login-btn-homeScreen {
+    margin-left: 20px;
+    background:linear-gradient(120deg, #fd5c63, #861657);
+    border: none;
+    color: white;
+    font-size: 10px;
+    padding: 15px 10px;
+    border-radius: 20px;
+    font-family: Montserrat;
+    font-weight: 600;
+    cursor: pointer;
 }

@@ -35,7 +35,9 @@ function Navigation({ isLoaded }) {
             <h4>Become a Host</h4>
           </NavLink>
         </li>
-        <li className="login-logout">{isLoaded && sessionLinks}</li>
+        <li className="login-logout">
+          {isLoaded && sessionLinks}
+        </li>
       </ul>
     </nav>
   );

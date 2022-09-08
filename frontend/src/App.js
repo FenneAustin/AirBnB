@@ -13,6 +13,7 @@ import loadListings from './store/listings';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  
   useEffect(() => {
        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -21,21 +22,24 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+
 
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
             <FilterBar />
             <ListingsView />
           </Route>
           <Route path="/signup">
+            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
-          <Route path='/become-a-host'>
+          <Route path="/become-a-host">
             <CreateListing />
           </Route>
-          <Route path='/spots/:spotId'>
+          <Route path="/spots/:spotId">
+            <Navigation isLoaded={isLoaded} />
             <SpotPages />
           </Route>
         </Switch>

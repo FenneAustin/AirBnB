@@ -188,16 +188,34 @@ const SpotPage = () => {
               </ul>
             </div>
           )}
-          {sessionUser.id === spot.ownerId && editPage === false && (
-            <div>
-              <button
-                className="edit-page-btn"
-                onClick={(e) => handleEditButton(e)}
-              >
-                edit
-              </button>
-            </div>
-          )}
+          <div className="owner-buttons">
+            {sessionUser.id === spot.ownerId && editPage === false && (
+              <div>
+                <button
+                  className="edit-page-btn"
+                  onClick={(e) => handleEditButton(e)}
+                >
+                  edit
+                </button>
+              </div>
+            )}
+            {sessionUser.id === spot.ownerId && (
+              <div>
+                <button
+                  className="delete-btn"
+                  onClick={(e) => handleOnClick(e)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
+          {editPage ? (
+            <>
+              <button onClick={(e) => handleCancelButton(e)}> cancel </button>
+              <button onClick={(e) => handleSaveButton(e)}> save </button>
+            </>
+          ) : null}
 
           {editPage ? (
             <input
@@ -276,8 +294,6 @@ const SpotPage = () => {
             </div>
           </div>
 
-
-
           {editPage ? (
             <input
               className="description"
@@ -287,10 +303,9 @@ const SpotPage = () => {
               onChange={updateDescription}
             />
           ) : (
-            <h3 className="description">{spot.description}</h3>
+            <h4 className="description">{spot.description}</h4>
           )}
 
-          
           {editPage ? (
             <input
               className="price"
@@ -327,13 +342,6 @@ const SpotPage = () => {
             </h3>
           )}
 
-          {editPage ? (
-            <>
-              <button onClick={(e) => handleCancelButton(e)}> cancel </button>
-              <button onClick={(e) => handleSaveButton(e)}> save </button>
-            </>
-          ) : null}
-
           {reviews[0] !== undefined ? (
             <div>
               <Reviews reviews={reviews} userId={sessionUser.id} />
@@ -342,14 +350,6 @@ const SpotPage = () => {
           {!hasReview && sessionUser ? (
             <AddReviewModal reviews={reviews} userId={sessionUser.id} />
           ) : null}
-
-          {sessionUser.id === spot.ownerId && (
-            <div>
-              <button className="delete-btn" onClick={(e) => handleOnClick(e)}>
-                Delete
-              </button>
-            </div>
-          )}
         </div>
       )}
     </>

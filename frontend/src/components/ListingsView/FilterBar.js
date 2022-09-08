@@ -7,43 +7,48 @@ const FilterBar = () => {
       <div className="FilterBar">
         <ul>
           <li className="lake">
-            <button>
+            <button className="lake-btn">
               <i className="fa-solid fa-water"></i>
-              <h4>Lake</h4>
+              <span>Lake</span>
             </button>
           </li>
           <li className="Skiing">
-            <button>
+            <button className="skiing-btn">
               <i className="fa-solid fa-person-skiing"></i>
-              <h4>Skiing</h4>
+              <span>Skiing</span>
             </button>
           </li>
           <li className="Boats">
-            <button>
+            <button className="boat-btn">
               <i className="fa-solid fa-sailboat"></i>
-              <h4>Boat</h4>
+              <span>Boat</span>
             </button>
           </li>
           <li className="Castle">
-            <button>
+            <button className="castle-btn">
               <i className="fa-brands fa-fort-awesome"></i>
-              <h4>Castle</h4>
+              <span>Castle</span>
             </button>
           </li>
           <li className="Pool">
-            <button>
+            <button className="pool-btn">
               <i className="fa-solid fa-person-swimming"></i>
-              <h4>Pool</h4>
+              <span>Pool</span>
             </button>
           </li>
           <li className="National Parks">
-            <button>
+            <button className="nationalpark-btn">
               <i className="fa-solid fa-mountain-sun"></i>
-              <h4>National Park</h4>
+              <span>National Park</span>
+            </button>
+          </li>
+          <li className="filter">
+            <button className="filter-btn">
+              <i class="fa-solid fa-filter"></i>
+              <span>Filters</span>
             </button>
           </li>
         </ul>
-        <button>Filters</button>
       </div>
     );
 }

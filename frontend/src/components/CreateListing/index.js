@@ -121,84 +121,90 @@ const CreateListing = () => {
 
     return (
       <div className="container">
-        {hasSubmitted && validationErrors.length > 0 && (
-          <div>
-            The following errors were found:
-            <ul>
-              {validationErrors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <form className="create-spot-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Address"
-            required
-            value={address}
-            onChange={updateAddress}
-          />
-          <input
-            type="text"
-            placeholder="City"
-            required
-            value={city}
-            onChange={updateCity}
-          />
-          <input
-            type="text"
-            placeholder="State"
-            value={state}
-            onChange={updateState}
-          />
-          <input
-            type="text"
-            placeholder="Country"
-            value={country}
-            onChange={updateCountry}
-          />
-          <input
-            type="text"
-            placeholder="lat"
-            value={lat}
-            onChange={updateLat}
-          />
-          <input
-            type="text"
-            placeholder="lng"
-            value={lng}
-            onChange={updateLng}
-          />
-          <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={updateName}
-          />
-          <input
-            type="text"
-            placeholder="description"
-            value={description}
-            onChange={updateDescription}
-          />
-          <input
-            type="text"
-            placeholder="price"
-            value={price}
-            onChange={updatePrice}
-          />
-          <input
-            type="text"
-            placeholder="preview image"
-            value={previewimage}
-            onChange={updatePreviewImage}
-          />
-          <button type="submit">Create</button>
-          <button type="button" onClick={handleCancelClick}>
-            Cancel
-          </button>
-        </form>
+        <button className="back-to-home-btn">back</button>
+        <div className="left-half">
+          {hasSubmitted && validationErrors.length > 0 && (
+            <div>
+              The following errors were found:
+              <ul>
+                {validationErrors.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="right-half">
+          <form className="create-spot-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Address"
+              required
+              value={address}
+              onChange={updateAddress}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              required
+              value={city}
+              onChange={updateCity}
+            />
+            <input
+              type="text"
+              placeholder="State"
+              value={state}
+              onChange={updateState}
+            />
+            <input
+              type="text"
+              placeholder="Country"
+              value={country}
+              onChange={updateCountry}
+            />
+            <input
+              type="text"
+              placeholder="lat"
+              value={lat}
+              onChange={updateLat}
+            />
+            <input
+              type="text"
+              placeholder="lng"
+              value={lng}
+              onChange={updateLng}
+            />
+            <input
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={updateName}
+            />
+            <input
+              type="text"
+              placeholder="description"
+              value={description}
+              onChange={updateDescription}
+            />
+            <input
+              type="text"
+              placeholder="price"
+              value={price}
+              onChange={updatePrice}
+            />
+            <input
+              type="text"
+              placeholder="preview image"
+              value={previewimage}
+              onChange={updatePreviewImage}
+            />
+
+            <button type="submit">Create</button>
+            <button type="button" onClick={handleCancelClick}>
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     );
 }
