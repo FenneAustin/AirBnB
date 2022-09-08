@@ -21,15 +21,15 @@ const deleteOne = (spotId) => ({
   payload: spotId,
 });
 
-const editOne = (spot) => ({
-  type: EDIT,
-  payload: spot,
-});
+// const editOne = (spot) => ({
+//   type: EDIT,
+//   payload: spot,
+// });
 
-const loadOne = (data) => ({
-  type: LOAD_ONE,
-  payload: data,
-});
+// const loadOne = (data) => ({
+//   type: LOAD_ONE,
+//   payload: data,
+// });
 
 export const loadListings = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots", {
@@ -51,7 +51,7 @@ export const createSpot = (spot) => async (dispatch) => {
     name,
     description,
     price,
-    previewimage,
+    previewImage,
   } = spot;
 
   const response = await csrfFetch("/api/spots/", {
@@ -66,7 +66,7 @@ export const createSpot = (spot) => async (dispatch) => {
       name,
       description,
       price,
-      previewimage,
+      previewImage,
     }),
   });
   if (response.ok) {
