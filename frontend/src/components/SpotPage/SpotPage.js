@@ -8,6 +8,7 @@ import "./SpotPage.css";
 import AddReviewModal from "./AddReviewModal";
 import { updateSpot } from "../../store/listings";
 import { loadListing } from "../../store/listings";
+import AddReview from "./AddReview"
 
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
 
@@ -281,7 +282,7 @@ const SpotPage = () => {
                 Entire house hosted by{" "}
                 {spot.Owner ? `${spot.Owner.firstName}` : "john"}
               </h1>
-              <i class="fa-solid fa-user profile"></i>
+              <i className="fa-solid fa-user profile"></i>
             </div>
             <div className="house-info">
               <span>6 guest</span>
@@ -342,13 +343,17 @@ const SpotPage = () => {
             </h3>
           )}
 
+          {!hasReview && sessionUser ? (
+            // <AddReviewModal reviews={reviews} userId={sessionUser.id} />
+            <div className="add-review-container">
+                <div className="review-form-title">Write a review</div>
+                <AddReview />
+            </div>
+          ) : null}
           {reviews[0] !== undefined ? (
             <div>
               <Reviews reviews={reviews} userId={sessionUser.id} />
             </div>
-          ) : null}
-          {!hasReview && sessionUser ? (
-            <AddReviewModal reviews={reviews} userId={sessionUser.id} />
           ) : null}
         </div>
       )}

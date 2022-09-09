@@ -22,6 +22,11 @@
     top: 50%;
 }
 
+.full-logo {
+  width: 100px;
+  height: auto;
+}
+
 .left-half-signup span {
     color:white;
     font-size: 19px;
@@ -50,9 +55,37 @@
     font-family: "HHelvetica Neue"
 }
 
-.email-input-signup, .password-input-signup, .confirm-password-input-signup, .sign-up-button-signuppage {
+.firstName-signup, .lastName-signup, .email-input-signup, .password-input-signup, .confirm-password-input-signup, .sign-up-button-signuppage {
     display: block;
     margin: auto;
     font-size: 30px;
     width: 300px;
+     outline: 0;
+  border-width: 0 0 2px;
+}
+
+.email-input-signup:focus, .password-input-signup:focus, .confirm-password-input-signup:focus, .firstName-signup:focus, .lastName-signup:focus {
+  border-color: #fd5c63;
+}
+
+
+.email-label, .pwd-label, .cfm-pwd-label, .firstName-label, .lastName-label {
+  margin-top: 50px;
+  font-family: "HHelvetica Neue";
+  font-size: 20px;
+
+}
+
+
+.sign-up-button-signuppage {
+  margin-top: 40px;
+  background: linear-gradient(120deg, #fd5c63, #861657);
+  border: none;
+  color: white;
+  font-size: 10px;
+  padding: 15px 10px;
+  border-radius: 20px;
+  font-family: Montserrat;
+  font-weight: 600;
+  cursor: pointer;
 }

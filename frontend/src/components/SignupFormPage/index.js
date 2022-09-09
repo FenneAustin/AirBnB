@@ -10,6 +10,8 @@ function SignupFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -19,7 +21,7 @@ function SignupFormPage() {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({ email, password })
+        sessionActions.signup({ email, password,firstName, lastName })
       ).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -42,6 +44,10 @@ function SignupFormPage() {
       </div>
 
       <div className="right-half-signup">
+        <img
+          className="full-logo"
+          src="https://cdn.iconscout.com/icon/free/png-256/airbnb-2-282311.png" alt="some-logo"
+        />
         <span className="signup-title">Register</span>
         <form onSubmit={handleSubmit} className="sign-up-page">
           <ul>
@@ -49,33 +55,50 @@ function SignupFormPage() {
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label>
-
+          <label className="firstName-label">
+            First Name
+            <input
+              className="firstName-signup"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+          <label className="lastName-label">
+            Last Name
+            <input
+              className="lastName-signup"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+          <label className="email-label">
+            Email Address
             <input
               className="email-input-signup"
-              placeholder="Email"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </label>
-          <label>
-
+          <label className="pwd-label">
+            Password
             <input
               className="password-input-signup"
-              placeholder="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
-          <label>
-
+          <label className="cfm-pwd-label">
+            confirm password
             <input
               className="confirm-password-input-signup"
-              placeholder="confirm password"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}

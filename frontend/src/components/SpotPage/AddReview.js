@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { createReview } from "../../store/reviews";
+import "./AddReview.css"
 
 
 const AddReview = ({onClose}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
-
+  const [reviewIsEmpty, setReviewIsEmpty] = useState(true);
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
   const [starValue, setStarValue] = useState(1);
@@ -27,6 +28,12 @@ const AddReview = ({onClose}) => {
     }
     if (review.length > 500) {
       errors.push("Review can be at most 500 characters long");
+    }
+    if(review.length > 0){
+      setReviewIsEmpty(false)
+    }
+    if(review.length === 0){
+      setReviewIsEmpty(true)
     }
     setValidationErrors(errors);
   }, [stars, review]);
@@ -168,10 +175,7 @@ const AddReview = ({onClose}) => {
             value={review}
           />
         </div>
-        <button type="submit">Submit</button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
-        </button>
+        <button className="submit-review-btn" type="submit" disabled={reviewIsEmpty}>Submit</button>
       </form>
     </div>
   );

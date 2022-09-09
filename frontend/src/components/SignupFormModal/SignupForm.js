@@ -10,6 +10,8 @@ function SignupFormPage({closeModal}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("")
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -18,7 +20,7 @@ function SignupFormPage({closeModal}) {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, password })).catch(
+      return dispatch(sessionActions.signup({ email, password, firstName, lastName })).catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -37,6 +39,26 @@ function SignupFormPage({closeModal}) {
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      <label>
+        first name
+        <input
+          className="firstName-input"
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        last name
+        <input
+          className="lastName-input"
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+      </label>
       <label>
         Email
         <input

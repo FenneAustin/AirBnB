@@ -44,7 +44,7 @@ const FilterBar = () => {
           </li>
           <li className="filter">
             <button className="filter-btn">
-              <i class="fa-solid fa-filter"></i>
+              <i className="fa-solid fa-filter"></i>
               <span>Filters</span>
             </button>
           </li>

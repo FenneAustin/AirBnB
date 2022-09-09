@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import DemoAccount from "../DemoAccount/index"
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -26,7 +27,7 @@ function Navigation({ isLoaded }) {
       <ul>
         <li className="home">
           <NavLink exact to="/">
-            <img src={"../favicon.ico"} alt="" />
+            <img className="airbnb-logo-main"src={"../favicon.ico"} alt="" />
           </NavLink>
         </li>
 
@@ -36,6 +37,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </li>
         <li className="login-logout">
+          {sessionUser ? null:<DemoAccount />}
           {isLoaded && sessionLinks}
         </li>
       </ul>

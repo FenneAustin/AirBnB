@@ -1,0 +1,63 @@
+.default-profile {
+    width: 28px;
+    height: auto;
+    margin-left: 15px;
+    margin-top: 4px;
+    margin-right: 2px;
+    margin-bottom: 4px;
+}
+
+
+
+.flyout {
+    display: flex;
+    background: white;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px lightgray solid;
+}
+
+.flyout:hover {
+      box-shadow: 0 3px 5px -3px lightslategray;
+
+}
+
+.hamburger {
+    font-size: 15px;
+    margin-left: 9px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    top: 100px;
+    right: 45px;
+    gap: 10px;
+}
+
+.profile-btn-logout {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(120deg, #fd5c63, #861657);
+  border: none;
+  color: white;
+  font-size: 10px;
+  padding: 15px 10px;
+  border-radius: 20px;
+  font-family: Montserrat;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.users-email, .Home-btn-link, .my-spots-link {
+    margin-right: 8px;
+    font-family: Tahoma;
+    color: black;
+}

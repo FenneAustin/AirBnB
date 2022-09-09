@@ -15,6 +15,14 @@
 .become-host h4{
   color: #484848;
   text-decoration: none;
-  font-family: Montserrat;
+  font-family: Tahoma;
   font-weight: bolder;
+  margin-left: 50%;
+ 
+}
+
+.airbnb-logo-main {
+  margin-top: 10px;
+  width: 32px;
+  height:auto;
 }

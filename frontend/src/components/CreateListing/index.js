@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useHistory, Redirect } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
 import { createSpot } from "../../store/listings";
 import "./CreateListing.css";
 
 const CreateListing = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -94,6 +95,8 @@ const CreateListing = () => {
     }
     setValidationErrors(errors);
   }, [address, city, state, country, lat, lng, name, description, price]);
+
+  if (!sessionUser) return <Redirect to="/signup" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

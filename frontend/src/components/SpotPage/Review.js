@@ -40,12 +40,43 @@ const Review = ({ review, userId }) => {
   const updateReviews = (e) => setSingleReview(e.target.value);
 
   return (
-    <div key={review.id} className="review-container">
-      <h6 className="name header" >
+    <div className="review">
+      <h2 className="review-title">Review</h2>
+      {}
+      <div key={review.id} className="review-container">
+        <div className="review-image-container">
+          <img
+            className="default-profile-review"
+            src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+            alt=""
+          />
+        </div>
+        <div className="review-content">
+          <div className="review-author">
+            {review.User.firstName ? review.User.firstName : null}{" "}
+            {review.User.lastName ? review.User.lastName : null}
+            <div>{review.updatedAt ? review.updatedAt.slice(0, 10) : null}</div>
+          </div>
+          <div className="review-text">
+            {review.review ? review.review : null}
+          </div>
+          { review.userId === userId ? (
+          <div className="review-owner">
+            <div className="edit-review">
+              <button>Edit</button>
+            </div>
+            <div className="delete-review">
+              <button>Delete</button>
+            </div>
+          </div>) : null
+        }
+        </div>
+      </div>
+      {/* <h6 className="name header">
         {review.User.firstName ? review.User.firstName : null}{" "}
         {review.User.lastName ? review.User.lastName : null}
-      </h6>
-
+      </h6> */}
+      {/*
       {editing === true ? (
         <>
           <div className="star-one header">
@@ -135,11 +166,13 @@ const Review = ({ review, userId }) => {
           </div>
         </>
       ) : (
-        <h6 className="stars header">{review.stars ? review.stars : null} stars</h6>
+        <h6 className="stars header">
+          {review.stars ? review.stars : null} stars
+        </h6>
       )}
 
       <h6 className="review-date header">
-        {review.updatedAt ? review.updatedAt.slice(0,10) : null}
+        {review.updatedAt ? review.updatedAt.slice(0, 10) : null}
       </h6>
       {review.userId === userId && editing === false ? (
         <button
@@ -173,17 +206,17 @@ const Review = ({ review, userId }) => {
       ) : null}
       {editing ? (
         <form className="review">
-            <input
-              type="textarea"
-              id="Review"
-              name="Review"
-              value={singleReview}
-              onChange={(e) => updateReviews(e)}
-            />
+          <input
+            type="textarea"
+            id="Review"
+            name="Review"
+            value={singleReview}
+            onChange={(e) => updateReviews(e)}
+          />
         </form>
       ) : (
-        <h2 className="review">{review.review ? review.review : null}</h2>
-      )}
+        <span className="review">{review.review ? review.review : null}</span>
+      )} */}
     </div>
   );
 };

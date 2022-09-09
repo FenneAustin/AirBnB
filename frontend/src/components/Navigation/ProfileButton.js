@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
+import "./ProfileButton.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -31,23 +32,35 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className="flyout" onClick={openMenu}>
         <i className="fa-sharp fa-solid fa-bars hamburger" />
+        <img
+          className="default-profile"
+          src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt=""
+        />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.email}</li>
-          <li>
-            <NavLink to="/">Home</NavLink>
+          <li className="users-email">{user.email}</li>
+          <li className="Home-btn-link">
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              Home
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/bookings/me">My Bookings</NavLink>
+          <li className="my-bookings-link">
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              My Bookings
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/spots/me">My Spots</NavLink>
+          <li className="my-spots-link">
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              My Spots
+            </NavLink>
           </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
+          <li className="flyout-logout-btn">
+            <button onClick={logout} className="profile-btn-logout">
+              Log Out
+            </button>
           </li>
         </ul>
       )}
