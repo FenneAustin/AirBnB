@@ -9,11 +9,12 @@ import FilterBar from './components/ListingsView/FilterBar'
 import CreateListing from './components/CreateListing/index'
 import SpotPages from './components/SpotPage/index'
 import loadListings from './store/listings';
+import Footer from "./components/Footer/index"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -30,6 +31,7 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <FilterBar />
             <ListingsView />
+            <Footer />
           </Route>
           <Route path="/signup">
             <Navigation isLoaded={isLoaded} />

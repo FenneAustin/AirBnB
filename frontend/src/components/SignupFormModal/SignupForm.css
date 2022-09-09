@@ -1,29 +1,60 @@
-.sign-up {
-    width: 400px;
-    height: 286px;
-    background: white;
-    margin: 12% auto;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+.signup-container {
+    border-radius: 6px;
+    padding: 25px;
+    max-width: 400px;
+    width: 100%;
+    background-color:white;
+    margin: auto;
+    box-shadow: 0px 3px 3px darkgray;
+    font-family: Tahoma;
 }
 
+
+
+
 .firstName-input, .lastName-input, .email-input, .password-input, .confirm-password-input{
-    display: block;
+  display: block;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 3px;
+  border: 0;
+  height: 44px;
+  font-size: 16px;
+  border: 1px solid black;
+  font-family: Tahoma;
+}
+
+.signup-form-title {
+  display: block;
+  margin: auto;
+  font-size: 1.8em;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: black;
+  font-family: "HHelvetica Neue";
 }
 
 .sign-up-button {
-    margin-left: 20px;
-    background:linear-gradient(120deg, #fd5c63, #861657);
-    border: none;
-    color: white;
-    text-align:center;
-    font-size: 10px;
-    padding: 12px 16px;
+  display: block;
+  border-radius: 3px;
+  padding: 15px 20px;
+  margin-top: 15px;
+  margin:auto;
+  width: 60%;
+  background: linear-gradient(120deg, #fd5c63, #861657);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.firstName-input, .lastName-input, .email-input, .password-input, .confirm-password-input {
+    margin: auto;
     border-radius: 8px;
-    font-family: Montserrat;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid #fd5c63;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
 
 }

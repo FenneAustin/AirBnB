@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import './LoginForm.css'
@@ -40,15 +40,14 @@ function LoginForm({closeModal}) {
 
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-        <span className="login-title">
-          Login
-        </span>
+    <div className="login-container">
+      <span className="login-title">Login</span>
+      <form onSubmit={handleSubmit} className="login-form">
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <input
           type="text"
           value={email}
@@ -65,9 +64,22 @@ function LoginForm({closeModal}) {
           required
           className="password-input-field"
         />
-      <button type="submit" className='login-btn'>Log In</button>
-      <div className="not-a-member">Not a member? <span onClick={(e)=> {handleSignUp(e)}}>Signup now</span></div>
-    </form>
+        <button type="submit" className="login-btn">
+          Log In
+        </button>
+        <div className="not-a-member">
+          Not a member?{" "}
+          <span
+          className="sign-up-now-btn"
+            onClick={(e) => {
+              handleSignUp(e);
+            }}
+          >
+            Signup now
+          </span>
+        </div>
+      </form>
+    </div>
   );
 }
 

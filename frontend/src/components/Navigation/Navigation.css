@@ -17,8 +17,9 @@
   text-decoration: none;
   font-family: Tahoma;
   font-weight: bolder;
-  margin-left: 50%;
- 
+  position: relative;
+  left: 50%;
+  right: 50%;
 }
 
 .airbnb-logo-main {
