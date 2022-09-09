@@ -342,19 +342,24 @@ const SpotPage = () => {
               {spot.lat} {spot.lng}{" "}
             </h3>
           )}
+          <div>
+            <h2 className="review-title">Review</h2>
 
-          {!hasReview && sessionUser ? (
-            // <AddReviewModal reviews={reviews} userId={sessionUser.id} />
-            <div className="add-review-container">
+            {!hasReview && sessionUser ? (
+              // <AddReviewModal reviews={reviews} userId={sessionUser.id} />
+              <div className="add-review-container">
                 <div className="review-form-title">Write a review</div>
                 <AddReview />
-            </div>
-          ) : null}
-          {reviews[0] !== undefined ? (
-            <div>
-              <Reviews reviews={reviews} userId={sessionUser.id} />
-            </div>
-          ) : null}
+              </div>
+            ) : null}
+          </div>
+          <div>
+            {reviews[0] !== undefined ? (
+              <div>
+                <Reviews reviews={reviews} userId={sessionUser.id} />
+              </div>
+            ) : null}
+          </div>
         </div>
       )}
     </>

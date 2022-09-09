@@ -132,7 +132,6 @@ export const loadListing = (spotId) => async (dispatch) => {
     method: "GET",
   });
   const data = await response.json();
-  console.log(data);
   dispatch(addOneSpot(data));
 
   return response;

@@ -16,7 +16,7 @@
 
 
 .submit-review-btn {
-        margin-left: 20px;
+    margin-left: 20px;
     background:linear-gradient(120deg, #fd5c63, #861657);
     border: none;
     color: white;
@@ -28,4 +28,15 @@
     font-weight: 600;
     cursor: pointer;
     border: 1px solid #fd5c63;
+}
+
+.start-one, .start-two, .start-three, .start-four, .star-five {
+    display: flex;
+}
+
+
+.all-stars{
+    display: flex;
+    position: relative;
+    top: 0%;
 }

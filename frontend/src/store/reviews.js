@@ -110,7 +110,7 @@ const reviewReducer = (state = initialState, action) => {
 
   switch(action.type){
     case LOAD:
-      newState =[action.payload[0]]
+      newState =[...action.payload]
       return newState;
     case DELETE_ONE:
       newState=[...state]

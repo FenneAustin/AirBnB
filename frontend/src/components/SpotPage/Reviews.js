@@ -9,11 +9,13 @@ const Reviews = (props) => {
 
   return (
     <>
-    
+
       {reviews ?
-      (reviews.map((review) => {
+      (reviews.map((review, i) => {
         return (
-          <Review review={review} userId={userId} />
+          <div key={i}>
+            <Review review={review} userId={userId} />
+          </div>
         );
       })
       ) : null

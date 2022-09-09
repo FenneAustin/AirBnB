@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Review.css";
 import { updateReview, deleteReview } from "../../store/reviews";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import AddReview from './AddReview';
 
 const Review = ({ review, userId }) => {
   const dispatch = useDispatch();
@@ -11,6 +12,11 @@ const Review = ({ review, userId }) => {
   const [singleReview, setSingleReview] = useState(review.review);
   const [stars, setStars] = useState(review.stars);
 
+
+  useEffect(()=> {
+    setStars(review.stars)
+  },[review.stars])
+
   const handleEdit = (e) => {
     e.preventDefault();
     setEditing(true);
@@ -18,17 +24,19 @@ const Review = ({ review, userId }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
+    if(window.confirm("Do you want to delete this review?")){
     dispatch(deleteReview(review.id));
+    }
     setEditing(false);
   };
 
-  const handleSave = (e) => {
+  const handleSave = (e, nreview, starValue, Id) => {
     e.preventDefault();
     const newReview = {
-      review: singleReview,
-      stars: stars,
+      review: nreview,
+      stars: starValue,
     };
-    dispatch(updateReview(review.id, newReview, spotId));
+    dispatch(updateReview(review.id, newReview, Id));
     setEditing(false);
   };
 
@@ -37,11 +45,15 @@ const Review = ({ review, userId }) => {
     setStars(e.target.value);
   };
 
+  const handleCancel = (e) => {
+    e.preventDefault()
+    setEditing(false)
+  }
+
   const updateReviews = (e) => setSingleReview(e.target.value);
 
   return (
     <div className="review">
-      <h2 className="review-title">Review</h2>
       {}
       <div key={review.id} className="review-container">
         <div className="review-image-container">
@@ -58,15 +70,15 @@ const Review = ({ review, userId }) => {
             <div>{review.updatedAt ? review.updatedAt.slice(0, 10) : null}</div>
           </div>
           <div className="review-text">
-            {review.review ? review.review : null}
+            {editing ? <AddReview id={spotId} cancel={handleCancel} curStars={stars} handleSave={handleSave} curReview={review.review} update={true}/> : (review.review ? review.review : null)}
           </div>
-          { review.userId === userId ? (
+          { review.userId === userId && editing===false? (
           <div className="review-owner">
             <div className="edit-review">
-              <button>Edit</button>
+              <button className="edit-review-btn" onClick={(e) => {handleEdit(e)}}>Edit</button>
             </div>
             <div className="delete-review">
-              <button>Delete</button>
+              <button className="delete-review-btn" onClick={(e) => {handleDelete(e)}}>Delete</button>
             </div>
           </div>) : null
         }

@@ -47,16 +47,16 @@ function ProfileButton({ user }) {
               Home
             </NavLink>
           </li>
-          <li className="my-bookings-link">
+          {/* <li className="my-bookings-link">
             <NavLink to="/" style={{ textDecoration: "none" }}>
               My Bookings
             </NavLink>
-          </li>
-          <li className="my-spots-link">
+          </li> */}
+          {/* <li className="my-spots-link">
             <NavLink to="/" style={{ textDecoration: "none" }}>
               My Spots
             </NavLink>
-          </li>
+          </li> */}
           <li className="flyout-logout-btn">
             <button onClick={logout} className="profile-btn-logout">
               Log Out

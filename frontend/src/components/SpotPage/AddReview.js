@@ -5,7 +5,7 @@ import { createReview } from "../../store/reviews";
 import "./AddReview.css"
 
 
-const AddReview = ({onClose}) => {
+const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
@@ -19,7 +19,14 @@ const AddReview = ({onClose}) => {
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
 
-
+  useEffect(()=> {
+    if(curReview){
+      setReview(curReview);
+    }
+    if(curStars) {
+      setStarValue(curStars)
+    }
+  },[])
 
   useEffect(() => {
     const errors = [];
@@ -54,7 +61,7 @@ const AddReview = ({onClose}) => {
 
     setStarValue(1);
     setReview("");
-    onClose();
+
   };
 
   const handleStarClick = (e) => {
@@ -66,10 +73,13 @@ const AddReview = ({onClose}) => {
   const handleCancelClick = (e) => {
      setStarValue(1);
      setReview("");
+    if(curReview){
+      cancel(e)
+    }
   };
 
   return (
-    <div className="container">
+    <div className="review-container">
       {hasSubmitted && validationErrors.length > 0 && (
         <div>
           The following errors were found:
@@ -81,90 +91,92 @@ const AddReview = ({onClose}) => {
         </div>
       )}
       <form className="create-review-form" onSubmit={handleSubmit}>
-        <div className="star-one">
-          <label>
-            <input
-              type="radio"
-              name="star1"
-              value={1}
-              onClick={(e) => {
-                handleStarClick(e);
-              }}
-            />
-            {starValue >= 1 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </label>
-        </div>
-        <div className="star-two">
-          <label>
-            <input
-              type="radio"
-              name="star2"
-              value={2}
-              onClick={(e) => {
-                handleStarClick(e);
-              }}
-            />
-            {starValue >= 2 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </label>
-        </div>
-        <div className="star-three">
-          <label>
-            <input
-              type="radio"
-              name="star3"
-              value={3}
-              onClick={(e) => {
-                handleStarClick(e);
-              }}
-            />
-            {starValue >= 3 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </label>
-        </div>
-        <div className="star-four">
-          <label>
-            <input
-              type="radio"
-              name="star4"
-              value={4}
-              onClick={(e) => {
-                handleStarClick(e);
-              }}
-            />
-            {starValue >= 4 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </label>
-        </div>
-        <div className="star-five">
-          <label>
-            <input
-              type="radio"
-              name="star5"
-              value={5}
-              onClick={(e) => {
-                handleStarClick(e);
-              }}
-            />
-            {starValue >= 5 ? (
-              <i className="fa-solid fa-star"></i>
-            ) : (
-              <i className="fa-regular fa-star"></i>
-            )}
-          </label>
+        <div className="all-stars">
+          <div className="star-one">
+            <label>
+              <input
+                type="radio"
+                name="star1"
+                value={1}
+                onClick={(e) => {
+                  handleStarClick(e);
+                }}
+              />
+              {starValue >= 1 ? (
+                <i className="fa-solid fa-star"></i>
+              ) : (
+                <i className="fa-regular fa-star"></i>
+              )}
+            </label>
+          </div>
+          <div className="star-two">
+            <label>
+              <input
+                type="radio"
+                name="star2"
+                value={2}
+                onClick={(e) => {
+                  handleStarClick(e);
+                }}
+              />
+              {starValue >= 2 ? (
+                <i className="fa-solid fa-star"></i>
+              ) : (
+                <i className="fa-regular fa-star"></i>
+              )}
+            </label>
+          </div>
+          <div className="star-three">
+            <label>
+              <input
+                type="radio"
+                name="star3"
+                value={3}
+                onClick={(e) => {
+                  handleStarClick(e);
+                }}
+              />
+              {starValue >= 3 ? (
+                <i className="fa-solid fa-star"></i>
+              ) : (
+                <i className="fa-regular fa-star"></i>
+              )}
+            </label>
+          </div>
+          <div className="star-four">
+            <label>
+              <input
+                type="radio"
+                name="star4"
+                value={4}
+                onClick={(e) => {
+                  handleStarClick(e);
+                }}
+              />
+              {starValue >= 4 ? (
+                <i className="fa-solid fa-star"></i>
+              ) : (
+                <i className="fa-regular fa-star"></i>
+              )}
+            </label>
+          </div>
+          <div className="star-five">
+            <label>
+              <input
+                type="radio"
+                name="star5"
+                value={5}
+                onClick={(e) => {
+                  handleStarClick(e);
+                }}
+              />
+              {starValue >= 5 ? (
+                <i className="fa-solid fa-star"></i>
+              ) : (
+                <i className="fa-regular fa-star"></i>
+              )}
+            </label>
+          </div>
         </div>
         <div className="review-container">
           <label htmlFor="Review">Review</label>
@@ -175,7 +187,36 @@ const AddReview = ({onClose}) => {
             value={review}
           />
         </div>
-        <button className="submit-review-btn" type="submit" disabled={reviewIsEmpty}>Submit</button>
+        {!update && (
+          <button
+            className="submit-review-btn"
+            type="submit"
+            disabled={reviewIsEmpty}
+          >
+            Submit
+          </button>
+        )}
+        {update && (
+          <button
+            className="update-review-btn"
+            type="update"
+            disabled={reviewIsEmpty}
+            onClick={(e) => handleSave(e, review, starValue, id)}
+          >
+            Save
+          </button>
+        )}
+        {update && (
+          <button
+            className="cancel-update-btn"
+            type="cancel"
+            onClick={(e) => {
+              handleCancelClick(e);
+            }}
+          >
+            cancel
+          </button>
+        )}
       </form>
     </div>
   );
