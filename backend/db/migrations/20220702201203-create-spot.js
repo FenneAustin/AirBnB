@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.FLOAT,
       },
       name: {
-        type: Sequelize.STRING(40),
+        type: Sequelize.STRING(80),
       },
       description: {
         type: Sequelize.STRING(250),
