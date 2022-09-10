@@ -33,7 +33,6 @@ and follow the instruction below.
         `create a .env file inside the backend folder with the following`<br />
                 `PORT= whatever you want (suggestion : 8000)`<br />
                 `DB_FILE = name a path to a database (suggestion : db/dev.db or *any db name\*)`<br />
-
         `Make sure you have the sequelize-cli installed and run`<br />
             `dotenv npx sequelize db:migrate`<br />
            ` dotenv npx sequelize db:seed:all`<br />
