@@ -7,9 +7,20 @@
 - [How to run the project](#How-to-run-the-project)
 - [App Functionality](#app-functionality)
 
-### Overview
+## Overview
 
 In my project, I created an AirBnB clone that allows the user to signup, login, create a AirBnb spot, and add a review to other AirBnBs. This project emphasizes using React and Redux to build out the frontend of the application. This project also includes a backend that utilitzes express, sequelize, PostgresSql for the Api Server. I use the backend to perist data sent from the frontend.
+
+## Technologies use
+ ### Frontend
+    * Javascript
+    * React
+    * Redux
+    * FontAwesome
+  ### Backend
+    * PostgreSQL
+    * Express
+    * Sequelize
 
 ### Project Screen Shot(s)
 
@@ -19,6 +30,8 @@ In my project, I created an AirBnB clone that allows the user to signup, login, 
   ![Screenshot2](spotpage.JPG "Sreenshot2")
 - A screenshot of the review section
   ![screenshot3](ReviewSection.JPG "Screenshot3")
+- A screenshot of creating a spot
+  ![screenshot4](create-a-spot.JPG "Screenshot4")
 
 ### How to run the project
 
