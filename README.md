@@ -28,7 +28,7 @@ $ git clone https://github.com/FenneAustin/AirBnB.git
 
 and follow the instruction below.
 
-*in the backend folder
+*in the backend folder <br />
         `run npm install` <br />
         `create a .env file inside the backend folder with the following`<br />
                 `PORT= whatever you want (suggestion : 8000)`<br />
