@@ -5,10 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadReviews } from "../../store/reviews";
 import Reviews from "./Reviews";
 import "./SpotPage.css";
-import AddReviewModal from "./AddReviewModal";
-import { updateSpot } from "../../store/listings";
 import { loadListing } from "../../store/listings";
-import AddReview from "./AddReview"
+import AddReview from "./AddReview";
 
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
 
@@ -52,38 +50,6 @@ const SpotPage = () => {
   const updatePrice = (e) => setPrice(e.target.value);
   const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
-  useEffect(() => {
-    const errors = [];
-    if (address.length > 20) {
-      errors.push("address must be less than 20 characters long");
-    }
-    if (city.length > 20) {
-      errors.push("city must be less than 20 characters long");
-    }
-    if (state.length > 20) {
-      errors.push("state must be less than 20 characters long");
-    }
-    if (country.length > 40) {
-      errors.push("state must be less than 40 characters long");
-    }
-    if (isNaN(lat)) {
-      errors.push("lat must be a number");
-    }
-    if (isNaN(lng)) {
-      errors.push("lng must be a number");
-    }
-    if (name.length > 200) {
-      errors.push("name must be less than 200 characters");
-    }
-    if (name.description > 100) {
-      errors.push("description must be less than 100 characters");
-    }
-    if (isNaN(price)) {
-      errors.push("price must be a number");
-    }
-    setValidationErrors(errors);
-  }, [address, city, state, country, lat, lng, name, description, price]);
-
   const handleReviewUpdate = () => {
     setHasReview(true);
   };
@@ -103,12 +69,16 @@ const SpotPage = () => {
     }
   }, [editPage]);
 
+
+  // need
   useEffect(() => {
     dispatch(loadReviews(spotId));
     dispatch(loadListings());
     dispatch(loadListing(spotId));
   }, [dispatch, spotId]);
 
+
+  //need
   useEffect(() => {
     setHasReview(false);
     setTotalReviews(0);
@@ -128,9 +98,11 @@ const SpotPage = () => {
 
   const handleOnClick = (e) => {
     e.preventDefault();
+     if(window.confirm("Do you want to delete this review?")){
     dispatch(deleteSpot(spot.id));
-    //TODO: how can I error handle this ^
     history.push("/");
+     }
+
   };
 
   const handleEditButton = (e) => {
@@ -138,42 +110,7 @@ const SpotPage = () => {
     setEditPage(true);
   };
 
-  const handleSaveButton = (e) => {
-    e.preventDefault();
-    setHasSubmitted(true);
 
-    if (validationErrors.length) return alert("cannot submit");
-
-    const updatedSpot = {
-      address,
-      city,
-      state,
-      country,
-      lat,
-      lng,
-      name,
-      description,
-      price,
-      previewimage,
-    };
-    dispatch(updateSpot(updatedSpot, spot.id));
-    setEditPage(false);
-  };
-
-  const handleCancelButton = (e) => {
-    e.preventDefault();
-    setAddress(spot.address);
-    setCity(spot.city);
-    setState(spot.state);
-    setCountry(spot.country);
-    setLat(spot.lat);
-    setLng(spot.lng);
-    setName(spot.name);
-    setDescription(spot.description);
-    setPrice(spot.price);
-    setPreviewImage(spot.previewImage);
-    setEditPage(false);
-  };
 
   return (
     <>
@@ -211,68 +148,16 @@ const SpotPage = () => {
               </div>
             )}
           </div>
-          {editPage ? (
-            <>
-              <button onClick={(e) => handleCancelButton(e)}> cancel </button>
-              <button onClick={(e) => handleSaveButton(e)}> save </button>
-            </>
-          ) : null}
 
-          {editPage ? (
-            <input
-              className="name-title"
-              type="text"
-              placeholder="name"
-              value={name}
-              onChange={updateName}
-            />
-          ) : (
-            <h1 className="name-title"> {spot.name}</h1>
-          )}
-
-          {editPage ? (
-            <>
-              <span>reviews :{totalReviews}</span>
-              <input
-                className="address"
-                type="text"
-                placeholder="Address"
-                required
-                value={address}
-                onChange={updateAddress}
-              />
-              <input
-                className="city"
-                type="text"
-                placeholder="City"
-                required
-                value={city}
-                onChange={updateCity}
-              />
-              <input
-                className="state"
-                type="text"
-                placeholder="State"
-                value={state}
-                onChange={updateState}
-              />
-              <input
-                className="country"
-                type="text"
-                placeholder="Country"
-                value={country}
-                onChange={updateCountry}
-              />
-            </>
-          ) : (
-            <>
-              <span className="total-reviews">{totalReviews} reviews</span>
-              <span className="seperation"> . </span>
-              <span className="address-line">
-                {spot.address}, {spot.city}, {spot.state} , {spot.country}
-              </span>
-            </>
-          )}
+          <h1 className="name-title"> {spot.name}</h1>
+          <i className="fa-solid fa-star"></i>
+          <span className="avg-stars">{spot.avgStarRating}</span>
+          <span className="seperation"> . </span>
+          <span className="total-reviews">{totalReviews} reviews</span>
+          <span className="seperation"> . </span>
+          <span className="address-line">
+            {spot.address}, {spot.city}, {spot.state} , {spot.country}
+          </span>
 
           <img src={`${spot.previewImage}`} alt="" className="preview-image" />
 
@@ -282,7 +167,11 @@ const SpotPage = () => {
                 Entire house hosted by{" "}
                 {spot.Owner ? `${spot.Owner.firstName}` : "john"}
               </h1>
-              <i className="fa-solid fa-user profile"></i>
+              <img
+                className="default-profile-headshot"
+                src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+                alt=""
+              />
             </div>
             <div className="house-info">
               <span>6 guest</span>
@@ -295,55 +184,82 @@ const SpotPage = () => {
             </div>
           </div>
 
-          {editPage ? (
-            <input
-              className="description"
-              type="text"
-              placeholder="description"
-              value={description}
-              onChange={updateDescription}
-            />
-          ) : (
-            <h4 className="description">{spot.description}</h4>
-          )}
-
-          {editPage ? (
-            <input
-              className="price"
-              type="text"
-              placeholder="price"
-              value={price}
-              onChange={updatePrice}
-            />
-          ) : (
-            <h3 className="price">${spot.price} night</h3>
-          )}
-
-          {editPage ? (
-            <>
-              <input
-                className="lat"
-                type="text"
-                placeholder="lat"
-                value={lat}
-                onChange={updateLat}
-              />
-              <input
-                className="lng"
-                type="text"
-                placeholder="lng"
-                value={lng}
-                onChange={updateLng}
-              />
-            </>
-          ) : (
-            <h3 className="lat-lng">
-              {" "}
-              {spot.lat} {spot.lng}{" "}
-            </h3>
-          )}
           <div>
-            <h2 className="review-title">Review</h2>
+            <div className="review-stats-container">
+              <div className="review-heading">
+                <i className="fa-solid fa-star"></i>
+                <span className="avg-stars-stats">{spot.avgStarRating}</span>
+                <span className="seperation-stats"> . </span>
+                <span className="total-reviews-stats">
+                  {totalReviews} reviews
+                </span>
+                <div className="stats">
+                  <div className="left-side-stats">
+                    <div className="Cleanliness">
+                      <div className="name">
+                        <span>Cleanliness</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+
+                    <div className="Communication">
+                      <div className="name">
+                        <span>Communication</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+
+                    <div className="Check-in">
+                      <div className="name">
+                        <span>Check-in</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="right-side-stats">
+                    <div className="Accuracy">
+                      <div className="name">
+                        <span>Accuracy</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+
+                    <div className="Location">
+                      <div className="name">
+                        <span>Location</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+
+                    <div className="Value">
+                      <div className="name">
+                        <span>Value</span>
+                      </div>
+                      <div className="rating-block">
+                        <span className="block"></span>
+                        <span className="rating">5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {!hasReview && sessionUser ? (
               // <AddReviewModal reviews={reviews} userId={sessionUser.id} />
@@ -353,7 +269,7 @@ const SpotPage = () => {
               </div>
             ) : null}
           </div>
-          <div>
+          <div className="all-reviews-container">
             {reviews[0] !== undefined ? (
               <div>
                 <Reviews reviews={reviews} userId={sessionUser.id} />
