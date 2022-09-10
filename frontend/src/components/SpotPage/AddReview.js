@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { createReview } from "../../store/reviews";
 import "./AddReview.css"
@@ -7,7 +7,7 @@ import "./AddReview.css"
 
 const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const { spotId } = useParams();
   const [reviewIsEmpty, setReviewIsEmpty] = useState(true);
   const [stars, setStars] = useState("");
@@ -16,7 +16,6 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
   const [validationErrors, setValidationErrors] = useState([])
   const [hasSubmitted, setHasSubmitted] = useState(false)
 
-  const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
 
   useEffect(()=> {
@@ -26,7 +25,7 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
     if(curStars) {
       setStarValue(curStars)
     }
-  },[])
+  },[curReview, curStars])
 
   useEffect(() => {
     const errors = [];
@@ -57,9 +56,10 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
 
     };
 
-    let newReview = dispatch(createReview(payload, spotId));
+    dispatch(createReview(payload, spotId));
 
     setStarValue(1);
+    setStars("");
     setReview("");
 
   };
@@ -181,7 +181,7 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
         </div>
         <div className="review-container">
           <textarea
-            maxlength="250"
+            maxLength="250"
             className="review-textarea-editing"
             id="Review"
             name="Review"

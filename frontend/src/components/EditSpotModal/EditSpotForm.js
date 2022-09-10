@@ -64,7 +64,7 @@ const EditSpotForm = ({ closeModal }) => {
       setPrice(spot.price);
       setPreviewImage(spot.previewImage);
     }
-  }, []);
+  }, [spot]);
 
   //error checking useEffect
   useEffect(() => {
@@ -276,7 +276,7 @@ const EditSpotForm = ({ closeModal }) => {
         <label className="description-label">
           description
           <textarea
-            maxlength="250"
+            maxLength="250"
             className="description-textarea"
             type="text"
             placeholder="description"

@@ -3,12 +3,12 @@ import "./Footer.css"
 const Footer = () => {
     return (
       <div className="footer-container">
-        <href className="linked-in-link"to="https://www.linkedin.com/in/austin-fennegithub">
+        <a className="linked-in-link" href="https://www.linkedin.com/in/austin-fenne">
           <i className="fa-brands fa-linkedin thelinkedin"></i> LinkedIn
-        </href>
-        <href className="github-link" to="https://github.com/FenneAustin/AirBnB">
+        </a>
+        <a className="github-link" href="https://github.com/FenneAustin/AirBnB">
           <i className="fa-brands fa-github thegithub"></i> Readme
-        </href>
+        </a>
       </div>
     );
 }

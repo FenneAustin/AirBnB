@@ -1,28 +1,19 @@
 .footer-container {
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    border-top: 1px solid lightgrey;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
 }
 
-.github-link .linked-in-link{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 30px;
+.thegithub, .thelinkedin {
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
-.thelinkedin .thegithub {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-left: 30px;
-}
-
-href {
-    margin-top: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    margin-left: 20px;
+a, a:visited, a:hover {
+    text-decoration: none;
+    color: black;
 }

@@ -9,7 +9,6 @@ const Review = ({ review, userId }) => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const [editing, setEditing] = useState(false);
-  const [singleReview, setSingleReview] = useState(review.review);
   const [stars, setStars] = useState(review.stars);
 
 
@@ -40,17 +39,13 @@ const Review = ({ review, userId }) => {
     setEditing(false);
   };
 
-  const handleStarClick = (e) => {
-    e.preventDefault();
-    setStars(e.target.value);
-  };
 
   const handleCancel = (e) => {
     e.preventDefault()
     setEditing(false)
   }
 
-  const updateReviews = (e) => setSingleReview(e.target.value);
+
 
   return (
     <div className="review">
@@ -80,33 +75,35 @@ const Review = ({ review, userId }) => {
                 update={true}
               />
             ) : review.review ? (
-              <span className="users-review">{review.review}</span>
+              <div className="users-review">{review.review}</div>
             ) : null}
           </div>
-          {review.userId === userId && editing === false ? (
-            <div className="review-owner">
-              <div className="edit-review">
-                <button
-                  className="edit-review-btn"
-                  onClick={(e) => {
-                    handleEdit(e);
-                  }}
-                >
-                  Edit
-                </button>
+          <div>
+            {review.userId === userId && editing === false ? (
+              <div className="review-owner">
+                <div className="edit-review">
+                  <button
+                    className="edit-review-btn"
+                    onClick={(e) => {
+                      handleEdit(e);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div className="delete-review">
+                  <button
+                    className="delete-review-btn"
+                    onClick={(e) => {
+                      handleDelete(e);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <div className="delete-review">
-                <button
-                  className="delete-review-btn"
-                  onClick={(e) => {
-                    handleDelete(e);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </div>
       {/* <h6 className="name header">

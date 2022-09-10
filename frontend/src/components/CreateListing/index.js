@@ -57,6 +57,13 @@ const CreateListing = () => {
     setPriceErr(false);
     setPreviewImageErr(false);
 
+    // function isImgUrl(url) {
+    //   return fetch(url, { method: "HEAD" }).then((res) => {
+    //     return res.headers.get("Content-Type").startsWith("image");
+    //   });
+    // }
+
+
     if (address.length > 20) {
       setAddressErr(true);
       errors.push("address must be less than 20 characters long");
@@ -93,8 +100,22 @@ const CreateListing = () => {
       setPriceErr(true);
       errors.push("price must be a number");
     }
+
+    if (previewImage < 20){
+      setPreviewImageErr(true);
+      errors.push("link must be an image")
+    }
+
+    // if(hasSubmitted){
+    //   const img = isImgUrl(previewImage);
+    //   if
+    //   setPreviewImageErr(true);
+    //   errors.push("Link must be to image");
+    // }
+
+
     setValidationErrors(errors);
-  }, [address, city, state, country, lat, lng, name, description, price]);
+  }, [address, city, state, country, lat, lng, name, description, price, previewImage]);
 
   if (!sessionUser) return <Redirect to="/signup" />;
 
@@ -270,7 +291,7 @@ const CreateListing = () => {
             onChange={updatePreviewImage}
           />
           {hasSubmitted && previewImageErr && (
-            <span className="error-text">image link must not be more than 100 chars</span>
+            <span className="error-text">link must be to image</span>
           )}
 
           <button className="Create-listing-btn" type="submit">
