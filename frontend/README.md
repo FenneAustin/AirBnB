@@ -11,7 +11,7 @@
 
 ### Overview
 
-In my AirBnB project, I created an AirBnB clone that allows the user to signup, login, create a AirBnb spot, and add a review to other AirBnBs. This project emphasizes using React and Redux to build out the frontend of the application. This project also includes a backend that utilitzes express, sequelize, PostgresSql for the Api Server. I use the backend to perist data sent from the frontend.
+In my project, I created an AirBnB clone that allows the user to signup, login, create a AirBnb spot, and add a review to other AirBnBs. This project emphasizes using React and Redux to build out the frontend of the application. This project also includes a backend that utilitzes express, sequelize, PostgresSql for the Api Server. I use the backend to perist data sent from the frontend.
 
 
 ### Project Screen Shot(s)
