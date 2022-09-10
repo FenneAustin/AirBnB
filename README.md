@@ -44,4 +44,10 @@ and follow the instruction below.
 
 ### App Functionality
 
-In this application, the main page display a list of "spots", that the frontend retreives from an api call to our backend. If you click on one of the spots it will bring you to that spots page. Here if you are the owner of the spot you can make changes to the spot information. Users who visit a spot page can also leave a review.
+In this application, the main page display a list of "spots", that the frontend retreives from an api call to our backend. If you click on one of the spots it will bring you to that spots page. On the spot page if you are the owner of the spot you can make changes to the spot information. Users who visit a spot page can also leave a review.
+
+
+### Reflection
+
+
+This was a 2 week long project built during our 5th module at App academy. Project goals included 
