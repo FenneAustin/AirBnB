@@ -32,12 +32,14 @@ function SignupFormPage({closeModal}) {
     ]);
   };
 
+  const errorsArray = Object.values(errors);
+
   return (
     <div className="signup-container">
       <div className="signup-form-title">Sign Up</div>
       <form onSubmit={handleSubmit} className="sign-up">
-        <ul>
-          {errors.map((error, idx) => (
+        <ul className="error-list-item">
+          {errorsArray.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>

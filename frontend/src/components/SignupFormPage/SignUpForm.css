@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.error-list-item {
+  list-style: none;
+}
+
 .left-half-signup {
   width: 50%;
   height: 100%;

@@ -32,6 +32,8 @@ function SignupFormPage() {
     ]);
   };
 
+  const errorsArray = Object.values(errors)
+
   return (
     <div className="sign-up-container">
       <div className="left-half-signup">
@@ -46,12 +48,13 @@ function SignupFormPage() {
       <div className="right-half-signup">
         <img
           className="full-logo"
-          src="https://cdn.iconscout.com/icon/free/png-256/airbnb-2-282311.png" alt="some-logo"
+          src="https://cdn.iconscout.com/icon/free/png-256/airbnb-2-282311.png"
+          alt="some-logo"
         />
         <span className="signup-title">Register</span>
         <form onSubmit={handleSubmit} className="sign-up-page">
-          <ul>
-            {errors.map((error, idx) => (
+          <ul className="error-list-item">
+            {errorsArray.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
