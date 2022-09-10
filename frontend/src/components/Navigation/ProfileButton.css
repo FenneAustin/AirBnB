@@ -7,6 +7,10 @@
     margin-bottom: 4px;
 }
 
+.home-profile-button, .home-profile-button:visited, .home-profile-button:hover, .home-profile-button:focus, .home-profile-button:active {
+    text-decoration: none;
+    color: black;
+}
 
 
 .flyout {
@@ -37,13 +41,14 @@
     position: absolute;
     background-color: white;
     border-radius: 10px;
-    top: 100px;
-    right: 45px;
+    top: 70px;
+    right: 18px;
     gap: 10px;
     border: 1px lightgray solid;
 }
 
 .profile-btn-logout {
+  margin-left: 15px;
   margin-top: 20px;
   margin-bottom: 10px;
   background: linear-gradient(120deg, #fd5c63, #861657);
@@ -58,7 +63,8 @@
 }
 
 .users-email, .Home-btn-link, .my-spots-link {
-    margin-right: 8px;
+    margin-top: 15px;
+    margin-right: 30px;
     font-family: Tahoma;
     color: black;
 }

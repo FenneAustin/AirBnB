@@ -33,8 +33,8 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
     if (stars > 5 || stars < 0) {
       errors.push("stars must be between 0 and 5");
     }
-    if (review.length > 500) {
-      errors.push("Review can be at most 500 characters long");
+    if (review.length > 250) {
+      errors.push("Review can be at most 250 characters long");
     }
     if(review.length > 0){
       setReviewIsEmpty(false)
@@ -91,6 +91,7 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
         </div>
       )}
       <form className="create-review-form" onSubmit={handleSubmit}>
+        <label className="Review-title-for-edit">Review</label>
         <div className="all-stars">
           <div className="star-one">
             <label>
@@ -179,8 +180,9 @@ const AddReview = ({id, cancel,handleSave, curReview, update,curStars}) => {
           </div>
         </div>
         <div className="review-container">
-          <label htmlFor="Review">Review</label>
           <textarea
+            maxlength="250"
+            className="review-textarea-editing"
             id="Review"
             name="Review"
             onChange={(e) => updateReview(e)}

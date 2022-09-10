@@ -7,6 +7,7 @@ import Reviews from "./Reviews";
 import "./SpotPage.css";
 import { loadListing } from "../../store/listings";
 import AddReview from "./AddReview";
+import EditSpotFormModal from "../EditSpotModal/index";
 
 //TODO: how do I persist react store after a refresh? I get odd behavior if I refresh after going to a page
 
@@ -129,12 +130,7 @@ const SpotPage = () => {
           <div className="owner-buttons">
             {sessionUser.id === spot.ownerId && editPage === false && (
               <div>
-                <button
-                  className="edit-page-btn"
-                  onClick={(e) => handleEditButton(e)}
-                >
-                  edit
-                </button>
+                <EditSpotFormModal />
               </div>
             )}
             {sessionUser.id === spot.ownerId && (

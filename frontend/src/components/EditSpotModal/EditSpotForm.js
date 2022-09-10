@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import {updateSpot } from "../../store/listings"
+import { Redirect, useParams} from "react-router-dom";
+import { updateSpot } from "../../store/listings"
+import "./EditSpotForm.css"
 
 const EditSpotForm = ({ closeModal }) => {
 
@@ -23,7 +23,7 @@ const EditSpotForm = ({ closeModal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [previewimage, setPreviewImage] = useState("");
+  const [previewImage, setPreviewImage] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -137,9 +137,9 @@ const EditSpotForm = ({ closeModal }) => {
       name,
       description,
       price,
-      previewimage,
+      previewImage,
     };
-    const updatedSpotDispatch = dispatch(updateSpot(updatedSpot, spot.id));\
+    const updatedSpotDispatch = dispatch(updateSpot(updatedSpot, spot.id));
 
     if(updatedSpotDispatch){
     setAddress(spot.address);
@@ -172,102 +172,172 @@ const EditSpotForm = ({ closeModal }) => {
     closeModal();
   };
 
-  return(
-  <form className="edit-spot-form">
-    <input
-      type="text"
-      placeholder="Address"
-      required
-      value={address}
-      onChange={updateAddress}
-    />
-    {hasSubmitted && addressErr && (
-      <span className="error-text">Maximum address length is 20</span>
-    )}
-    <input
-      type="text"
-      placeholder="City"
-      required
-      value={city}
-      onChange={updateCity}
-    />
-    {hasSubmitted && cityErr && (
-      <span className="error-text">Maximum city length is 20</span>
-    )}
-    <input
-      type="text"
-      placeholder="State"
-      value={state}
-      onChange={updateState}
-    />
-    {hasSubmitted && stateErr && (
-      <span className="error-text">Maximum State length is 20</span>
-    )}
-    <input
-      type="text"
-      placeholder="Country"
-      value={country}
-      onChange={updateCountry}
-    />
-    {hasSubmitted && countryErr && (
-      <span className="error-text">Maximum Country length is 40</span>
-    )}
-    <input type="text" placeholder="lat" value={lat} onChange={updateLat} />
-    {hasSubmitted && latErr && (
-      <span className="error-text">Latitutde must be a number</span>
-    )}
-    <input type="text" placeholder="lng" value={lng} onChange={updateLng} />
-    {hasSubmitted && lngErr && (
-      <span className="error-text">Longitude must be a number</span>
-    )}
-    <input type="text" placeholder="name" value={name} onChange={updateName} />
-    {hasSubmitted && nameErr && (
-      <span className="error-text">Name must be less than 50 characters</span>
-    )}
-    <input
-      type="text"
-      placeholder="description"
-      value={description}
-      onChange={updateDescription}
-    />
-    {hasSubmitted && descriptionErr && (
-      <span className="error-text">
-        Description must less than 200 characters
-      </span>
-    )}
-    <input
-      type="text"
-      placeholder="price"
-      value={price}
-      onChange={updatePrice}
-    />
-    {hasSubmitted && priceErr && (
-      <span className="error-text">Price must be a number</span>
-    )}
-    <input
-      type="text"
-      placeholder="preview image"
-      value={previewImage}
-      onChange={updatePreviewImage}
-    />
-    {hasSubmitted && previewImageErr && (
-      <span className="error-text">
-        image link must not be more than 100 chars
-      </span>
-    )}
+  return (
+    <div className="edit-spot-form-container">
+      <form className="edit-spot-form">
+        <img
+          className="full-logo-edit"
+          src="https://cdn.iconscout.com/icon/free/png-256/airbnb-2-282311.png"
+          alt="some-logo"
+        />
+        <label>
+          Street Address
+          <input
+            type="text"
+            placeholder="Address"
+            required
+            value={address}
+            onChange={updateAddress}
+          />
+        </label>
+        {hasSubmitted && addressErr && (
+          <span className="error-text">Maximum address length is 20</span>
+        )}
+        <label>
+          City
+          <input
+            type="text"
+            placeholder="City"
+            required
+            value={city}
+            onChange={updateCity}
+          />
+        </label>
+        {hasSubmitted && cityErr && (
+          <span className="error-text">Maximum city length is 20</span>
+        )}
+        <label>
+          State
+          <input
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={updateState}
+          />
+        </label>
+        {hasSubmitted && stateErr && (
+          <span className="error-text">Maximum State length is 20</span>
+        )}
+        <label>
+          {" "}
+          Country
+          <input
+            type="text"
+            placeholder="Country"
+            value={country}
+            onChange={updateCountry}
+          />
+        </label>
+        {hasSubmitted && countryErr && (
+          <span className="error-text">Maximum Country length is 40</span>
+        )}
+        <label>
+          {" "}
+          Latitude
+          <input
+            type="text"
+            placeholder="lat"
+            value={lat}
+            onChange={updateLat}
+          />
+        </label>
+        {hasSubmitted && latErr && (
+          <span className="error-text">Latitutde must be a number</span>
+        )}
 
-    <button className="Create-listing-btn" type="submit" onClick={(e)=>handleSaveButton(e)}>
-      Update
-    </button>
-    <button
-      className="Cancel-listing-btn"
-      type="button"
-      onClick={(e)=>handleCancelButton(e)}
-    >
-      Cancel
-    </button>
-  </form>
-  )
+        <label>
+          Longitude
+          <input
+            type="text"
+            placeholder="lng"
+            value={lng}
+            onChange={updateLng}
+          />
+        </label>
+        {hasSubmitted && lngErr && (
+          <span className="error-text">Longitude must be a number</span>
+        )}
+        <label>
+          Name
+          <textarea
+            maxlength="50"
+            className="name-textarea"
+            type="text"
+            placeholder="name"
+            value={name}
+            onChange={updateName}
+          />
+        </label>
+        {hasSubmitted && nameErr && (
+          <span className="error-text">
+            Name must be less than 50 characters
+          </span>
+        )}
+        <label className="description-label">
+          description
+          <textarea
+            maxlength="250"
+            className="description-textarea"
+            type="text"
+            placeholder="description"
+            value={description}
+            onChange={updateDescription}
+          />
+        </label>
+        {hasSubmitted && descriptionErr && (
+          <span className="error-text">
+            Description must less than 200 characters
+          </span>
+        )}
+        <label>
+          price
+          <input
+            type="text"
+            placeholder="price"
+            value={price}
+            onChange={updatePrice}
+          />
+        </label>
+        {hasSubmitted && priceErr && (
+          <span className="error-text">Price must be a number</span>
+        )}
+        <label>
+          {" "}
+          preview image
+          <input
+            type="text"
+            placeholder="preview image"
+            value={previewImage}
+            onChange={updatePreviewImage}
+          />
+        </label>
+        {hasSubmitted && previewImageErr && (
+          <span className="error-text">
+            image link must not be more than 100 chars
+          </span>
+        )}
+
+        <button
+          className="update-listing-btn"
+          type="submit"
+          onClick={(e) => handleSaveButton(e)}
+        >
+          Update
+        </button>
+        <button
+          className="Cancel-update-listing-btn"
+          type="button"
+          onClick={(e) => handleCancelButton(e)}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  );
+
+
+
+
 };
 
 export default EditSpotForm;

@@ -129,3 +129,10 @@
     margin-right: 2px;
     margin-bottom: 4px;
 }
+
+
+
+.users-review {
+  display: inline-block;
+  white-space: nowrap;
+}

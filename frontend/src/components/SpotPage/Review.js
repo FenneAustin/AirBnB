@@ -70,18 +70,43 @@ const Review = ({ review, userId }) => {
             <div>{review.updatedAt ? review.updatedAt.slice(0, 10) : null}</div>
           </div>
           <div className="review-text">
-            {editing ? <AddReview id={spotId} cancel={handleCancel} curStars={stars} handleSave={handleSave} curReview={review.review} update={true}/> : (review.review ? review.review : null)}
+            {editing ? (
+              <AddReview
+                id={spotId}
+                cancel={handleCancel}
+                curStars={stars}
+                handleSave={handleSave}
+                curReview={review.review}
+                update={true}
+              />
+            ) : review.review ? (
+              <span className="users-review">{review.review}</span>
+            ) : null}
           </div>
-          { review.userId === userId && editing===false? (
-          <div className="review-owner">
-            <div className="edit-review">
-              <button className="edit-review-btn" onClick={(e) => {handleEdit(e)}}>Edit</button>
+          {review.userId === userId && editing === false ? (
+            <div className="review-owner">
+              <div className="edit-review">
+                <button
+                  className="edit-review-btn"
+                  onClick={(e) => {
+                    handleEdit(e);
+                  }}
+                >
+                  Edit
+                </button>
+              </div>
+              <div className="delete-review">
+                <button
+                  className="delete-review-btn"
+                  onClick={(e) => {
+                    handleDelete(e);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="delete-review">
-              <button className="delete-review-btn" onClick={(e) => {handleDelete(e)}}>Delete</button>
-            </div>
-          </div>) : null
-        }
+          ) : null}
         </div>
       </div>
       {/* <h6 className="name header">

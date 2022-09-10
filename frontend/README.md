@@ -1,76 +1,51 @@
 
-# Create React App Template
+# `AirBnB`
 
-A no-frills template from which to create React + Redux applications with
-[Create React App](https://github.com/facebook/create-react-app).
+# Table of Contents
 
-```sh
-npx create-react-app my-app --template @appacademy/react-redux-v17 --use-npm
-```
+* [Overview](#overview)
+* [Project Screen Shot(s)](#Project-Screen-Shot(s))
+* [How to run the project](#How-to-run-the-project)
+* [App Functionality](#app-functionality)
 
-## Available Scripts
 
-In the project directory, you can run:
+### Overview
 
-### `npm start`
+In my AirBnB project, I created an AirBnB clone that allows the user to signup, login, create a AirBnb spot, and add a review to other AirBnBs. This project emphasizes using React and Redux to build out the frontend of the application. This project also includes a backend that utilitzes express, sequelize, PostgresSql for the Api Server. I use the backend to perist data sent from the frontend. This
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Project Screen Shot(s)
 
-### `npm test`
+* A screenshot of the home page:
+![Screenshot1](../Home%20Page.JPG "Screenshoot")
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### How to run the project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run the project, download or clone the repository in your computer:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ $ git clone https://github.com/FenneAustin/AirBnB.git
 
-### `npm run eject`
+ and follow the instruction below.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ in the backend folder
+    1. run npm install
+    2. create a .env file inside the backend folder with the following
+    PORT= whatever you want (suggestion : 8000)
+    DB_FILE = name a path to a database (suggestion : db/dev.db or *any db name*)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    3. Make sure you have the sequelize-cli installed and run
+     - dotenv npx sequelize db:migrate
+     - dotenv npx sequelize db:seed:all
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    4. Run npm start in the backend folder
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+in the frontend folder
+    1. run npm install
+    2. run npm start
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### App Functionality
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In this application, the main page display a list of "spots", that the frontend retreives from an api call to our backend. If you click on one of the spots it will bring you to that spots page. Here if you are the owner of the spot  you can make changes to the spot information. Users who visit a spot page can also leave a review.

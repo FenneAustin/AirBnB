@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { Modal } from "../../context/Modal";
 import EditSpotForm from "./EditSpotForm.js"
-import "./EditSpotModal"
+import "./EditSpotModal.css"
 
 
 function EditSpotFormModal() {
@@ -24,4 +24,4 @@ function EditSpotFormModal() {
   );
 }
 
-export default SignupFormModal;
+export default EditSpotFormModal;

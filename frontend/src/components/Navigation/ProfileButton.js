@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li className="users-email">{user.email}</li>
           <li className="Home-btn-link">
-            <NavLink to="/" style={{ textDecoration: "none" }}>
+            <NavLink className="home-profile-button" to="/" style={{ textDecoration: "none" }}>
               Home
             </NavLink>
           </li>
