@@ -85,7 +85,7 @@ module.exports = {
           lng: 422.55,
           name: "Hayward Haus, Modern Design w/ Classic Experience",
           description:
-            "Built as a winter or summer escape for a couple or small group, this beautiful four season cabin is a great way to experience the Northwoods of Wisconsin a modern, well-appointed, aesthetically rich space designed with relaxation in mind.",
+            "Built as a winter or summer escape for a couple or small group, this beautiful four season cabin is a great way to experience the Northwoods of Wisconsin a modern, well-appointed.",
           price: 330,
           previewImage:
             "https://a0.muscache.com/im/pictures/miso/Hosting-51804926/original/1a849050-498a-4e74-861e-9c38f5d94d38.jpeg?im_w=720",
@@ -100,7 +100,7 @@ module.exports = {
           lng: 422.55,
           name: "Aurora Villa Deluxed double bedroom",
           description:
-            "This memorable stay is anything but ordinary. Cross your very own rope bridge to get to your cozy treehouse. A luxury bathhouse with hot tub on the ground will summon you after a long day of Alaskan adventures. ",
+            "This memorable stay is anything but ordinary. Cross your very own rope bridge to get to your cozy treehouse. A luxury bathhouse with hot tub. ",
           price: 299,
           previewImage:
             "https://a0.muscache.com/im/pictures/41558477-1dc1-4c63-b23d-b0f4ade79d62.jpg?im_w=720",
@@ -115,7 +115,7 @@ module.exports = {
           lng: 422.55,
           name: "Fernside Aframe: Private River Front, Hidden Gem",
           description:
-            "Fernside is a lovingly constructed A-Frame, which rests on the banks of the Sturgeon River, in the charming town of Indian River, Michigan. As dawn turns to daybreak, there’s nothing more pleasant than being drawn from slumber by the sun light springing through open windows and the sound of gushing water echoing through each surface of the property.",
+            "Fernside is a lovingly constructed A-Frame, which rests on the banks of the Sturgeon River, in the charming town of Indian River, Michigan.",
           price: 545,
           previewImage:
             "https://a0.muscache.com/im/pictures/miso/Hosting-38105331/original/0140810d-c017-4083-b131-3c519dd1a8bf.jpeg?im_w=720",
@@ -130,7 +130,7 @@ module.exports = {
           lng: 422.55,
           name: "Subteerranean style & sweeping views `Cueva Balcon`",
           description:
-            "Our lovely, quiet Balcony Cave is full of modern comforts and will be the highlight of your holiday. With a wide sunny terrace and a secret tunnel to an fantastic balcony, it has two double rooms, one twin, a full kitchen, bath and shower.",
+            "Our lovely, quiet Balcony Cave is full of modern comforts and will be the highlight of your holiday. With a wide sunny terrace.",
           price: 67,
           previewImage:
             "https://a0.muscache.com/im/pictures/74308694/4717f934_original.jpg?im_w=720",
