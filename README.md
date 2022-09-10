@@ -29,20 +29,20 @@ $ git clone https://github.com/FenneAustin/AirBnB.git
 and follow the instruction below.
 
 *in the backend folder
-        `run npm install`
-        `create a .env file inside the backend folder with the following`
-                `PORT= whatever you want (suggestion : 8000)`
-                `DB_FILE = name a path to a database (suggestion : db/dev.db or *any db name\*)`
+        `run npm install` <br />
+        `create a .env file inside the backend folder with the following`<br />
+                `PORT= whatever you want (suggestion : 8000)`<br />
+                `DB_FILE = name a path to a database (suggestion : db/dev.db or *any db name\*)`<br />
 
-        `Make sure you have the sequelize-cli installed and run`
-            `dotenv npx sequelize db:migrate`
-           ` dotenv npx sequelize db:seed:all`
+        `Make sure you have the sequelize-cli installed and run`<br />
+            `dotenv npx sequelize db:migrate`<br />
+           ` dotenv npx sequelize db:seed:all`<br />
 
-        `Run npm start in the backend folder`
+        `Run npm start in the backend folder`<br />
 
-*in the frontend folder
-  `run npm install`
-  `run npm start`
+*in the frontend folder<br />
+  `run npm install`<br />
+  `run npm start`<br />
 
 ### App Functionality
 
