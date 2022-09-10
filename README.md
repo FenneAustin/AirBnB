@@ -36,7 +36,6 @@ and follow the instruction below.
         `Make sure you have the sequelize-cli installed`<br />
             `run 'dotenv npx sequelize db:migrate'`<br />
            ` run 'dotenv npx sequelize db:seed:all'`<br />
-
         `Run npm start in the backend folder`<br />
 
 *in the frontend folder<br />
