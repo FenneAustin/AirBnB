@@ -101,6 +101,7 @@ const SpotPage = () => {
     e.preventDefault();
      if(window.confirm("Do you want to delete this review?")){
     dispatch(deleteSpot(spot.id));
+    dispatch(loadListings())
     history.push("/");
      }
 
