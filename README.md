@@ -50,4 +50,6 @@ In this application, the main page display a list of "spots", that the frontend 
 ### Reflection
 
 
-This was a 2 week long project built during our 5th module at App academy. Project goals included 
+This was a 2 week long project built during our 5th module at App academy. Project goals included using technologies learned up until this point; React, Redux, Express, Sequelize, and postgresSql;
+
+One of the main challenges I ran into during this project was getting the redux store to reflect updates made and display those updates in the frontend. One challenging aspect that I didn't think would have been that challenging was styling all of the different components. 
