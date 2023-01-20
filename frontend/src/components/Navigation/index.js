@@ -27,19 +27,25 @@ function Navigation({ isLoaded }) {
       <ul>
         <li className="home">
           <NavLink exact to="/">
-            <img className="airbnb-logo-main"src={"../favicon.svg"} alt="" />
+            <img className="airbnb-logo-main" src={"../favicon.svg"} alt="" />
           </NavLink>
         </li>
 
-        <li className="become-host">
-          <NavLink exact to="/become-a-host" style={{ textDecoration: "none" }}>
-            <div>Become a Host</div>
-          </NavLink>
-        </li>
-        <li className="login-logout">
-          {sessionUser ? null:<DemoAccount />}
-          {isLoaded && sessionLinks}
-        </li>
+        <ul className="become-host">
+          <li>
+            <NavLink
+              exact
+              to="/become-a-host"
+              style={{ textDecoration: "none" }}
+            >
+              <div>Become a Host</div>
+            </NavLink>
+          </li>
+          <li className="login-logout">
+            {sessionUser ? null : <DemoAccount />}
+            {isLoaded && sessionLinks}
+          </li>
+        </ul>
       </ul>
     </nav>
   );

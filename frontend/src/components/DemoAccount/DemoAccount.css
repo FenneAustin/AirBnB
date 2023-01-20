@@ -1,14 +1,15 @@
 .demo-login {
-    margin-left: 20px;
-    background:linear-gradient(120deg, #fd5c63, #861657);
+    background: none;
     border: none;
-    color: white;
     text-align:center;
-    font-size: 10px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-family: Montserrat;
-    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 23px;
     cursor: pointer;
-    border: 1px solid #fd5c63;
+    font-weight: bold;
+}
+
+.demo-login:hover {
+  background-color: #dcdcdc;
+  border-radius: 80px;
+  cursor: pointer;
 }

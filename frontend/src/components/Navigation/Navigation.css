@@ -34,11 +34,12 @@
 .become-host div {
   text-decoration: none;
   padding: 10px;
-  font-size: 13px;
+  font-size: 15px;
   color: black;
   cursor:pointer;
   align-items: center;
   text-align: center;
+  font-weight: bold;
 }
 
 .become-host div:hover {
