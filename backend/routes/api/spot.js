@@ -7,6 +7,8 @@ const { check } = require("express-validator");
 const { handleValidationErrors, handleInsertSpots} = require("../../utils/validation");
 const { Op } = require("sequelize");
 
+const { singlePublicFileUpload, singleMulterUpload, multiplpeMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
+
 const validateSpotInsert = [
   check("address")
     .exists({ checkFalsy: true })

@@ -1,29 +1,48 @@
 .nav-bar {
   border-bottom: 1px solid lightgrey;
+  align-items: center;
+  text-align: center;
 }
 
 .nav-bar ul {
   display: flex;
   justify-content: space-between;
   list-style: none;
+  align-items: center;
+  text-align: center;
 }
 
 .nav-bar .login-logout {
   padding: 10px;
 }
 
-.become-host h4{
-  color: #484848;
+.become-host div{
+  color: black;
   text-decoration: none;
-  font-family: Tahoma;
-  font-weight: bolder;
-  position: relative;
-  left: 50%;
-  right: 50%;
+  margin: none;
+  align-items: center;
+  text-align: center;
 }
 
 .airbnb-logo-main {
   margin-top: 10px;
-  width: 32px;
+  width: 40px;
   height:auto;
+}
+
+
+.become-host div {
+  text-decoration: none;
+  padding: 10px;
+  font-size: 13px;
+  color: black;
+  cursor:pointer;
+  align-items: center;
+  text-align: center;
+}
+
+.become-host div:hover {
+  background-color: #dcdcdc;
+  border-radius: 80px;
+  cursor: pointer;
 }
