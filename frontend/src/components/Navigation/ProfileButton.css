@@ -20,6 +20,8 @@
     align-items: center;
     justify-content: center;
     border: 1px lightgray solid;
+    cursor: pointer;
+    margin-right: 40px;
 }
 
 .flyout:hover {
@@ -41,10 +43,13 @@
     position: absolute;
     background-color: white;
     border-radius: 10px;
-    top: 70px;
-    right: 18px;
+    width: 230px;
+    height: 350px;
+    top: 50px;
+    right: 25px;
     gap: 10px;
     border: 1px lightgray solid;
+    z-index: 200;
 }
 
 .profile-btn-logout {

@@ -25,16 +25,18 @@ const ListingsView = () => {
             <NavLink
               key={i}
               to={`/spots/${listing.id}`}
-              style={{ textDecoration: "none" }}
+              className="listing-link"
             >
               <div className="spot">
-                <Favorite />
-                <img
-                  src={`${listing.previewImage}`}
-                  alt=""
-                  style={{}}
-                  className="spot-img"
-                />
+                <div className="spot-image-container">
+                  <Favorite />
+                  <img
+                    src={`${listing.previewImage}`}
+                    alt=""
+                    style={{}}
+                    className="spot-img"
+                  />
+                </div>
 
                 <div className="information">
                   <h4 className="location-info">

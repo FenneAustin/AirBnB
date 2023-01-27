@@ -36,27 +36,49 @@ function ProfileButton({ user }) {
         <i className="fa-sharp fa-solid fa-bars hamburger" />
         <img
           className="default-profile"
-          src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt=""
+          src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+          alt=""
         />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li className="users-email">{user.email}</li>
           <li className="Home-btn-link">
-            <NavLink className="home-profile-button" to="/" style={{ textDecoration: "none" }}>
-              Home
+            <NavLink
+              className="home-profile-button"
+              to="/messages"
+              style={{ textDecoration: "none" }}
+            >
+              Messages
             </NavLink>
           </li>
-          {/* <li className="my-bookings-link">
-            <NavLink to="/" style={{ textDecoration: "none" }}>
-              My Bookings
+          <li>
+            <NavLink
+              className="home-profile-button"
+              to="/profile"
+              style={{ textDecoration: "none" }}
+            >
+              Manage listings
             </NavLink>
-          </li> */}
-          {/* <li className="my-spots-link">
-            <NavLink to="/" style={{ textDecoration: "none" }}>
-              My Spots
+          </li>
+          <li>
+            <NavLink
+              className="home-profile-button"
+              to="/profile"
+              style={{ textDecoration: "none" }}
+            >
+              Host a experience
             </NavLink>
-          </li> */}
+          </li>
+          <li>
+            <NavLink
+              className="home-profile-button"
+              to="/profile"
+              style={{ textDecoration: "none" }}
+            >
+              Account
+            </NavLink>
+          </li>
+
           <li className="flyout-logout-btn">
             <button onClick={logout} className="profile-btn-logout">
               Log Out
