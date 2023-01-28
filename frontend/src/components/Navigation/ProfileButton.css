@@ -49,7 +49,7 @@
     right: 25px;
     gap: 10px;
     border: 1px lightgray solid;
-    z-index: 200;
+    z-index: 999;
 }
 
 .profile-btn-logout {

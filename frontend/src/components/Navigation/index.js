@@ -6,6 +6,8 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import DemoAccount from "../DemoAccount/index"
 import "./Navigation.css";
+import SearchBar from "./SearchBar";
+
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -29,6 +31,10 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/">
             <img className="airbnb-logo-main" src={"../favicon.svg"} alt="" />
           </NavLink>
+        </li>
+
+        <li>
+          <SearchBar />
         </li>
 
         <ul className="become-host">
