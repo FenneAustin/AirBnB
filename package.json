@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/FenneAustin/AirBnB/issues"
   },
-  "homepage": "https://github.com/FenneAustin/AirBnB#readme"
+  "homepage": "https://github.com/FenneAustin/AirBnB#readme",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
 }

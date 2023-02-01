@@ -19,6 +19,16 @@
   margin-left: 5px;
 }
 
+.linked-in-link:hover, .github-link:hover {
+  text-decoration: underline;
+  cursor:pointer;
+}
+
+.host-experience-btn-footer:hover {
+  text-decoration: underline;
+  cursor:pointer;
+}
+
 .thegithub, .thelinkedin {
   align-items: center;
   text-align: center;

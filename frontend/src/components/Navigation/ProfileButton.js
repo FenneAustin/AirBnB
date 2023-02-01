@@ -42,46 +42,57 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li className="Home-btn-link">
+          <li className="messages-button">
             <NavLink
-              className="home-profile-button"
+              className="messages-button-nav"
               to="/messages"
               style={{ textDecoration: "none" }}
             >
               Messages
             </NavLink>
           </li>
-          <li>
+          <li className="trips-button">
             <NavLink
-              className="home-profile-button"
+              className="trips-button-nav"
+              to="/trips"
+              style={{ textDecoration: "none" }}
+            >
+              Trips
+            </NavLink>
+          </li>
+          <li className="seperator-line"> </li>
+          <li className="manage-listings-button">
+            <NavLink
+              className="manage-listings-button-nav"
               to="/profile"
               style={{ textDecoration: "none" }}
             >
               Manage listings
             </NavLink>
           </li>
-          <li>
+          <li className="host-experience-button">
             <NavLink
-              className="home-profile-button"
+              className="host-experience-button-nav"
               to="/profile"
               style={{ textDecoration: "none" }}
             >
-              Host a experience
+              Host an experience
             </NavLink>
           </li>
-          <li>
+          <li className="account-button">
             <NavLink
-              className="home-profile-button"
+              className="account-button-nav"
               to="/profile"
               style={{ textDecoration: "none" }}
             >
               Account
             </NavLink>
           </li>
-
+          <li className="seperator-line">
+          </li>
           <li className="flyout-logout-btn">
             <button onClick={logout} className="profile-btn-logout">
-              Log Out
+              Log out
             </button>
           </li>
         </ul>

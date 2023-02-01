@@ -9,6 +9,7 @@ const Footer = () => {
           <div className="inner_div_1_content_home" id="SPAN_3">
             ·
           </div>
+          <div className="host-experience-btn-footer">Host an Experience</div>
         </div>
         <div className="right-side-footer">
           <a
