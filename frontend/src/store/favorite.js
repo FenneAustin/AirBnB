@@ -73,7 +73,7 @@ const favoriteReducer = (state = initialState, action) => {
         case LOAD: {
             const allFavorites = {};
             action.payload.favorites.forEach((favorite) => {
-                allFavorites[favorite.id] = favorite;
+                allFavorites[favorite.spotId] = favorite;
             });
             return {
                 ...allFavorites,
@@ -83,7 +83,7 @@ const favoriteReducer = (state = initialState, action) => {
         case ADD_ONE: {
             return {
                 ...state,
-                [action.payload.favorite.id]: action.payload.favorite
+                [action.payload.favorite.spotId]: action.payload.favorite
             }
         }
         case DELETE_ONE: {

@@ -36,6 +36,7 @@
 .listing-link {
   margin: 1rem;
   margin-bottom: 2rem;
+  cursor:pointer;
 }
 
 .spot-img {

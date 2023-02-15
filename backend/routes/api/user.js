@@ -37,7 +37,6 @@ router.get("/Me", requireAuth, async (req,res) => {
 })
 
 
-// TODO: ask baylen if I can keep this endpoint as including a username and update readme. My readme doesnt have the username but its easier if I just include it
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
