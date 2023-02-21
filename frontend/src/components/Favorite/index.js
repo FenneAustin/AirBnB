@@ -2,7 +2,7 @@ import "./index.css";
 import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 import {useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux";
-import {loadFavorites, createFavorite} from "../../store/favorite"
+import {loadFavorites, createFavorite, deleteFavorite} from "../../store/favorite"
 
 const Favorite = ({listing}) => {
 
@@ -11,8 +11,13 @@ const Favorite = ({listing}) => {
   const favorites = useSelector(state => state.favorites)
 
   const handleClickEvent = async () => {
-    await dispatch(createFavorite(listing.id))
-    await dispatch(loadFavorites())
+    if (favorites[listing.id]){
+      await dispatch(deleteFavorite(favorites[listing.id].id))
+      await dispatch(loadFavorites())
+    }else {
+      await dispatch(createFavorite(listing.id))
+      await dispatch(loadFavorites())
+    }
   }
 
   useEffect(() => {
@@ -29,13 +34,19 @@ const Favorite = ({listing}) => {
 
   }, [listing, favorites])
 
+
+
+
     return (
       <div className="favorite-container" onClick={handleClickEvent}>
         <IoIosHeart
           className="favorite-icon"
-          fill={isFavorite == true ? "rgba(255,50,94,255)" : "rgba(0,0,0,0.4)"}
+          fill="rgba(0,0,0,0.4)"
           color="white"
         />
+        {isFavorite && (
+          <IoIosHeart className="favorite-icon" color="red" />
+        )}
         <IoIosHeartEmpty className="favorite-icon" color="white" />
       </div>
     );

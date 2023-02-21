@@ -88,10 +88,9 @@ function ProfileButton({ user }) {
               Account
             </NavLink>
           </li>
-          <li className="seperator-line">
-          </li>
-          <li className="flyout-logout-btn">
-            <button onClick={logout} className="profile-btn-logout">
+          <li className="seperator-line"></li>
+          <li className="flyout-logout-btn" onClick={(e) => logout(e)}>
+            <button onClick={(e) => logout(e)} className="profile-btn-logout">
               Log out
             </button>
           </li>

@@ -53,7 +53,7 @@ export const createFavorite = (spotId) => async (dispatch) => {
     }
 
 export const deleteFavorite = (favoriteId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/favorites/${favoriteId}`, {
+    const response = await csrfFetch(`/api/favorites/${favoriteId}/`, {
         method: "DELETE",
     });
 
@@ -88,7 +88,7 @@ const favoriteReducer = (state = initialState, action) => {
         }
         case DELETE_ONE: {
             const newState = {...state};
-            delete newState[action.payload.favoriteId];
+            delete newState[action.payload.favorite.spotId];
             return newState;
         }
         default:

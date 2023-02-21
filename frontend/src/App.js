@@ -23,8 +23,6 @@ function App() {
 
   return (
     <>
-
-
       {isLoaded && (
         <Switch>
           <Route exact path="/">

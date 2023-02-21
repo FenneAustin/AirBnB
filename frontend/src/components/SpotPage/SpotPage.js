@@ -41,16 +41,16 @@ const SpotPage = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [totalReviews, setTotalReviews] = useState(0);
 
-  const updateAddress = (e) => setAddress(e.target.value);
-  const updateCity = (e) => setCity(e.target.value);
-  const updateState = (e) => setState(e.target.value);
-  const updateCountry = (e) => setCountry(e.target.value);
-  const updateLat = (e) => setLat(e.target.value);
-  const updateLng = (e) => setLng(e.target.value);
-  const updateName = (e) => setName(e.target.value);
-  const updateDescription = (e) => setDescription(e.target.value);
-  const updatePrice = (e) => setPrice(e.target.value);
-  const updatePreviewImage = (e) => setPreviewImage(e.target.value);
+  // const updateAddress = (e) => setAddress(e.target.value);
+  // const updateCity = (e) => setCity(e.target.value);
+  // const updateState = (e) => setState(e.target.value);
+  // const updateCountry = (e) => setCountry(e.target.value);
+  // const updateLat = (e) => setLat(e.target.value);
+  // const updateLng = (e) => setLng(e.target.value);
+  // const updateName = (e) => setName(e.target.value);
+  // const updateDescription = (e) => setDescription(e.target.value);
+  // const updatePrice = (e) => setPrice(e.target.value);
+
 
   const handleReviewUpdate = () => {
     setHasReview(true);
@@ -181,6 +181,7 @@ const SpotPage = () => {
               <span> 2 baths </span>
             </div>
           </div>
+          <Booking spot={spot} totalReviews={totalReviews} />
           <div>
             <div className="review-stats-container">
               <div className="review-heading">
@@ -275,7 +276,6 @@ const SpotPage = () => {
           </div>
         </div>
       )}
-      <Booking />
     </>
   );
 };
