@@ -10,6 +10,7 @@ import CreateListing from './components/CreateListing/index'
 import SpotPages from './components/SpotPage/index'
 import loadListings from './store/listings';
 import Footer from "./components/Footer/index"
+import AccountPage from "./pages/accountpage";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,10 @@ function App() {
           <Route path="/spots/:spotId">
             <Navigation isLoaded={isLoaded} />
             <SpotPages />
+          </Route>
+          <Route path="/account/:subpage">
+            <Navigation isLoaded={isLoaded} />
+            <AccountPage />
           </Route>
         </Switch>
       )}

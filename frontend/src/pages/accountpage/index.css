@@ -1,0 +1,26 @@
+.accountpage-nav {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 40px;
+    justify-content: center;
+}
+
+
+
+.accountpage-link {
+  color: black;
+  text-decoration: none;
+  margin: none;
+  align-items: center;
+  text-align: center;
+  padding: 7px 16px;
+}
+
+
+.accountpage-link:hover {
+  background-color: #ff2b53;
+  border-radius: 80px;
+  cursor: pointer;
+  color: white;
+}
