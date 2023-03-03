@@ -1,0 +1,41 @@
+.places-page{
+  background-color: #ff2b53;
+  border-radius: 80px;
+  cursor: pointer;
+  color: white !important;
+  text-decoration: none;
+  margin: none;
+  align-items: center;
+  text-align: center;
+  padding: 7px 16px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+
+
+.add-new-place {
+    color: white !important;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.plus-new-places {
+    color: white;
+    font-weight: bolder;
+    background-color: none;
+}
+
+
+.places-page-container {
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    display: block;
+}

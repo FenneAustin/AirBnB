@@ -15,12 +15,29 @@
   align-items: center;
   text-align: center;
   padding: 7px 16px;
+  justify-content: center;
+  display: flex;
 }
 
+.category-icon {
+  margin-right: 5px;
+}
 
 .accountpage-link:hover {
   background-color: #ff2b53;
   border-radius: 80px;
   cursor: pointer;
   color: white;
+}
+
+.selected-page-active {
+  color: white !important;
+  background-color: #ff2b53;
+  border-radius: 80px;
+  cursor: pointer;
+  margin: none;
+  align-items: center;
+  text-align: center;
+  padding: 7px 16px;
+  display: flex;
 }

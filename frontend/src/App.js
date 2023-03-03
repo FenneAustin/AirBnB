@@ -43,7 +43,11 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <SpotPages />
           </Route>
-          <Route path="/account/:subpage">
+          <Route path="/account/:subpage?">
+            <Navigation isLoaded={isLoaded} />
+            <AccountPage />
+          </Route>
+          <Route path="/account/:subpage/:action">
             <Navigation isLoaded={isLoaded} />
             <AccountPage />
           </Route>
