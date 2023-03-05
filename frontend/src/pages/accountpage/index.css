@@ -15,8 +15,10 @@
   align-items: center;
   text-align: center;
   padding: 7px 16px;
+  background-color: rgb(223, 219, 219);
   justify-content: center;
   display: flex;
+  border-radius: 80px;
 }
 
 .category-icon {

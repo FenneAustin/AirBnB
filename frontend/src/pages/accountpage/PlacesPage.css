@@ -39,3 +39,117 @@
     text-align: center;
     display: block;
 }
+
+
+.form-titles {
+ font-size: 23px;
+ text-align: left;
+}
+
+.helper-text {
+  text-align: left;
+}
+
+.input-place-creation {
+    width: 100%;
+    font-size: 17px;
+    line-height: 35px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.input-place-creation-form {
+    width: 80%;
+}
+
+.place-creation-form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.place-creation-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-photos-btn {
+    margin: auto;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 6px 8px;
+    display: flex;
+    border: none;
+    color: none;
+    border-radius: 7px;
+    cursor: pointer;
+    border: 1px solid gray;
+}
+
+
+.add-photos-btn-plus {
+    color: black;
+    font-weight: bolder;
+    background-color: none;
+    font-size: 14px;
+    background: none;
+    align-self: bottom;
+}
+
+
+@media screen and (max-width: 767px) {
+  .all-photos-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}
+
+/* For medium screens */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .all-photos-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}
+
+/* For large screens */
+@media screen and (min-width: 1024px) {
+  .all-photos-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+        justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}
+
+
+.url-photo-upload {
+    display: flex;
+}
+
+.add-url-photo-btn {
+  color: white !important;
+  background-color: #ff2b53;
+  border-radius: 80px;
+  cursor: pointer;
+  margin: none;
+  align-items: center;
+  text-align: center;
+  padding: 7px 16px;
+  display: flex;
+  border:none;
+  width: 50%;
+  justify-content: center;
+}
