@@ -1,5 +1,5 @@
 import "./PlacesPage.css";
-import React from "react";
+import React, {useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import { BsPlusLg, BsUpload } from "react-icons/bs";
 import { AiOutlineWifi, AiOutlineCar } from "react-icons/ai";
@@ -11,7 +11,17 @@ import { BsDoorClosed } from "react-icons/bs";
 const PlacesPage = () => {
 
     const {action} = useParams();
-    console.log(action)
+    const [title,setTitle] = useState('');
+    const [address, setAddress] = useState('');
+    const [addedPhotos, setAddedPhotos] = useState([]);
+    const [photoLink, setPhotoLink] = useState('');
+    const [description, setDescription] = useState('');
+    const [perks, setPerks] = useState([]);
+    const [extraInfo, setExtraInfo] = useState('');
+    const [checkIn, setCheckIn] = useState('');
+    const [checkOut, setCheckOut] = useState('');
+    const [maxGuests, setMaxGuests] = useState(1);
+
 
     return (
       <div className="places-page-container">
@@ -66,32 +76,57 @@ const PlacesPage = () => {
               />
               <h2 className="form-titles">Perks</h2>
               <p className="helper-text">select all the perks of your place.</p>
-              <div>
-                <label>
+              <div className="perks-container">
+                <label className="perks-label">
                   <input type="checkbox" />
                   <AiOutlineWifi />
                   <span>Wifi</span>
                 </label>
-                <label>
+                <label className="perks-label">
                   <input type="checkbox" />
                   <AiOutlineCar />
                   <span>Free parking spot</span>
                 </label>
-                <label>
+                <label className="perks-label">
                   <input type="checkbox" />
                   <IoTvOutline />
                   <span>TV</span>
                 </label>
-                <label>
+                <label className="perks-label">
                   <input type="checkbox" />
                   <GiHollowCat />
                   <span>Pets</span>
                 </label>
-                <label>
+                <label className="perks-label">
                   <input type="checkbox" />
                   <BsDoorClosed />
                   <span>Private entrance</span>
                 </label>
+              </div>
+              <h2 className="form-titles">Extra info</h2>
+              <p className="helper-text">house rules, etc</p>
+              <textarea type="text" className="input-place-creation" />
+              <h2 className="form-titles">Check in&out times</h2>
+              <p className="helper-text">
+                add check in and out times, remember to have some time window
+                for cleaning the room after guests
+              </p>
+              <div className="checkin-container">
+                <div>
+                  <h3 className="checkin-header">Check in time</h3>
+                  <input type="text" placeholder="14:00"></input>
+                </div>
+                <div>
+                  <h3 className="checkin-header">Check out time</h3>
+                  <input type="text"></input>
+                </div>
+                <div className="checkin-header">
+                  <h3 className="checkin-header">number of guests</h3>
+                  <input type="text"></input>
+                </div>
+              </div>
+              <div className="save-place-btn-con">
+                <button className="save-place-btn">Save</button>
               </div>
             </form>
           </div>
