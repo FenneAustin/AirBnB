@@ -15,6 +15,16 @@
 }
 
 
+.preview-image-added {
+  border-radius: 10px;
+
+}
+
+.upload-photo-input {
+  display: hidden;
+  visibility: hidden;
+  width: 1px;
+}
 
 .add-new-place {
     color: white !important;

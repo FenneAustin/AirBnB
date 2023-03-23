@@ -2,10 +2,8 @@ import "./PlacesPage.css";
 import React, {useState} from "react";
 import {Link, useParams} from "react-router-dom"
 import { BsPlusLg, BsUpload } from "react-icons/bs";
-import { AiOutlineWifi, AiOutlineCar } from "react-icons/ai";
-import { IoTvOutline } from "react-icons/io5";
-import { GiHollowCat } from "react-icons/gi";
-import { BsDoorClosed } from "react-icons/bs";
+import Perks from "./perks";
+import axios from 'axios';
 
 
 const PlacesPage = () => {
@@ -21,6 +19,35 @@ const PlacesPage = () => {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
+    const [selected, setSelected] = useState([])
+
+    const onChange = () => {
+
+    }
+
+
+    const addPhotoByLink = async (ev) => {
+      ev.preventDefault();
+      const {data} = await axios.post('/api/images/upload-photo-by-link', {link: photoLink})
+      setPhotoLink('');
+      setAddedPhotos([...addedPhotos, data.url])
+    }
+
+    const uploadPhoto = async (ev) => {
+      ev.preventDefault();
+      const files = ev.target.files;
+      const data = new FormData();
+      for(let i=0; i < files.length; i++){
+      data.append('photos', files[i]);
+      }
+      axios.post('/upload-photo/', data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }).then(response => {
+        const {data:filename} = response;
+        setAddedPhotos([...addedPhotos, filename])
+      })
+
+    }
 
 
     return (
@@ -43,6 +70,8 @@ const PlacesPage = () => {
                 className="input-place-creation"
                 type="text"
                 placeholder="title, for example: My lovely apt"
+                value={title}
+                onChange={ev => setTitle(ev.target.value)}
               />
               <h2 className="form-titles">Address</h2>
               <p className="helper-text">Address to this place.</p>
@@ -50,6 +79,8 @@ const PlacesPage = () => {
                 type="text"
                 className="input-place-creation"
                 placeholder="address"
+                value={address}
+                onChange={ev=> setAddress(ev.target.value)}
               />
               <h2 className="form-titles">Photos</h2>
               <p className="helper-text">more = better</p>
@@ -58,14 +89,22 @@ const PlacesPage = () => {
                   className="input-place-creation"
                   type="text"
                   placeholder={"Add using a link .....jpg"}
+                  value={photoLink}
+                  onChange={ev => setPhotoLink(ev.target.value)}
                 />
-                <button className="add-url-photo-btn">Add photo</button>
+                <button onClick={ev => addPhotoByLink(ev)} className="add-url-photo-btn">Add photo</button>
               </div>
               <div className="all-photos-container">
-                <button className="add-photos-btn">
+                {addedPhotos.length > 0 && addedPhotos.map((photo, idx) => (
+                  <div key={idx}>
+                    <img src={photo} className="preview-image-added" alt="uploaded photo" />
+                  </div>
+                ))}
+                <label className="add-photos-btn">
+                  <input type="file" multiple className="upload-photo-input" />
                   <BsUpload className="add-photos-btn-plus" />
                   <div>Upload</div>
-                </button>
+                </label>
               </div>
               <h2 className="form-titles">Description</h2>
               <p className="helper-text">description of the place.</p>
@@ -73,39 +112,15 @@ const PlacesPage = () => {
                 type="text"
                 className="input-place-creation"
                 placeholder="address"
+                value={description}
+                onChange={ev => setDescription(ev.target.value)}
               />
               <h2 className="form-titles">Perks</h2>
               <p className="helper-text">select all the perks of your place.</p>
-              <div className="perks-container">
-                <label className="perks-label">
-                  <input type="checkbox" />
-                  <AiOutlineWifi />
-                  <span>Wifi</span>
-                </label>
-                <label className="perks-label">
-                  <input type="checkbox" />
-                  <AiOutlineCar />
-                  <span>Free parking spot</span>
-                </label>
-                <label className="perks-label">
-                  <input type="checkbox" />
-                  <IoTvOutline />
-                  <span>TV</span>
-                </label>
-                <label className="perks-label">
-                  <input type="checkbox" />
-                  <GiHollowCat />
-                  <span>Pets</span>
-                </label>
-                <label className="perks-label">
-                  <input type="checkbox" />
-                  <BsDoorClosed />
-                  <span>Private entrance</span>
-                </label>
-              </div>
+              <Perks  selected={selected} onChange={onChange}/>
               <h2 className="form-titles">Extra info</h2>
               <p className="helper-text">house rules, etc</p>
-              <textarea type="text" className="input-place-creation" />
+              <textarea type="text" className="input-place-creation" value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}/>
               <h2 className="form-titles">Check in&out times</h2>
               <p className="helper-text">
                 add check in and out times, remember to have some time window
@@ -114,15 +129,15 @@ const PlacesPage = () => {
               <div className="checkin-container">
                 <div>
                   <h3 className="checkin-header">Check in time</h3>
-                  <input type="text" placeholder="14:00"></input>
+                  <input type="text" placeholder="14:00" value={checkIn} onChange={ev => setCheckIn(ev.target.value)}></input>
                 </div>
                 <div>
                   <h3 className="checkin-header">Check out time</h3>
-                  <input type="text"></input>
+                  <input type="text" value={checkOut} onChange={ev => setCheckOut(ev.target.value)}></input>
                 </div>
                 <div className="checkin-header">
                   <h3 className="checkin-header">number of guests</h3>
-                  <input type="text"></input>
+                  <input type="text" value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)}></input>
                 </div>
               </div>
               <div className="save-place-btn-con">
